@@ -1,0 +1,174 @@
+/* Container for the entire cart page */
+.cart-container {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    /* Wrap if not enough horizontal space */
+    gap: 2rem;
+    max-width: 1200px;
+    /* Adjust as needed */
+    margin: 2rem auto;
+    /* Centers the container on the page */
+    padding: 1rem;
+}
+
+/* Left section that holds the list of cart items */
+.cart-items {
+    flex: 1 1 60%;
+    /* Take up about 60% of the container's width */
+    min-width: 300px;
+    /* Ensure it doesn’t shrink too small */
+}
+
+/* Individual cart item row */
+.cart-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+}
+
+/* The product image */
+.cart-item img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Container for product details (name, description, etc.) */
+.cart-item-details {
+    flex: 1;
+}
+
+/* Product name/title styling */
+.cart-item-details h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Additional product info (e.g., size, color) */
+.cart-item-details p {
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Price and quantity container */
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+/* Quantity controls (e.g., plus/minus buttons) */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-controls button {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+.quantity-controls input[type="number"] {
+    width: 50px;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    padding: 0.3rem;
+}
+
+.quantity-controls input[type='number']::-webkit-inner-spin-button,
+.quantity-controls input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Price styling */
+.cart-item-price {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+/* Right section for summary */
+.cart-summary {
+    flex: 0 1 35%;
+    min-width: 250px;
+    /* Prevent it from shrinking too small */
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #fafafa;
+    align-self: flex-start;
+    /* Aligns summary to the top of the container */
+}
+
+/* Summary heading */
+.cart-summary h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+    font-family: PP Neue Corp Wide, sans-serif;
+}
+
+/* Subtotal, delivery, total, etc. */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.summary-row span {
+    font-size: 1rem;
+    color: #333;
+}
+
+.summary-total {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Buttons in the summary section */
+.checkout-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.checkout-buttons button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.guest-checkout {
+    background-color: #000;
+    color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+.guest-checkout:hover {
+    background-color: #333;
+}
+
+.member-checkout {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.member-checkout:hover {
+    background-color: #000;
+    color: #fff;
+}

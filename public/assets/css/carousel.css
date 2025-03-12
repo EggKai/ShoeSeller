@@ -1,0 +1,87 @@
+/* --- Carousel Container --- */
+.carousel-container {
+    position: relative;
+    /* So we can position arrows absolutely */
+    margin: 0 auto;
+    /* Center the carousel */
+    padding: 20px 0;
+    /* Spacing above/below */
+    overflow: hidden;
+    /* Hide any overflow from the horizontal scroll */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* --- Horizontal Scroll Track --- */
+.product-list {
+    display: flex;
+    gap: 1rem;
+    /* Space between items */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory;
+    /* Activate scroll snapping on x-axis */
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    scroll-behavior: smooth;
+    /* Smooth scrolling when using JS or arrow keys */
+}
+
+/* Each product item “snap-aligns” to the center */
+.product-item {
+    flex: 0 0 auto;
+    /* Prevent items from shrinking */
+    width: 400px;
+    /* Fixed width for each item (adjust as needed) */
+    scroll-snap-align: center;
+    padding: 10px;
+}
+
+.product-item a {
+    text-decoration: none;
+}
+
+.product-item img {
+    max-width: 100%;
+}
+
+/* --- Navigation Buttons --- */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    /* Ensure buttons sit above the list */
+    /* background-color: rgba(0,0,0,0.5); */
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 60%;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-button:hover {
+    opacity: 1;
+}
+
+/* Position the Prev/Next on the left/right sides */
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+.product-list::-webkit-scrollbar {
+    display: none;
+}
+
+.product-list {
+    -ms-overflow-style: none;
+    /* IE 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}

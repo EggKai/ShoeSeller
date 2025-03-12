@@ -1,0 +1,208 @@
+/* Overall container for the page */
+.product-page {
+    display: flex;
+    /* Two-column layout */
+    gap: 2rem;
+    /* Spacing between columns */
+    max-width: 1200px;
+    /* Constrain overall width */
+    margin: 2rem auto;
+    /* Center it and add top/bottom spacing */
+    padding: 0 1rem;
+    /* Some side padding */
+    font-family: Arial, sans-serif;
+}
+
+/* LEFT COLUMN: Product Image */
+.product-image {
+    flex: 1;
+    /* Take up equal space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* RIGHT COLUMN: Product Details */
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Product name */
+.product-name {
+    font-size: 1.5rem;
+    margin: 0;
+    
+}
+
+.product-brand {
+    color: #555;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Subtitle / Description */
+.product-subtitle {
+    color: #555;
+    font-size: 1rem;
+    margin: 0 0 1rem;
+}
+
+/* Price */
+.product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Size selection row */
+.size-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.select-size {
+    margin: 0;
+    /* Remove default h3 margin */
+    font-size: 1.1rem;
+}
+
+.size-guide-link {
+    font-size: 0.9rem;
+    color: #0071eb;
+    /* Example link color */
+    text-decoration: none;
+}
+
+.size-guide-link:hover {
+    text-decoration: underline;
+}
+
+/* Size grid layout */
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns, adjust as needed */
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.size-button {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.size-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Buttons row */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Add to Bag button */
+.add-to-bag {
+    background-color: var(--color-light);
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-bag:hover {
+    background-color: var();
+}
+
+/* Favourite button */
+.favourite {
+    background-color: transparent;
+    color: var(--color-light);
+    border: 1px solid #000;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 2rem;
+    border-color: var(--color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.favourite:hover {
+    background-color: var(--color-grey);
+}
+
+/* Heart icon */
+.heart {
+    margin-left: 0.5rem;
+}
+
+/* Container for each size radio + label */
+.size-option {
+    display: inline-block;
+    /* or flex, depending on your layout */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 0.2em;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Hide the actual radio input */
+.size-option input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+.size-option label {
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+
+/* Hover state animation */
+.size-option:hover {
+    background-color: #e5e5e5;  /* Lighter grey on hover */
+    border-color: #aaa;         /* Darker border on hover */
+    color: var(--color-dark);
+}
+
+
+/* Hide the actual radio input */
+.size-option input[type="radio"] {
+    display: none;
+}
+
+
+/* Checked (selected) state animation */
+/* When the radio is checked, style the entire container using :has() */
+.size-option:has(input[type="radio"]:checked) {
+    background-color: var(--color-grey); /* For example, a dark color */
+    border-color: var(--color-grey);
+    color: var(--color-light);           /* Light text on dark background */
+}

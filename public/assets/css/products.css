@@ -1,0 +1,69 @@
+/* Container for product items */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows items to wrap to the next row */
+    gap: 1rem;
+    /* Optional: limit the overall width */
+    margin: 0 auto;
+    /* Centers the container */
+    text-align: center;
+    justify-content: center; /* Center the items within the container */
+}
+
+/* Each product card */
+.product-item {
+    flex: 0 0 calc(25% - 1rem);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+}
+
+.product-item h3{
+    margin: 0;
+}
+
+.product-item > a {
+    text-decoration: none;
+}
+
+.product-item h6{
+    margin: 0;
+    color: var(--color-light);
+}
+.product-item p{
+    margin: 0;
+}
+
+/* Hover effect */
+.product-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure images scale properly */
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 992px) {
+    .product-item {
+        flex: 0 0 calc(33.333% - 1rem);
+        /* 3 items per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-item {
+        flex: 0 0 calc(50% - 1rem);
+        /* 2 items per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        flex: 0 0 calc(100% - 1rem);
+        /* 1 item per row on small screens */
+    }
+}
