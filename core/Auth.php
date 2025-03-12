@@ -19,7 +19,12 @@ class Auth extends Model
         //     'options' => array('regexp' => "/^([+]([0-9]{2}))? ?[0-9]{4} ?[0-9]{4}/"),
         // ]
     );
-    public const ALLOWED_EXTENTIONS = ['jpg', 'jpeg', 'png', 'avif'];
+    public const ALLOWED_EXTENTIONS = [
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'png' => 'image/png',
+        'avif' => 'image/avif'
+    ];
     /**
      * Authenticate a user by email and password.
      *
@@ -115,13 +120,15 @@ class Auth extends Model
     }
 }
 
-class Csrf {
+class Csrf
+{
     /**
      * Generate a CSRF token and store it in session if it doesn't already exist.
      *
      * @return string CSRF token.
      */
-    public static function generateToken() {
+    public static function generateToken()
+    {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
@@ -137,7 +144,8 @@ class Csrf {
      * @param string $token The token to validate.
      * @return bool True if valid; otherwise false.
      */
-    public static function validateToken($token) {
+    public static function validateToken($token)
+    {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }

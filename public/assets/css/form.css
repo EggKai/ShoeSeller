@@ -19,7 +19,8 @@
         text-align: center;
     }
 
-    #authForm input:not([type=checkbox], [type=submit], #query) {
+    #authForm input:not([type=checkbox], [type=submit], #query),
+    #authForm select {
         padding: 10px;
         width: 100%;
         font-size: 17px;
@@ -46,7 +47,8 @@
 
     #authForm form button,
     #authForm input[type=submit],
-    #authForm button.stepButton {
+    #authForm button.stepButton,
+    #authForm button.addButton {
         background-color: var(--color-light);
         border: none;
         border-radius: 2rem;
@@ -62,18 +64,20 @@
     }
 
     #prevBtn {
-        background-color: #bbbbbb;
+        background-color: #4f4f4f;
     }
 
     #authForm form a:link,
     #authForm form a:visited {
-        color: white;
+        color: var(--color-white);
     }
 
-    #authForm button.delete {
-        background-color: red;
-        color: whitesmoke;
+    #authForm button.delete,
+    #authForm button.remove-size {
+        background-color: var(--color-error);
+        color: var(--color-light);
         border: none;
+        border-radius: 2rem;
         padding: 10px 20px;
         font-size: 17px;
         cursor: pointer;
@@ -90,14 +94,6 @@
     #authForm .size-row input {
         flex: 1;
         padding: 5px;
-    }
-
-    #authForm .size-row button.remove-size {
-        padding: 5px 10px;
-        background-color: #e74c3c;
-        color: #fff;
-        border: none;
-        cursor: pointer;
     }
 
     /* Make circles that indicate the steps of the form: */

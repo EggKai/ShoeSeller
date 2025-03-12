@@ -11,16 +11,19 @@ class AdminController extends Controller
     public function addProduct()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') {
-            $this->view(AdminController::$path . '/addProduct', ['data' => null, 'options' => ['form', 'form-carousel', 'sizes-list'], 'csrf_token' => Csrf::generateToken()]);
+            $categories = (new Product())->getAllCategories();
+            $this->view(AdminController::$path . '/addProduct', ['data' => null, 'options' => ['form', 'form-carousel', 'sizes-list'], 'categories' => $categories, 'csrf_token' => Csrf::generateToken()]);
         }
         exit;
     }
     public function doAddProduct()
     {
         $alert = function ($message) { //lambda
+            $categories = (new Product())->getAllCategories();
             $this->view(self::$path . '/addProduct', [
                 'data' => $_POST,
                 'alert' => [$message, 2],
+                'categories' => $categories,
                 'options' => ['form', 'form-carousel', 'sizes-list'],
                 'csrf_token' => Csrf::generateToken()
             ]);
@@ -43,11 +46,20 @@ class AdminController extends Controller
         $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $brand = filter_var($_POST['brand'], FILTER_SANITIZE_SPECIAL_CHARS);
         $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
         // Process the sizes and stock values.
         // These are received as arrays from the dynamic form inputs.
         $sizes = $_POST['sizes'] ?? [];
         $stocks = $_POST['stock'] ?? [];
-
+        if (empty(trim($name)) || empty(trim($price)) || empty(trim($brand)) || empty(trim($description))) {
+            $alert("All fields are required.");
+            exit;
+        }
+        if (!$category) {
+            // Handle error: no valid category was selected
+            $alert("Invalid category selection.");
+            exit;
+        }
         // Check that both arrays have the same length.
         if (count($sizes) !== count($stocks)) {
             $alert("Sizes and stock counts do not match.");
@@ -55,9 +67,13 @@ class AdminController extends Controller
         }
         $fileName = str_replace(" ", "_", $name);
 
-        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        if (!in_array($fileExtension, Auth::ALLOWED_EXTENTIONS)) {
+        $fileExtension = strtolower(pathinfo($_FILES['thumbnail']['name'], PATHINFO_EXTENSION));
+        if (!array_key_exists($fileExtension, Auth::ALLOWED_EXTENTIONS)) {
             $alert("Invalid file type. Only JPG, JPEG, PNG, and AVIF images are allowed.");
+            exit;
+        }
+        if (Auth::ALLOWED_EXTENTIONS[$fileExtension] !== $_FILES['thumbnail']['type']) {
+            $alert("Error: File MIME type does not match the expected type for .$fileExtension files.");
             exit;
         }
         $imageInfo = getimagesize($_FILES['thumbnail']['tmp_name']);
@@ -65,31 +81,38 @@ class AdminController extends Controller
             $alert("Uploaded file is not a valid image.");
             exit;
         }
-        move_uploaded_file($_FILES['thumbnail']['tmp_name'], AdminController::$productImages . $fileName . $fileExtension); // Move the uploaded file to the desired folder
-        
+        move_uploaded_file($_FILES['thumbnail']['tmp_name'], AdminController::$productImages . $fileName . '.' . $fileExtension); // Move the uploaded file to the desired folder
+
         $productModel = new Product(); // Instantiate the Product model.
 
         // Insert product record. Assumes createProduct returns the new product's ID or false on failure.
-        $productId = $productModel->createProduct($name, $brand, $price, $description, $fileName . $fileExtension);
+        $productId = $productModel->createProduct($name, $brand, $price, $description, $fileName . '.' . $fileExtension, $category);
         foreach ($sizes as $index => $size) {
             // Sanitize each size value.
             $size = filter_var(trim($size), FILTER_SANITIZE_SPECIAL_CHARS);
             $stock = filter_var($stocks[$index], FILTER_SANITIZE_NUMBER_INT);
-
             // Skip any entries that are empty or invalid.
             if (empty($size) || !is_numeric($stock)) {
                 continue;
             }
-
             // Insert each size with its stock into the product_sizes table.
             // Assumes addProductSize returns true on success or false on failure.
             $result = $productModel->addProductSize($productId, $size, $stock);
             if (!$result) {
-                // Optionally handle the error per size insertion (log, alert, etc.)
-                // Here we simply continue.
-                continue;
+                $alert('Server Failure! Try again later.');
+                exit;
             }
+
         }
+        $categories = (new Product())->getAllCategories();
+        $this->view(self::$path . '/addProduct', [
+            'data' => null,
+            'alert' => ["Success! Add another product?", 1],
+            'categories' => $categories,
+            'options' => ['form', 'form-carousel', 'sizes-list'],
+            'csrf_token' => Csrf::generateToken()
+        ]);
+        exit;
     }
 
 }

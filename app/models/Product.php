@@ -19,6 +19,9 @@ class Product extends Model {
         $stmt->execute(['query' => '%' . $query . '%']);
         return $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
     }
+    public function getAllCategories() {
+        return $this->findAll('categories');
+    }
     /**
      * Insert a new product into the products table.
      *
@@ -27,12 +30,13 @@ class Product extends Model {
      * @param float  $price       Base price for the product.
      * @param string $description Product description.
      * @param string $thumbnail   Image filename for the product.
+     * @param string $category_id Category ID.
      * @return int|false          The new product's ID on success or false on failure.
      */
-    public function createProduct($name, $brand, $price, $description, $thumbnail) {
+    public function createProduct($name, $brand, $price, $description, $thumbnail, $category_id) {
         $stmt = $this->pdo->prepare("
-            INSERT INTO products (name, brand, base_price, description, image_url)
-            VALUES (:name, :brand, :price, :description, :thumbnail)
+            INSERT INTO products (name, brand, base_price, description, image_url, category_id)
+            VALUES (:name, :brand, :price, :description, :thumbnail, :category_id)
         ");
         
         $params = [
@@ -40,7 +44,8 @@ class Product extends Model {
             'brand'       => $brand,
             'price'       => $price,
             'description' => $description,
-            'thumbnail'   => $thumbnail
+            'thumbnail'   => $thumbnail,
+            'category_id' => $category_id
         ];
         
         if ($stmt->execute($params)) {
@@ -48,27 +53,24 @@ class Product extends Model {
         }
         return false;
     }
-
     /**
      * Insert a new product size entry into the product_sizes table.
      *
      * @param int    $productId The ID of the product.
      * @param string $size      The size value.
      * @param int    $stock     The available stock for this size.
-     * @param float  $price     Price for this size (usually same as product's base_price).
      * @return bool             True on success, false on failure.
      */
-    public function addProductSize($productId, $size, $stock, $price) {
+    public function addProductSize($productId, $size, $stock) {
         $stmt = $this->pdo->prepare("
-            INSERT INTO product_sizes (product_id, size, stock, price)
-            VALUES (:product_id, :size, :stock, :price)
+            INSERT INTO product_sizes (product_id, size, stock)
+            VALUES (:product_id, :size, :stock)
         ");
         
         $params = [
             'product_id' => $productId,
             'size'       => $size,
             'stock'      => $stock,
-            'price'      => $price
         ];
         
         return $stmt->execute($params);
