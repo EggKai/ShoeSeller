@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { layer: "1", yPercent: 20 },
       { layer: "2", yPercent: 55 },
       { layer: "3", yPercent: 40 },
-      { layer: "4", yPercent: 10 }
     ];
     layers.forEach((layerObj, idx) => {
       tl.to(

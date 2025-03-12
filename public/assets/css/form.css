@@ -79,6 +79,26 @@
         cursor: pointer;
     }
 
+    #authForm .size-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px; /* Space between rows */
+        
+    }
+
+    #authForm .size-row input {
+        flex: 1;
+        padding: 5px;
+    }
+
+    #authForm .size-row button.remove-size {
+        padding: 5px 10px;
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
 
     /* Make circles that indicate the steps of the form: */
     .step {

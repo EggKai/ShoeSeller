@@ -10,14 +10,23 @@ class ProductController extends Controller
         $productModel = new Product();
         $product = $productModel->getProductById($id);
         $sizes = $productModel->getSizesByShoeId($id);
-        $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart']]);
+        $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button']]);
     }
 
     public function product()
     {
+        
         $productModel = new Product();
+        if (isset($_GET['query']) && !empty($_GET['query'])) {
+            $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS);
+            $products = $productModel->searchProductByQuery($query);
+            if ($products) {
+                $this->view(ProductController::$path . '/products', ['products' => $products]);
+                exit;
+            }
+        } 
         $products = $productModel->getAllProducts();
-        $this->view(ProductController::$path . '/products', ['products' => $products]);
+        $this->view(ProductController::$path . '/products', ['products' => $products, 'options' => ['floating-button']]);
     }
 
     public function cart()
@@ -34,7 +43,7 @@ class ProductController extends Controller
         // Loop through each cart item from the cookie
         foreach ($cart as $item) {
             // Retrieve the product details using its ID
-            $product = $productModel->getProductById($item[0]);
+            $product = $productModel->getProductById(id: $item[0]);
             if ($product) {
                 $category = $productModel->findById('categories', $product['category_id']);
                 $product['quantity'] = $item[2];

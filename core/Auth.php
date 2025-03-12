@@ -5,7 +5,7 @@ require_once __DIR__ . '/Model.php';
 
 class Auth extends Model
 {
-    const FILTERS = array(
+    protected const FILTERS = array(
         'email' => [
             'filter' => FILTER_SANITIZE_EMAIL,
             'flag' => FILTER_VALIDATE_EMAIL,
@@ -19,7 +19,7 @@ class Auth extends Model
         //     'options' => array('regexp' => "/^([+]([0-9]{2}))? ?[0-9]{4} ?[0-9]{4}/"),
         // ]
     );
-
+    public const ALLOWED_EXTENTIONS = ['jpg', 'jpeg', 'png', 'avif'];
     /**
      * Authenticate a user by email and password.
      *

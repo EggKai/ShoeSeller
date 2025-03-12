@@ -52,7 +52,6 @@ include __DIR__ . '/../inc/header.php';
         </div>
     <?php endforeach; ?>
 </div>
-
     <!-- Buttons -->
     <div class="action-buttons">
     <button class="add-to-bag" data-product-id="<?php echo htmlspecialchars($_GET['id']); ?>">Add to Bag</button>
@@ -61,6 +60,8 @@ include __DIR__ . '/../inc/header.php';
       </button>
     </div>
   </div>
-
 </div>
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
+  <a href="index.php?url=admin/editProduct"><button class="floating-plus-button">🛠️</button></a>
+<?php } ?>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

@@ -35,6 +35,12 @@
         <?php if (in_array('addCart', $options)) { ?>
             <script defer src="public/assets/js/add-to-cart.js"></script>
         <?php } ?>
+        <?php if (in_array('sizes-list', $options)) { ?>
+            <script defer src="public/assets/js/sizes-list.js"></script>
+        <?php } ?>
+        <?php if (in_array('floating-button', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/floating-button.css">
+        <?php } ?>
     <?php } ?>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script defer src="https://js.stripe.com/acacia/stripe.js"></script>
@@ -49,14 +55,13 @@
                         <img src="public/assets/images/logo.png" alt="Shoe Store Logo">
                     </a>
                 </li>
+                <li><a href="index.php?url=products/all">Products</a></li>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                    <li><a href="index.php?url=admin/products">Products</a></li>
                     <li><a href="index.php?url=admin/discount">Create Discount</a></li>
                     <li>
                         <a href="index.php?url=auth/logout">Logout</a>
                     </li>
                 <?php } else { ?>
-                    <li><a href="index.php?url=products/all">Products</a></li>
                     <li><a href="index.php?url=cart">Cart</a></li>
                     <?php if (isset($_SESSION['user'])) { ?>
                         <li>
@@ -74,8 +79,8 @@
 
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
-                        <input type="hidden" name="url" value="search">
-                        <input type="text" name="q" placeholder="Search for shoes..." aria-label="Search">
+                        <input type="hidden" name="url" value="products/all">
+                        <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search">
                         <button type="submit" aria-label="Submit Search">
                             🔍
                         </button>
