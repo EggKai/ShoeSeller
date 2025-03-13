@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = 'Cart';
 include __DIR__ . '/../inc/header.php';
 ?>
@@ -6,17 +6,17 @@ include __DIR__ . '/../inc/header.php';
   <!-- Left side: Cart Items -->
   <div class="cart-items">
     <?php if (!empty($cart)): ?>
-      <?php 
+      <?php
       // Initialize subtotal
       $subtotal = 0;
-      foreach ($cart as $item): 
+      foreach ($cart as $item):
         // Calculate item total and add to subtotal
         $itemTotal = $item['base_price'] * $item['quantity'];
         $subtotal += $itemTotal;
-      ?>
+        ?>
         <div class="cart-item">
-          <img src="public/products/<?php echo htmlspecialchars($item['image_url']); ?>" 
-               alt="<?php echo htmlspecialchars($item['name']); ?>">
+          <img src="public/products/<?php echo htmlspecialchars($item['image_url']); ?>"
+            alt="<?php echo htmlspecialchars($item['name']); ?>">
           <div class="cart-item-details">
             <h3><?php echo htmlspecialchars($item['name']); ?></h3>
             <p><?php echo htmlspecialchars($item['category']['name']); ?></p>
@@ -24,9 +24,22 @@ include __DIR__ . '/../inc/header.php';
           </div>
           <div class="cart-item-actions">
             <div class="quantity-controls">
-              <button class="qty-minus" >-</button>
-              <input type="number" class="qty-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1">
-              <button class="qty-plus">+</button>
+              <!-- Minus form -->
+              <form action="index.php?url=cart/minus" method="POST" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars(string: $item['id']); ?>">
+                <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
+                <button class="qty-minus" type="submit">-</button>
+              </form>
+              <input type="number" class="qty-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1"
+                readonly>
+              <!-- Plus form -->
+              <form action="index.php?url=cart/plus" method="POST" style="display:inline;">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
+                <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
+                <button class="qty-plus" type="submit">+</button>
+              </form>
             </div>
             <div class="cart-item-price">$<?php echo number_format($itemTotal, 2); ?></div>
           </div>

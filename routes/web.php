@@ -24,6 +24,12 @@ $routes = [
     'cart' => function(){
         (new ProductController())->cart();
     },
+    'cart/minus' => function(){
+        (new ProductController())->minusCartItem();
+    },
+    'cart/plus' => function(){
+        (new ProductController())->plusCartItem();
+    },
     'auth/login' => function() {
         // Call the appropriate method in UserController (e.g., login)
         (new UserController())->login();
@@ -39,6 +45,9 @@ $routes = [
     },
     'auth/logout' => function(){
         (new UserController())->logout();
+    },
+    'auth/forgotPassword' => function() {
+        (new UserController())->forgotPassword();   
     },
     'admin/addProduct' => function() {
         (new AdminController)->addProduct();

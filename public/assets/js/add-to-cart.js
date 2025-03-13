@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       
       // Retrieve product ID from data attribute
-      const productId = this.dataset.productId;
+      const productId = this.dataset.id;
       
       // Get the selected size (if no size is selected, alert the user)
       const selectedSize = document.querySelector('input[name="size"]:checked')?.value;

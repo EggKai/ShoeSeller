@@ -11,6 +11,9 @@ include __DIR__ . '/../partials/carousel.php';
 $carouselTitle = "Best Sellers";
 $carouselProducts = $products; // Make sure $featuredProducts is defined in your controller
 include __DIR__ . '/../partials/carousel.php'; 
+$carouselTitle = "New arrivals";
+$carouselProducts = $products; // Make sure $featuredProducts is defined in your controller
+include __DIR__ . '/../partials/carousel.php'; 
 ?>
 </section>  
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

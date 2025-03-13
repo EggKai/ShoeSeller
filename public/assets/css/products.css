@@ -13,7 +13,7 @@
 
 /* Each product card */
 .product-item {
-    flex: 0 0 calc(25% - 1rem);
+    flex: 0 0 calc(33.333% - 1rem);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     transition: box-shadow 0.2s ease;

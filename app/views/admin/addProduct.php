@@ -15,7 +15,7 @@ include_once __DIR__ . '/../inc/header.php';
                 value="<?php echo htmlspecialchars($data['brand'] ?? "") ?>"></p>
     </div>
     <div class="tab">Price:
-        <p><input placeholder="Price" oninput="this.className = ''" name="price"
+        <p><input placeholder="Price" type="number" oninput="this.className = ''" name="price"
                 value="<?php echo htmlspecialchars($data['price'] ?? "") ?>"></p>
                 <p>
             <label for="category">Select Category:</label>
@@ -35,7 +35,7 @@ include_once __DIR__ . '/../inc/header.php';
     <div class="tab">Sizes & Stock:
         <div id="sizesContainer">
             <div class="size-row">
-                <input type="text" name="sizes[]" placeholder="Size" oninput="this.className=''">
+                <input type="number" name="sizes[]" placeholder="Size" oninput="this.className=''">
                 <input type="number" name="stock[]" placeholder="Stock" min="0" oninput="this.className=''">
                 <button type="button" class="remove-size" onclick="removeSizeRow(this)">Remove</button>
             </div>

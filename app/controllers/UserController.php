@@ -1,11 +1,13 @@
 <?php
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../../core/Controller.php';
-require_once __DIR__ . '/../../core/Auth.php';
+require_once __DIR__ . '/../../core/Security.php';
+require_once __DIR__ . '/../models/Auth.php';
 require_once __DIR__ . '/HomeController.php';
 
 class UserController extends Controller {
     private static $path = 'auth';
+
     public function login() {
         $this->view(UserController::$path . '/login', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
     }
@@ -43,9 +45,9 @@ class UserController extends Controller {
                 'options'    => ['form'],
                 'csrf_token' => Csrf::generateToken()
             ]);
+            exit;
         };
-        // Ensure the request is POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {// Ensure the request is POST
             (new HomeController())->index();
             exit;
         }
@@ -55,14 +57,12 @@ class UserController extends Controller {
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
             $alert("Invalid request. Please try again.");
-            exit;
         }
         // Sanitize and validate input data
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = trim(strip_tags($_POST['password'] ?? ''));
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $alert("Invalid email address.");
-            exit;
         }
         $auth = new Auth(); // Authenticate using the Auth model
         $user = $auth->authenticate($email, $password);
@@ -74,7 +74,6 @@ class UserController extends Controller {
             exit;
         } else {
             $alert("Invalid email or password.");
-            exit;
         }
     }
     public function register() {
@@ -109,7 +108,8 @@ class UserController extends Controller {
         // Sanitize and validate input data.
         $name     = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
         $email    = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $password = strip_tags($_POST['password'] ?? '');
+        $password = trim(strip_tags($_POST['password'] ?? ''));
+        $cnfmPassword = trim(strip_tags($_POST['cnfmpassword'] ?? ''));
         $address  = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email
             $alert("Invalid email address.");
@@ -127,6 +127,10 @@ class UserController extends Controller {
             $alert("Password does not meet complexity standards");
             exit;
         }
+        if (!($password === $cnfmPassword)){ // check passwords match
+            $alert("Password does do not match");
+            exit;
+        }
         $auth = new Auth(); // Create an instance of the Auth model and attempt to register the user.
         $userId = $auth->register($name, $email, $password, $address, null, 'user');
         if ($userId) { // successfully created user
@@ -141,6 +145,9 @@ class UserController extends Controller {
             $alert("Registration failed. Please try again.");
             exit;
         }
+    }
+    public function forgotPassword() {
+        $this->view(UserController::$path . '/forgotPassword', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
     }
 }
 ?>

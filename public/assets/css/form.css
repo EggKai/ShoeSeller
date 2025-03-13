@@ -116,3 +116,12 @@
     .step.finish {
         background-color: #04AA6D;
     }
+
+    .steps{
+        text-align:center;
+        margin-top:40px;
+    }
+
+    .align-right{
+        float: right;
+    }

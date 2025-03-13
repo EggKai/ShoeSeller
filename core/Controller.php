@@ -4,6 +4,5 @@ class Controller {
         extract($data);
         require_once __DIR__ . '/../app/views/' . $view . '.php';
     }
-    
 }
 ?>

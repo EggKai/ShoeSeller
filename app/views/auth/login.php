@@ -19,7 +19,7 @@ include_once __DIR__ . '/../inc/header.php';
     <input type="submit" name="submit" value="Login">
 
     <a href="index.php?url=auth/register">Don't Have an account? Register Now!</a><br>
-    <a style="float: right;" href="resetRequest.php">Forgot Password?</a><br>
+    <a class="align-right" href="index.php?url=auth/forgotPassword">Forgot Password?</a><br>
     Remember me:<input type="checkbox" name="remember">
     <!-- <a style="float: right;" href="reactivateAccount.php">Reactivate Account?</a> -->
 </form>
