@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../../core/Security.php';
+require_once __DIR__ . '/../../core/Model.php';
+
 class Auth extends Model
 {
     protected const FILTERS = array(

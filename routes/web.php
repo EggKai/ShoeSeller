@@ -30,8 +30,10 @@ $routes = [
     'cart/plus' => function(){
         (new ProductController())->plusCartItem();
     },
+    'checkout' => function(){
+        (new CheckoutController())->checkout();
+    },
     'auth/login' => function() {
-        // Call the appropriate method in UserController (e.g., login)
         (new UserController())->login();
     },
     'auth/doLogin' => function(){

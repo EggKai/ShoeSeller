@@ -11,6 +11,7 @@
     <link rel='stylesheet' href='public/assets/css/product-detail.css'>
     <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel='stylesheet' href='public/assets/css/main.css'>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <?php if (isset($options)) { ?> <!-- allow for dynamic loading of content based on whats needed -->
         <?php if (in_array('cart', $options)) { ?>
             <link rel='stylesheet' href="public/assets/css/cart.css">
@@ -22,8 +23,8 @@
         <?php } ?>
         <?php if (in_array('landing', $options)) { ?>
             <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-            <script defer src="public/assets/js/landing.js"></script>
             <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+            <script defer src="public/assets/js/landing.js"></script>
         <?php } ?>
         <?php if (in_array('form', $options)) { ?>
             <link rel='stylesheet' href='public/assets/css/form.css'>
@@ -41,8 +42,7 @@
         <?php if (in_array('floating-button', $options)) { ?>
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
-    <?php } ?>
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+        <?php } ?>
     <script defer src="https://js.stripe.com/acacia/stripe.js"></script>
 </head>
 

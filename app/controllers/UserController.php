@@ -89,6 +89,7 @@ class UserController extends Controller {
                 'options'    => ['form', 'form-carousel'],
                 'csrf_token' => Csrf::generateToken()
             ]);
+            exit;
         };
         // Ensure the request is a POST and that the form was submitted.
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !filter_has_var(INPUT_POST, 'submit')) {
@@ -103,7 +104,6 @@ class UserController extends Controller {
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) {
             $alert("Invalid request. Please try again.");
-            exit;
         }
         // Sanitize and validate input data.
         $name     = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -113,23 +113,18 @@ class UserController extends Controller {
         $address  = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email
             $alert("Invalid email address.");
-            exit;
         }
         if (empty($name)) {
             $alert("Name is required.");
-            exit;
         }
         if (strlen($password) < 6) {
             $alert("Password must be at least 6 characters long.");
-            exit;
         }
         if (!(preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/\d/', $password))){
             $alert("Password does not meet complexity standards");
-            exit;
         }
         if (!($password === $cnfmPassword)){ // check passwords match
             $alert("Password does do not match");
-            exit;
         }
         $auth = new Auth(); // Create an instance of the Auth model and attempt to register the user.
         $userId = $auth->register($name, $email, $password, $address, null, 'user');
@@ -143,7 +138,6 @@ class UserController extends Controller {
             exit;
         } else {
             $alert("Registration failed. Please try again.");
-            exit;
         }
     }
     public function forgotPassword() {

@@ -105,7 +105,7 @@ class AdminController extends Controller
         $categories = (new Product())->getAllCategories();
         $this->view(self::$path . '/addProduct', [
             'data' => null,
-            'alert' => ["Success! Add another product?", 1],
+            'alert' => ["Add another product?", 1],
             'categories' => $categories,
             'options' => ['form', 'form-carousel', 'sizes-list'],
             'csrf_token' => Csrf::generateToken()
