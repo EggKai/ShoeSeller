@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/Product.php";
+
 class Cart
 {
     public static function getCurrentCart()
@@ -75,7 +77,6 @@ class Cart
                 // Optionally, calculate the total for this product (if price is stored per unit)
                 $product['item_total'] = $product['base_price'] * $product['quantity'];
                 $cartItems[] = $product;
-
             }
         }
         return $cartItems;

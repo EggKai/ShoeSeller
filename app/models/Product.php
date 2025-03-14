@@ -10,7 +10,7 @@ class Product extends Model {
         return $this->findById('products', $id);
     }
     public function getSizesByShoeId($shoeId) {
-        $stmt = $this->pdo->prepare("SELECT size, stock FROM product_sizes WHERE product_id = :product_id");
+        $stmt = $this->pdo->prepare("SELECT size, stock FROM product_sizes WHERE product_id = :product_id ORDER BY size ASC");
         $stmt->execute(['product_id' => $shoeId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

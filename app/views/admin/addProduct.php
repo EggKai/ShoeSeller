@@ -17,7 +17,7 @@ include_once __DIR__ . '/../inc/header.php';
     <div class="tab">Price:
         <p><input placeholder="Price" type="number" oninput="this.className = ''" name="price"
                 value="<?php echo htmlspecialchars($data['price'] ?? "") ?>"></p>
-                <p>
+        <p>
             <label for="category">Select Category:</label>
             <select name="category" id="category" required>
                 <?php if (isset($categories) && is_array($categories)): ?>
@@ -34,11 +34,25 @@ include_once __DIR__ . '/../inc/header.php';
     </div>
     <div class="tab">Sizes & Stock:
         <div id="sizesContainer">
-            <div class="size-row">
-                <input type="number" name="sizes[]" placeholder="Size" oninput="this.className=''">
-                <input type="number" name="stock[]" placeholder="Stock" min="0" oninput="this.className=''">
-                <button type="button" class="remove-size" onclick="removeSizeRow(this)">Remove</button>
-            </div>
+            <h3>Sizes & Stock:</h3>
+            <?php if (isset($data['sizes']) && is_array($data['sizes'])): ?>
+                <?php foreach ($data['sizes'] as $index => $sizeValue): ?>
+                    <div class="size-row">
+                        <input type="number" name="sizes[]" placeholder="Size" oninput="this.className=''"
+                            value="<?php echo htmlspecialchars($sizeValue); ?>">
+                        <input type="number" name="stock[]" placeholder="Stock" min="0" oninput="this.className=''"
+                            value="<?php echo htmlspecialchars($data['stock'][$index] ?? ''); ?>">
+                        <button type="button" class="remove-size" onclick="removeSizeRow(this)">Remove</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <!-- Render a default row if no data is available -->
+                <div class="size-row">
+                    <input type="number" name="sizes[]" placeholder="Size" oninput="this.className=''">
+                    <input type="number" name="stock[]" placeholder="Stock" min="0" oninput="this.className=''">
+                    <button type="button" class="remove-size" onclick="removeSizeRow(this)">Remove</button>
+                </div>
+            <?php endif; ?>
         </div>
         <button class="addButton" type="button" id="addSizeBtn">Add Size</button>
     </div>

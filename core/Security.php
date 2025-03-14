@@ -34,6 +34,20 @@ class Csrf
     }
 }
 
+// function isUserType($user_type){
+//     return isset($_SESSION['user']) && $_SESSION['user']['user_type'] === $user_type;
+// }
+
+// function isAdmin() {
+//     return isUserType('admin');
+// }
+// function isEmployee() {
+//     return isUserType('employee');
+// }
+// function isUser() {
+//     return isUserType('user');
+// }
+
 /**
  * Generate a random token using CHARSET.
  *

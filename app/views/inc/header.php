@@ -43,6 +43,7 @@
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
         <?php } ?>
+
     <script defer src="https://js.stripe.com/acacia/stripe.js"></script>
 </head>
 
@@ -57,7 +58,7 @@
                 </li>
                 <li><a href="index.php?url=products/all">Products</a></li>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                    <li><a href="index.php?url=admin/discount">Create Discount</a></li>
+                    <li><a href="index.php?url=admin/discount">View Users</a></li>
                     <li>
                         <a href="index.php?url=auth/logout">Logout</a>
                     </li>

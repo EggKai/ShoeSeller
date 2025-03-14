@@ -13,7 +13,7 @@ class ProductController extends Controller
         $product = $productModel->getProductById($id);
         if ($product){
             $sizes = $productModel->getSizesByShoeId($id);
-            $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button']]);
+            $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button'], 'csrf_token' => Csrf::generateToken()]);
         } else{
             $this->product();
         }

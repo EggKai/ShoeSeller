@@ -1,1 +1,13 @@
-Options -Indexes
+# Enable URL rewriting
+RewriteEngine On
+
+# Set the base directory (adjust if your app is in a subfolder)
+RewriteBase /ShoeSeller/public/
+
+# If the requested file or directory exists, do nothing
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise, rewrite the request to index.php and pass the path as 'url'
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

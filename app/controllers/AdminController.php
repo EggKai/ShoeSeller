@@ -14,6 +14,7 @@ class AdminController extends Controller
         if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') {
             $categories = (new Product())->getAllCategories();
             $this->view(AdminController::$path . '/addProduct', ['data' => null, 'options' => ['form', 'form-carousel', 'sizes-list'], 'categories' => $categories, 'csrf_token' => Csrf::generateToken()]);
+            exit;
         }
         (new HomeController())->index();
         exit;
@@ -53,7 +54,6 @@ class AdminController extends Controller
         // These are received as arrays from the dynamic form inputs.
         $sizes = $_POST['sizes'] ?? [];
         $stocks = $_POST['stock'] ?? [];
-        echo $name.$price.$brand.$description;
         if (empty(trim($name)) || empty(trim($price)) || empty(trim($brand)) || empty(trim($description))) {
             $alert("All fields are required.");
         }
