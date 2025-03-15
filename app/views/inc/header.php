@@ -33,6 +33,9 @@
         <?php if (in_array('form-carousel', $options)) { ?>
             <script defer src="public/assets/js/form-carousel.js"></script>
         <?php } ?>
+        <?php if (in_array('checkout-form', $options)) { ?>
+            <link rel='stylesheet' href='public/assets/css/checkout-form.css'>
+        <?php } ?>
         <?php if (in_array('addCart', $options)) { ?>
             <script defer src="public/assets/js/add-to-cart.js"></script>
         <?php } ?>
@@ -43,8 +46,6 @@
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
         <?php } ?>
-
-    <script defer src="https://js.stripe.com/acacia/stripe.js"></script>
 </head>
 
 <body>

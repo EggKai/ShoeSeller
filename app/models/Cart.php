@@ -22,7 +22,7 @@ class Cart
     public static function updateCart(array $cart)
     {
         // Set cookie for 7 days
-        setcookie('cart', urlencode(json_encode($cart)), time() + (7 * 24 * 60 * 60), "/");
+        setcookie('cart', (json_encode($cart)), time() + (7 * 24 * 60 * 60), "/");
     }
     /**
      * Decrease the quantity of a cart item. Remove item if quantity becomes 0.
@@ -32,34 +32,43 @@ class Cart
      * @param string $number    The number added to quantity.
      * @return array            The updated cart.
      */
-    public static function updateCartitemQuantity($productId, $size, $number)
+    public static function updateCartItemQuantity($productId, $size, $number)
     {
-        $cart = Cart::getCurrentCart();
+        // Ensure $number is an integer
+        $number = (int)$number;
+        
+        $cart = self::getCurrentCart();
         $found = false;
+        
         // Loop through items to find a match.
         foreach ($cart as $i => $item) {
+            // Each item is stored as: [productId, size, quantity]
             if ($item[0] === $productId && $item[1] === $size) {
-                if ($number > 0) {
-                    $cart[$i][2] = $cart[$i][2] + $number;  // Increase quantity
+                $currentQty = (int)$item[2];
+                $newQty = $currentQty + $number;
+                if ($newQty < 1) {
+                    // Remove the item if quantity falls below 1.
+                    unset($cart[$i]);
                 } else {
-                    if ($item[2] > 1) {
-                        $cart[$i][2] = $cart[$i][2] + $number;  // Decrease quantity
-                    } else {
-                        // Remove the item if quantity is 1
-                        unset($cart[$i]);
-                    }
+                    $cart[$i][2] = $newQty;
                 }
                 $found = true;
                 break;
             }
         }
-        // If not found, add new item with quantity 1.
+        
+        // If not found and we're adding a positive quantity, add a new item.
         if (!$found && $number > 0) {
-            $cart[] = [$productId, $size, 1];
+            $cart[] = [$productId, $size, $number];
         }
-        Cart::updateCart($cart);
+        
+        // Reindex the cart array to remove gaps.
+        $cart = array_values($cart);
+        self::updateCart($cart);
+        
         return $cart;
     }
+    
     public static function fullCartDetails($cart) {
         $productModel = new Product();
         $cartItems = [];

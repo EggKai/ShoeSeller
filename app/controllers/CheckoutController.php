@@ -2,60 +2,149 @@
 // app/controllers/CheckoutController.php
 
 require_once __DIR__ . '/HomeController.php';
-require_once __DIR__ . '/../app/models/Order.php';
-require_once __DIR__ . '/../app/models/Product.php';
-require_once __DIR__ . '/../app/models/Cart.php';
+require_once __DIR__ . '/../models/Order.php';
+require_once __DIR__ . '/../models/Product.php';
+require_once __DIR__ . '/../models/Cart.php';
 
-class CheckoutController {
+// Make sure Stripe's autoload is included (via Composer)
+require_once __DIR__ . '/../../vendor/autoload.php';
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+class CheckoutController extends Controller{
+    private const PATH = 'checkout';
+    public function index() {
+        $cart = Cart::getCurrentCart();
+        $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form'], 'cart'=>Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
+        exit;
+    }
     public function checkout() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        // 1. Get user ID if logged in, otherwise 0 for guest.
-        $userId = $_SESSION['user']['user_type'] ?? 'guest';
-        if ($userId === 'user'){
-            $email = $_SESSION['user']['email'] ?? ($_POST['email'] ?? '');
-            if (empty($email)) {
-                die("No email provided. Please log in or provide an email to continue."); // 2. Get user email (if logged in) or from a POST form for guest checkout.
-            }
+        
+        // 1. Retrieve user details.
+        if (isset($_SESSION['user'])) {
+            $userId = $_SESSION['user']['id'];  // logged-in user ID
+            $email = $_SESSION['user']['email'] ?? '';
+        } else {
+            $userId = null; // Guest
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         }
         
-        // 3. Retrieve the cart from the cookie.
+        if (empty($email)) {
+            die("No email provided. Please log in or provide an email to continue.");
+        }
+        
+        // 2. Retrieve the cart from the cookie.
         $cart = Cart::getCurrentCart();
         if (empty($cart)) {
             die("Cart is empty. Please add items before checking out.");
         }
-
-        // 4. Calculate total price and build a list of items with prices.
+        
+        // 3. Build full cart details and calculate total price.
         $itemsWithPrice = Cart::fullCartDetails($cart);
-        $totalPrice = $totalPrice = array_sum(array_column($itemsWithPrice, 'item_total'));;
         if (empty($itemsWithPrice)) {
             die("No valid items in the cart.");
         }
-        // 5. Create a new order
+        $totalPrice = array_sum(array_column($itemsWithPrice, 'item_total'));
+        
+        // 4. Create a new pending order.
         $orderModel = new Order();
         $orderId = $orderModel->createOrder($userId, $totalPrice, $email, 'pending');
         if (!$orderId) {
             die("Error creating order.");
         }
-        // 6. Insert each item into order_items
         foreach ($itemsWithPrice as $item) {
-            $success = $orderModel->addOrderItem($orderId, $item['product_id'], $item['size'], $item['quantity'], $item['price']);
+            // We'll use $item['id'] as the product ID. Adjust if your key differs.
+            $success = $orderModel->addOrderItem(
+                $orderId,
+                $item['id'],         
+                $item['size'],       
+                $item['quantity'],   
+                $item['base_price'] 
+            );
             if (!$success) {
-                // Optionally log or handle item insertion errors
-                // For now, we just continue
+                continue; // ignore error
             }
         }
-        // 8. show confirmation
-        $this->success($orderId);
+        
+        // 5. Build Stripe line items array from $itemsWithPrice.
+        // We'll display each product name along with its selected size.
+        $stripeLineItems = [];
+        foreach ($itemsWithPrice as $item) {
+            // Convert base_price to cents.
+            $unitAmount = (int) round($item['base_price'] * 100);
+            $stripeLineItems[] = [
+                'price_data' => [
+                    'currency' => 'sgd', // or 'usd' depending on your store's currency
+                    'unit_amount' => $unitAmount,
+                    'product_data' => [
+                        'name' => $item['name'] . " (Size: " . $item['size'] . ")",
+                        // Optionally, add an image: 'images' => ["https://yourdomain.com/public/products/{$item['image_url']}"]
+                    ],
+                ],
+                'quantity' => $item['quantity']
+            ];
+        }
+        
+        // 6. Create a Stripe Checkout Session.
+        try {
+            $domainName = $_ENV['DOMAIN'];
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => $stripeLineItems,
+                'mode' => 'payment',
+                'customer_email' => $email,
+                'success_url' => "http://{$domainName}/index.php?url=checkout/success&order_id={$orderId}&session_id={CHECKOUT_SESSION_ID}",
+                'cancel_url' => "http://{$domainName}/index.php?url=checkout/cancel&order_id={$orderId}",
+            ]);
+        } catch (Exception $e) {
+            die("Stripe error: " . $e->getMessage());
+        }
+        
+        // Optionally, you could store $session->id with the order for later verification.
+        
+        // 7. Clear the cart cookie only after successful payment (or via webhook)
+        Cart::deleteCart();
+        
+        // 8. Redirect to Stripe Checkout.
+        header("Location: " . $session->url, true, 303);
         exit;
     }
 
-    public function success($id = null) { // index.php?url=checkout/success&order_id=$orderId
-        // A simple success page
-        if ($id === null){
-            $orderId = $_GET['order_id'] ?? 0;
+    public function success($orderId, $sessionId){
+        try {
+            // Retrieve the Checkout Session from Stripe.
+            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+        } catch (Exception $e) {
+            die("Error retrieving Checkout Session: " . $e->getMessage());
         }
-        echo "Order #$orderId placed successfully!";
+        if ($session->payment_status === 'paid') {
+            (new Order())->confirmOrderPayment($orderId, $sessionId);
+            $this->reciept($orderId);
+        } else {
+            die("No."); //why would user end up here if order wasnt successful? webhook wouldve sent them elsewhere
+        }
+    }
+
+    public function reciept($orderId = null) {        
+        $orderModel = new Order();
+        $order = $orderModel->getOrderById($orderId);
+        if (!$order) {
+            include __DIR__ . '/../inc/header.php';
+            echo "<p>Order not found.</p>";
+            include __DIR__ . '/../inc/footer.php';
+            exit;
+        }
+        
+        // Retrieve order items. Assume getOrderItems($orderId) returns an array of items.
+        $orderItems = $orderModel->getOrderItems($orderId);
+        
+        // Pass the order and order items to the receipt view.
+        $this->view(CheckoutController::PATH .'/receipt', [
+            'order' => $order,
+            'orderItems' => $orderItems,
+            'options' => ['cart']
+        ]);
+        exit;
     }
 }

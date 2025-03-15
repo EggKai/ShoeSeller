@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once __DIR__ . '/../app/controllers/HomeController.php';
 require_once __DIR__ . '/../app/controllers/ProductController.php';
 require_once __DIR__ . '/../app/controllers/UserController.php';
+require_once __DIR__ . '/../app/controllers/CheckoutController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
 
 // Define routes and their actions
@@ -15,11 +16,12 @@ $routes = [
     },
     'products/detail' => function() {
         $productController = new ProductController();
-        if (filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)){
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if ($id){
             if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])){
                 (new AdminController)->updateProduct();
             } else {
-                $productController->detail($_GET['id']);
+                $productController->detail($id);
             }
         } else{
             $productController->product();
@@ -35,6 +37,28 @@ $routes = [
         (new ProductController())->plusCartItem();
     },
     'checkout' => function(){
+        (new CheckoutController())->index();
+    },
+    'checkout/success' => function(){
+        $orderId = filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT);
+        $sessionId =filter_input(INPUT_GET, 'session_id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($orderId && $sessionId){
+            (new CheckoutController())->success($orderId, $sessionId);
+        } else{
+            (new CheckoutController())->index();
+        }
+    },
+    'checkout/reciept' => function(){
+        if (filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT)){
+            (new CheckoutController())->reciept($_GET['order_id']);
+        } else{
+            (new CheckoutController())->index();
+        }
+    },
+    'checkout/cancel' => function(){
+        (new CheckoutController())->index();
+    },
+    'checkout/doCheckout' => function(){
         (new CheckoutController())->checkout();
     },
     'auth/login' => function() {

@@ -67,8 +67,18 @@ include __DIR__ . '/../inc/header.php';
     </div>
 
     <div class="checkout-buttons">
-      <button class="guest-checkout">Guest Checkout</button>
-      <button class="member-checkout">Member Checkout</button>
+      <?php if (!isset($_SESSION['user'])): ?>
+        <!-- If not logged in, show both Guest and Member checkout buttons -->
+        <a href="index.php?url=checkout">
+          <button class="guest-checkout" id="guestCheckout">Guest Checkout</button>
+        </a>
+        <a href="index.php?url=auth/login">
+          <button type="button" class="member-checkout">Member Checkout</button>
+        </a>
+      <?php else: ?>
+        <!-- If logged in, show a single checkout button -->
+        <button class="guest-checkout" id="memberCheckout">Checkout</button>
+      <?php endif; ?>
     </div>
   </div>
 </div>
