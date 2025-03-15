@@ -1,6 +1,10 @@
 {
+    "name": "myproject/shoeseller",
+    "description": "This Web development project was created for SIT's INF1005",
+    "license": "proprietary",
     "require": {
         "vlucas/phpdotenv": "^5.6",
-        "stripe/stripe-php": "^16.6"
+        "stripe/stripe-php": "^16.6",
+        "PHP": ">=7.4"
     }
 }
