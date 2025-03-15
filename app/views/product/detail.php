@@ -29,7 +29,8 @@ include __DIR__ . '/../inc/header.php';
           <input type="radio" id="size-<?php echo htmlspecialchars($size['size']); ?>" name="size"
             value="<?php echo htmlspecialchars($size['size']); ?>">
           <label
-            for="size-<?php echo htmlspecialchars($size['size']); ?>"><?php echo htmlspecialchars($size['size']); ?></label>
+            for="size-<?php echo htmlspecialchars($size['size']); ?>">US <?php echo htmlspecialchars($size['size'] + 0); //Internal equivalent to casting to float with (float)$num ?>
+          </label>
         </div>
       <?php endforeach; ?>
     </div>
