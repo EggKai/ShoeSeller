@@ -35,7 +35,6 @@ class Cart
     public static function updateCartitemQuantity($productId, $size, $number)
     {
         $cart = Cart::getCurrentCart();
-        ;
         $found = false;
         // Loop through items to find a match.
         foreach ($cart as $i => $item) {
@@ -55,7 +54,7 @@ class Cart
             }
         }
         // If not found, add new item with quantity 1.
-        if (!$found) {
+        if (!$found && $number > 0) {
             $cart[] = [$productId, $size, 1];
         }
         Cart::updateCart($cart);

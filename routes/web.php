@@ -16,7 +16,11 @@ $routes = [
     'products/detail' => function() {
         $productController = new ProductController();
         if (filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)){
-            $productController->detail($_GET['id']);
+            if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])){
+                (new AdminController)->updateProduct();
+            } else {
+                $productController->detail($_GET['id']);
+            }
         } else{
             $productController->product();
         }
@@ -56,6 +60,9 @@ $routes = [
     },
     'admin/doAddProduct' => function() {
         (new AdminController)->doAddProduct();
+    },
+    'admin/updateProduct' => function() {
+        (new AdminController)->doUpdateProduct();
     },
 ];
 

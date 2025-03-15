@@ -2,7 +2,8 @@
 RewriteEngine On
 
 # Set the base directory (adjust if your app is in a subfolder)
-RewriteBase /ShoeSeller/public/
+RewriteBase /ShoeSeller/
+
 
 # If the requested file or directory exists, do nothing
 RewriteCond %{REQUEST_FILENAME} -f [OR]

@@ -75,5 +75,59 @@ class Product extends Model {
         
         return $stmt->execute($params);
     }
+    /**
+     * Update the stock for an existing product size.
+     *
+     * @param int    $productId The product ID.
+     * @param string $size      The size.
+     * @param int    $stock     The new stock value.
+     * @return bool             True on success, false on failure.
+     */
+    public function updateProductSize($productId, $size, $stock) {
+        $stmt = $this->pdo->prepare("UPDATE product_sizes SET stock = :stock WHERE product_id = :product_id AND size = :size");
+        return $stmt->execute([
+        'stock'       => $stock,
+        'product_id'  => $productId,
+        'size'        => $size
+        ]);
+    }
+
+    /**
+     * Delete a specific product size.
+     *
+     * @param int    $productId The product ID.
+     * @param string $size      The size to delete.
+     * @return bool             True on success, false on failure.
+     */
+    public function deleteProductSize($productId, $size) {
+        $stmt = $this->pdo->prepare("DELETE FROM product_sizes WHERE product_id = :product_id AND size = :size");
+        return $stmt->execute([
+        'product_id'  => $productId,
+        'size'        => $size
+        ]);
+    }
+
+    public function updateProduct($id, $name, $brand, $price, $description, $thumbnail = null) {
+        $sql = "UPDATE products SET name = :name, brand = :brand, base_price = :price, description = :description";
+        if ($thumbnail !== null) {
+            $sql .= ", image_url = :thumbnail";
+        } //builds sql statement dyanimically based on whether there was a thumbnail
+        $sql .= " WHERE id = :id";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $params = [
+            'name'        => $name,
+            'brand'       => $brand,
+            'price'       => $price,
+            'description' => $description,
+            'id'          => $id
+        ];
+        if ($thumbnail !== null) {
+            $params['thumbnail'] = $thumbnail;
+        } 
+        
+        return $stmt->execute($params);
+    }
+    
 }
 ?>

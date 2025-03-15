@@ -13,10 +13,11 @@ class ProductController extends Controller
         $product = $productModel->getProductById($id);
         if ($product){
             $sizes = $productModel->getSizesByShoeId($id);
-            $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button'], 'csrf_token' => Csrf::generateToken()]);
+            $this->view(ProductController::$path . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button', 'sizes-list'], 'csrf_token' => Csrf::generateToken()]);
         } else{
             $this->product();
         }
+        exit;
     }
 
     public function product()
@@ -32,6 +33,7 @@ class ProductController extends Controller
         } 
         $products = $productModel->getAllProducts();
         $this->view(ProductController::$path . '/products', ['products' => $products, 'options' => ['floating-button']]);
+        exit;
     }
 
 
@@ -71,8 +73,8 @@ class ProductController extends Controller
         exit;
     }
 
-    public function cart($cart=[]){
-        if ($cart === []) { // cant do in runtime like py
+    public function cart($cart=null){
+        if ($cart === null) { // cant pass parameters in runtime like py
             $cart = Cart::getCurrentCart();
         }
         $this->view(ProductController::$path . '/cart', ['options' => ['cart'], 'cart'=>Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
