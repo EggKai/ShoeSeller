@@ -11,11 +11,11 @@ include __DIR__ . '/../inc/header.php';
           alt="<?php echo htmlspecialchars($product['name']); ?>" />
 
         <!-- Product Name -->
-        <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-        <h6><?php echo htmlspecialchars($product['brand']); ?></h6>
+        <h3 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h3>
+        <h6 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?></h6>
 
         <!-- Product Price -->
-        <p>$<?php echo number_format($product['base_price'], 2); ?></p>
+        <p class="product-price">$<?php echo number_format($product['base_price'], 2); ?></p>
 
       </a>
     </div>
