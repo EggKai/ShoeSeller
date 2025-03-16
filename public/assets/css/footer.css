@@ -1,5 +1,5 @@
 footer{
-    background-color: rgb(26, 25, 25);
+    border-top: 1px solid grey;
 }
 
 .footer-nav{
@@ -13,12 +13,7 @@ footer{
     justify-content: right;
     margin: 10px;
     padding: 10px;
-}
-
-.footer-bottom{
-background-color: rgb(26, 25, 25);
-padding: 10px;
-text-align: center;
+    
 }
 
 .footer-bottom p{
