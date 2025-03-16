@@ -37,13 +37,13 @@ body {
   overflow: hidden;
 }
 
-.parallax__content {
+.__content {
   padding: var(--section-padding) var(--container-padding);
   align-items: center;
   min-height: 100svh;
 }
 
-.parallax__content h2 {
+.__content h2 {
   font-family: PP Neue Corp Wide, sans-serif; 
 }
 

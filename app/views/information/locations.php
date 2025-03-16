@@ -2,10 +2,11 @@
 $title = 'Locations';
 include __DIR__ . '/../inc/header.php';
 ?>
-
-<!-- TODO LOCATIONS PHP HERE -->
+<div class="__content">
+        <!-- TODO LOCATIONS PHP HERE -->
+</div>
 
 <?php
 include __DIR__ . '/../inc/footer.php';
-        
+
 ?>

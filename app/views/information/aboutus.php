@@ -2,6 +2,7 @@
 $title = 'About Us';
 include __DIR__ . '/../inc/header.php';
 ?>
+<div class="__content">
 <section class="about-container">
     <h2>Welcome to Shoe Store!</h2>
     <p>We are dedicated to providing high-quality footwear with the latest trends and styles. Our goal is to bring
@@ -14,6 +15,7 @@ include __DIR__ . '/../inc/header.php';
         <li>✔ Excellent customer service</li>
     </ul>
 </section>
+</div>
 <?php
 include __DIR__ . '/../inc/footer.php';
 

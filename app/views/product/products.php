@@ -2,7 +2,7 @@
 $title = "All products";
 include __DIR__ . '/../inc/header.php';
 ?>
-<div class="product-container">
+<div class="product-container __content">
   <?php foreach ($products as $product): ?>
     <div class="product-item">
       <!-- Image -->

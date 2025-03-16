@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "Shoe Store"; ?></title>
     <link rel="icon" type="image/x-icon" href="public/assets/images/favicon.ico">
+    <link rel='stylesheet' href='public/assets/css/main.css'>
     <link rel="stylesheet" href="public/assets/css/products.css">
     <link rel='stylesheet' href='public/assets/css/product-detail.css'>
-    <link rel="stylesheet" href="public/assets/css/style.css">
-    <link rel='stylesheet' href='public/assets/css/main.css'>
+    <link rel="stylesheet" href="public/assets/css/additional-styles.css">
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <?php if (isset($options)) { ?> <!-- allow for dynamic loading of content based on whats needed -->
         <?php if (in_array('cart', $options)) { ?>
