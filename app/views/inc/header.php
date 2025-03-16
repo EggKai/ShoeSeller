@@ -46,6 +46,7 @@
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
         <?php } ?>
+    <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>
 
 <body>

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'myproject/shoeseller',
+        'name' => 'inf1005/shoeseller',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b7fedbe373cf2891878a843bd65dba11432b38a3',
+        'reference' => 'e8366772ab9aec94eb96a65f165b489578444403',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -19,10 +19,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'myproject/shoeseller' => array(
+        'inf1005/shoeseller' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b7fedbe373cf2891878a843bd65dba11432b38a3',
+            'reference' => 'e8366772ab9aec94eb96a65f165b489578444403',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -8,6 +8,7 @@ require_once __DIR__ . '/../app/controllers/ProductController.php';
 require_once __DIR__ . '/../app/controllers/UserController.php';
 require_once __DIR__ . '/../app/controllers/CheckoutController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
+require_once __DIR__ . '/../app/controllers/InformationController.php';
 
 // Define routes and their actions
 $routes = [
@@ -78,6 +79,12 @@ $routes = [
     },
     'auth/forgotPassword' => function() {
         (new UserController())->forgotPassword();   
+    },
+    'information/aboutus' => function() {
+        (new InformationController)->aboutus();
+    },
+    'information/locations' => function() {
+        (new InformationController)->locations();
     },
     'admin/addProduct' => function() {
         (new AdminController)->addProduct();
