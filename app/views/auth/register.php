@@ -2,6 +2,7 @@
 $title = "Register";
 include_once __DIR__ . '/../inc/header.php';
 ?>
+<div class="__content">
 <form id="authForm" action="index.php?url=auth/doRegister" method="POST">
     <?php
     include __DIR__ . '/../partials/alert.php';
@@ -36,5 +37,5 @@ include_once __DIR__ . '/../inc/header.php';
         <span class="step"></span>
     </div>
 </form>
-
+</div>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

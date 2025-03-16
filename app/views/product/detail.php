@@ -2,8 +2,7 @@
 $title = htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
-<div class="product-page">
-
+<div class="product-page __content">
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
     <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"

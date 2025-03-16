@@ -6,11 +6,11 @@
     <div class="footer-col">
       <h4>Help</h4>
       <ul>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Shipping & Returns</a></li>
-        <li><a href="#">Payment Methods</a></li>
-        <li><a href="#">Track Your Order</a></li>
+        <li><a href="index.php?url=information/aboutus">Who are we?</a></li>
+        <li><a href="index.php?url=information/contactus">Contact Us</a></li>
+        <li><a href="index.php?url=information/FAQ">FAQs</a></li>
+        <li><a href="index.php?url=information/S&Ppolicy">Shipping & Returns</a></li>
+        <li><a href="index.php?url=information/paymentmethods">Payment Methods</a></li>
       </ul>
     </div>
     
@@ -18,13 +18,13 @@
     <div class="footer-col">
       <h4>Legal</h4>
       <ul>
-        <li><a href="#">Terms & Conditions</a></li>
-        <li><a href="#">Accessibility</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Cookie Policy</a></li>
-        <li><a href="#">Cookie Preferences</a></li>
-        <li><a href="#">Regulatory Framework</a></li>
-        <li><a href="#">Corporate Information</a></li>
+        <li><a href="index.php?url=information/">Terms & Conditions</a></li>
+        <li><a href="index.php?url=information/">Accessibility</a></li>
+        <li><a href="index.php?url=information/">Privacy Policy</a></li>
+        <li><a href="index.php?url=information/">Cookie Policy</a></li>
+        <li><a href="index.php?url=information/">Cookie Preferences</a></li>
+        <li><a href="index.php?url=information/">Regulatory Framework</a></li>
+        <li><a href="index.php?url=information/">Corporate Information</a></li>
       </ul>
     </div>
     
@@ -32,7 +32,7 @@
     <div class="footer-col">
       <h4>Find Us</h4>
       <ul>
-        <li><a href="#">Store Locator</a></li>
+        <li><a href="index.php?url=information/locations">Store Locator</a></li>
       </ul>
     </div>
   </div>

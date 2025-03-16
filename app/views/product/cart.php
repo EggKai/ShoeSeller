@@ -2,7 +2,7 @@
 $title = 'Cart';
 include __DIR__ . '/../inc/header.php';
 ?>
-<div class="cart-container">
+<div class="cart-container __content">
   <!-- Left side: Cart Items -->
   <div class="cart-items">
     <?php if (!empty($cart)): ?>

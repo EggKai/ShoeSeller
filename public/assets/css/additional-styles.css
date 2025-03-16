@@ -40,7 +40,7 @@ body {
 .__content {
   padding: var(--section-padding) var(--container-padding);
   align-items: center;
-  min-height: 100svh;
+  min-height: 97svh;
 }
 
 .__content h2 {

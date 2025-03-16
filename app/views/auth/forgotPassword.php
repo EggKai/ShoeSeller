@@ -2,7 +2,7 @@
 $title = "Forgot Password";
 include_once __DIR__ . '/../inc/header.php';
 ?>
-
+<div class="__content">
 <form id="authForm" action="index.php?url=auth/doLogin" method="POST" class="authForm">
     <?php
         include __DIR__ . '/../partials/alert.php'; 
@@ -17,5 +17,5 @@ include_once __DIR__ . '/../inc/header.php';
 
     <a class="align-right" href="index.php?url=auth/login">Remember Your Password?</a><br>
 </form>
-
+</div>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>
