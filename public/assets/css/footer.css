@@ -1,0 +1,28 @@
+footer{
+    background-color: rgb(26, 25, 25);
+}
+
+.footer-nav{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.social-icons{
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+    padding: 10px;
+}
+
+.footer-bottom{
+background-color: rgb(26, 25, 25);
+padding: 10px;
+text-align: center;
+}
+
+.footer-bottom p{
+    text-align: left;
+    color: wheat;
+    font-size: 12px;
+}

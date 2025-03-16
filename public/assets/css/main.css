@@ -30,6 +30,14 @@ header h1 {
     margin: 0;
 }
 
+.footer-social img {
+    text-align: right;
+    padding: 10px 0;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7e7e7;
+    float: right;
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;

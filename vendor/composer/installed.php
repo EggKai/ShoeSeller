@@ -3,7 +3,7 @@
         'name' => 'myproject/shoeseller',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6fe5c666c5fbdf4ff99d966b7d7c3f3e881fab2c',
+        'reference' => 'b7fedbe373cf2891878a843bd65dba11432b38a3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'myproject/shoeseller' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6fe5c666c5fbdf4ff99d966b7d7c3f3e881fab2c',
+            'reference' => 'b7fedbe373cf2891878a843bd65dba11432b38a3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
