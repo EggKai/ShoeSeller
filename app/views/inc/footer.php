@@ -1,3 +1,4 @@
+</main>
 <!-- Footer Section -->
 <footer>
     <!-- Navigation Links -->
@@ -22,3 +23,5 @@
         <p>&copy; <?php echo date("Y"); ?> Shoe Store. All Rights Reserved.</p>
     </div>
 </footer>
+</body>
+</html>
