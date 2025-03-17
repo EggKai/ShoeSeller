@@ -9,7 +9,9 @@
     /* Adjust as needed */
     margin: 2rem auto;
     /* Centers the container on the page */
-    padding: 1rem;
+
+    padding: var(--section-padding) var(--container-padding);
+    min-height: 97svh;
 }
 
 /* Left section that holds the list of cart items */
