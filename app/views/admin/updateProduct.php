@@ -12,9 +12,8 @@ include __DIR__ . '/../inc/header.php';
 
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
-    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-      <!-- Editable Form for Admin/Employee -->
-      <form action="index.php?url=admin/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST">
+    <!-- Editable Form for Admin/Employee -->
+    <form action="index.php?url=admin/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST" class="authForm">
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">

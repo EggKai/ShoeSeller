@@ -33,7 +33,7 @@ class AdminController extends Controller
             'sizes' => $sizes,
             'categories' => $categories,
             'csrf_token' => Csrf::generateToken(),
-            'options' => ['form', 'form-carousel', 'sizes-list',  'floating-button']
+            'options' => ['form', 'sizes-list',  'floating-button']
         ]);
         exit;
     }
@@ -177,12 +177,10 @@ class AdminController extends Controller
         $price = filter_var($_POST['base_price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Optional: handle category update if your form includes a dropdown.
         // $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
 
-        // Process the thumbnail if a new file is provided.
         $thumbnail = null;
-        if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === 0) {
+        if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === 0) { // Process the thumbnail if a new file is provided.
             $fileExtension = strtolower(pathinfo($_FILES['thumbnail']['name'], PATHINFO_EXTENSION));
 
             // Check allowed file extensions using a predefined constant from Auth (adjust as needed).
@@ -220,10 +218,9 @@ class AdminController extends Controller
             $alert("Sizes and stock counts do not match.");
             exit;
         }
-
-        // Build an associative array for submitted sizes: [ size => stock ]
+         
         $submitted = [];
-        foreach ($sizesInput as $index => $sizeValue) {
+        foreach ($sizesInput as $index => $sizeValue) { // Build an associative array for submitted sizes: [ size => stock ]
             $sizeValue = trim(filter_var($sizeValue, FILTER_SANITIZE_SPECIAL_CHARS));
             $stockValue = filter_var($stocksInput[$index], FILTER_SANITIZE_NUMBER_INT);
             if (!empty($sizeValue) && is_numeric($stockValue)) {
