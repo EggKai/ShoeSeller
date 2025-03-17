@@ -13,6 +13,9 @@ require_once __DIR__ . '/../app/controllers/InformationController.php';
 // Define routes and their actions
 $routes = [
     'products/all' => function() {
+        if (isset($_GET['query']) && !empty(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS))) {
+            (new ProductController())->product(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS));
+        }
         (new ProductController())->product();
     },
     'products/detail' => function() {

@@ -7,13 +7,15 @@
     margin: 0 auto; /* Ensures items are aligned from the top */
     text-align: center; /* Centers the container */
     justify-content: center; /* Center the items within the container */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 }
 
+
 /* Each product card */
 .product-item {
+    font-family: inherit;
     flex: 0 0 calc(33.333% - 1rem);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     transition: box-shadow 0.2s ease;
     text-overflow: ellipsis;

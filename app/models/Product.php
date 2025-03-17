@@ -15,9 +15,18 @@ class Product extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function searchProductByQuery($query) {
-        $stmt = $this->pdo->prepare("SELECT * FROM products p WHERE p.name LIKE :query");
-        $stmt->execute(['query' => '%' . $query . '%']);
-        return $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("
+            SELECT *,
+                   (p.name LIKE :queryPrefix OR p.name LIKE CONCAT('% ', :queryPrefix)) AS starts_with
+            FROM products p
+            WHERE p.name LIKE :query
+            ORDER BY starts_with DESC, p.name
+        "); //prio items that start with query (users are more likely to search those)
+        $stmt->execute([
+            'query' => '%' . $query . '%',
+            'queryPrefix' => $query . '%'
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getAllCategories() {
         return $this->findAll('categories');

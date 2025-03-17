@@ -79,18 +79,15 @@
                         </li>
                     <?php } ?>
                 <?php } ?>
-
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
                         <input type="hidden" name="url" value="products/all">
-                        <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search">
+                        <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search" value="<?php echo filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS); ?>">
                         <button type="submit" aria-label="Submit Search">
                             🔍
                         </button>
                     </form>
                 </li>
-
-
             </ul>
         </nav>
     </header>
