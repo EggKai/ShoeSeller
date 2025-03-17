@@ -90,8 +90,8 @@
 
 .quantity-controls input[type='number']::-webkit-inner-spin-button,
 .quantity-controls input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Price styling */
@@ -119,6 +119,13 @@
     margin-bottom: 1rem;
     color: var(--color-dark);
     font-family: PP Neue Corp Wide, sans-serif;
+}
+
+@media screen and (max-width: 767px) { 
+    /* when summary drops down */
+    .cart-summary {
+        min-width: 92vw;
+    }
 }
 
 /* Subtotal, delivery, total, etc. */
