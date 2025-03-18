@@ -50,6 +50,9 @@
         <?php if (in_array('floating-button', $options)) { ?>
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
+        <?php if (in_array('dashboard', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/dashboard.css">
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>

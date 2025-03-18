@@ -100,6 +100,9 @@ $routes = [
     'admin/addProduct' => function () {
         (new AdminController)->addProduct();
     },
+    'admin/dashboard' => function () {
+        (new AdminController)->dashboard();
+    },
     'admin/doAddProduct' => function () {
         (new AdminController)->doAddProduct();
     },
