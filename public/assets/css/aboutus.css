@@ -1,0 +1,40 @@
+.about-container{
+    padding-top: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.top-section {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    flex-grow: 1;
+}
+
+.top-section img {
+    width: 400px;
+    height: 500px;
+    object-fit: cover; /* Ensures the image keeps its aspect ratio */
+    margin-left: 500px;
+}
+
+
+.bottom-section{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between; 
+    margin-right: 100px;
+}
+
+.bottom section img{
+    object-fit: cover;
+    margin-left: -100px;
+}
+
+.bottom-text{
+    flex-direction: column;
+}
+
+.bottom-section ul {
+    list-style-type: none; 
+}
