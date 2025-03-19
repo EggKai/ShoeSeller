@@ -15,9 +15,50 @@ class Product extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function searchProductByQuery($query) {
-        $stmt = $this->pdo->prepare("SELECT * FROM products p WHERE p.name LIKE :query");
-        $stmt->execute(['query' => '%' . $query . '%']);
-        return $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("
+            SELECT *,
+                   (p.name LIKE :queryPrefix OR p.name LIKE CONCAT('% ', :queryPrefix)) AS starts_with
+            FROM products p
+            WHERE p.name LIKE :query
+            ORDER BY starts_with DESC, p.name
+        "); //prio items that start with query (users are more likely to search those)
+        $stmt->execute([
+            'query' => '%' . $query . '%',
+            'queryPrefix' => $query . '%'
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getBestSellers($limit = 9) {
+        // Ensure $limit is an integer
+        $limit = (int)$limit;
+    
+        // Prepare a query that joins products with order_items,
+        // sums the quantity sold, groups by product id, and orders by total sold.
+        $stmt = $this->pdo->prepare("
+            SELECT p.*, SUM(oi.quantity) AS total_sold
+            FROM products p
+            INNER JOIN order_items oi ON p.id = oi.product_id
+            GROUP BY p.id
+            ORDER BY total_sold DESC
+            LIMIT :limit
+        ");
+    
+        // Bind the limit parameter as an integer.
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getProductsByCreatedDate($limit = 9) {
+        // Ensure $limit is an integer.
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM products
+            ORDER BY created_at DESC
+            LIMIT :limit
+        ");
+        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getAllCategories() {
         return $this->findAll('categories');

@@ -1,37 +1,43 @@
 /* Container for product items */
 .product-container {
+    flex-wrap: wrap;  /* IMPRT: makes items overflow to subsequent rows */
     display: flex;
-    flex-wrap: wrap;
-    /* Allows items to wrap to the next row */
     gap: 1rem;
-    /* Optional: limit the overall width */
-    margin: 0 auto;
-    /* Centers the container */
-    text-align: center;
+    align-items: flex-start;
+    margin: 0 auto; /* Ensures items are aligned from the top */
+    text-align: center; /* Centers the container */
     justify-content: center; /* Center the items within the container */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
 }
+
 
 /* Each product card */
 .product-item {
+    font-family: inherit;
     flex: 0 0 calc(33.333% - 1rem);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     transition: box-shadow 0.2s ease;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.product-item h3{
-    margin: 0;
+.product-item h3 { /* product title */
+    text-overflow: ellipsis;
+    margin: 0.5rem 0; /*    Some spacing around the title */
 }
 
-.product-item > a {
+.product-item>a {
     text-decoration: none;
 }
 
-.product-item h6{
+.product-item h6 { /* product brand */
     margin: 0;
     color: var(--color-light);
 }
-.product-item p{
+
+.product-item p { /* product price */
     margin: 0;
 }
 

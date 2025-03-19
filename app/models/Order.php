@@ -77,6 +77,19 @@ class Order extends Model
         $stmt->execute(['order_id' => $orderId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function update_sessionId($orderId, $sessionId)
+    {
+        $stmt = $this->pdo->prepare("
+        UPDATE orders
+        SET session_id = :session_id
+        WHERE id = :id
+    ");
+        return $stmt->execute([
+            'session_id' => $sessionId,
+            'id' => $orderId
+        ]);
+    }
     /**
      * Update the order record to set the session_id and mark it as shipped.
      *
@@ -88,9 +101,8 @@ class Order extends Model
     {
         $stmt = $this->pdo->prepare("
         UPDATE orders
-        SET session_id = :session_id,
-            status = 'paid'
-        WHERE id = :id
+        SET status = 'paid'
+        WHERE id = :id AND session_id = :session_id
     ");
         return $stmt->execute([
             'session_id' => $sessionId,

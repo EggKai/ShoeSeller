@@ -12,87 +12,101 @@ require_once __DIR__ . '/../app/controllers/InformationController.php';
 
 // Define routes and their actions
 $routes = [
-    'products/all' => function() {
+    'products/all' => function () {
+        if (isset($_GET['query']) && !empty(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS))) {
+            (new ProductController())->product(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS));
+        }
         (new ProductController())->product();
     },
-    'products/detail' => function() {
+    'products/detail' => function () {
         $productController = new ProductController();
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-        if ($id){
-            if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])){
+        if ($id) {
+            if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) {
                 (new AdminController)->updateProduct();
             } else {
                 $productController->detail($id);
             }
-        } else{
+        } else {
             $productController->product();
         }
     },
-    'cart' => function(){
+    'cart' => function () {
         (new ProductController())->cart();
     },
-    'cart/minus' => function(){
+    'cart/minus' => function () {
         (new ProductController())->minusCartItem();
     },
-    'cart/plus' => function(){
+    'cart/plus' => function () {
         (new ProductController())->plusCartItem();
     },
-    'checkout' => function(){
+    'checkout' => function () {
         (new CheckoutController())->index();
     },
-    'checkout/success' => function(){
+    'checkout/success' => function () {
         $orderId = filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT);
-        $sessionId =filter_input(INPUT_GET, 'session_id', FILTER_SANITIZE_SPECIAL_CHARS);
-        if ($orderId && $sessionId){
+        $sessionId = filter_input(INPUT_GET, 'session_id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($orderId && $sessionId) {
             (new CheckoutController())->success($orderId, $sessionId);
-        } else{
+        } else {
             (new CheckoutController())->index();
         }
     },
-    'checkout/reciept' => function(){
-        if (filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT)){
+    'checkout/reciept' => function () {
+        if (filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT)) {
             (new CheckoutController())->reciept($_GET['order_id']);
-        } else{
+        } else {
             (new CheckoutController())->index();
         }
     },
-    'checkout/cancel' => function(){
+    'checkout/cancel' => function () {
         (new CheckoutController())->index();
     },
-    'checkout/doCheckout' => function(){
+    'checkout/doCheckout' => function () {
         (new CheckoutController())->checkout();
     },
-    'auth/login' => function() {
+    'auth/login' => function () {
         (new UserController())->login();
     },
-    'auth/doLogin' => function(){
+    'auth/doLogin' => function () {
         (new UserController())->doLogin();
     },
-    'auth/register' => function(){
+    'auth/register' => function () {
         (new UserController())->register();
     },
-    'auth/doRegister' => function(){
+    'auth/doRegister' => function () {
         (new UserController())->doRegister();
     },
-    'auth/logout' => function(){
+    'auth/profile' => function () {
+        if (!isset($_SESSION['user'])) {
+            // if ($_SESSION['user']['user_type'] !== 'user')
+            (new UserController())->login();
+            exit;
+        }
+        (new UserController())->profile();
+    },
+    'auth/logout' => function () {
         (new UserController())->logout();
     },
-    'auth/forgotPassword' => function() {
-        (new UserController())->forgotPassword();   
+    'auth/forgotPassword' => function () {
+        (new UserController())->forgotPassword();
     },
-    'information/aboutus' => function() {
+    'information/aboutus' => function () {
         (new InformationController)->aboutus();
     },
-    'information/locations' => function() {
+    'information/locations' => function () {
         (new InformationController)->locations();
     },
-    'admin/addProduct' => function() {
+    'admin/addProduct' => function () {
         (new AdminController)->addProduct();
     },
-    'admin/doAddProduct' => function() {
+    'admin/dashboard' => function () {
+        (new AdminController)->dashboard();
+    },
+    'admin/doAddProduct' => function () {
         (new AdminController)->doAddProduct();
     },
-    'admin/updateProduct' => function() {
+    'admin/updateProduct' => function () {
         (new AdminController)->doUpdateProduct();
     },
 ];

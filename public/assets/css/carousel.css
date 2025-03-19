@@ -14,7 +14,7 @@
 /* --- Horizontal Scroll Track --- */
 .product-list {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
     /* Space between items */
     overflow-x: auto;
     /* Enable horizontal scrolling */
@@ -55,7 +55,7 @@
     /* background-color: rgba(0,0,0,0.5); */
     border: none;
     cursor: pointer;
-    padding: 1rem;
+    padding: 1.2rem;
     font-size: 1.2rem;
     border-radius: 60%;
     opacity: 1;

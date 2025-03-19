@@ -6,8 +6,9 @@ class HomeController extends Controller {
     private static $path = 'home';
     public function index() {
         $productModel = new Product();
-        $products = $productModel->getAllProducts();
-        $this->view(HomeController::$path.'/index', ['products' => $products, 'options' => ['carousel', 'landing']]);
+        $recents = $productModel->getProductsByCreatedDate();
+        $bestSellers = $productModel->getBestSellers();
+        $this->view(HomeController::$path.'/index', ['recents' => $recents, 'bestsellers' => $bestSellers, 'options' => ['carousel', 'landing']]);
     }
 }
 ?>

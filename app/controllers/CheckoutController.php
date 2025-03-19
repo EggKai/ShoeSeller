@@ -89,6 +89,7 @@ class CheckoutController extends Controller{
         } catch (Exception $e) {
             die("Stripe error: " . $e->getMessage());
         }
+        $orderModel->update_sessionId($orderId, $session->id);
         header("Location: " . $session->url, true, 303); // Redirect to Stripe Checkout.
         exit;
     }
@@ -102,8 +103,12 @@ class CheckoutController extends Controller{
         }
         Cart::deleteCart();
         if ($session->payment_status === 'paid') {
-            (new Order())->confirmOrderPayment($orderId, $sessionId);
-            $this->reciept($orderId);
+            if ((new Order())->confirmOrderPayment($orderId, $sessionId)){
+                $this->reciept($orderId);
+            } else {
+                die("Invalid Session"); //session id does not match actual ID 
+            }
+            exit;
         } else {
             die("No."); //why would user end up here if order wasnt successful? webhook wouldve sent them elsewhere
         }

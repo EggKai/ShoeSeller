@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "Shoe Store"; ?></title>
     <link rel="icon" type="image/x-icon" href="public/assets/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel='stylesheet' href='public/assets/css/main.css'>
     <link rel="stylesheet" href="public/assets/css/products.css">
     <link rel='stylesheet' href='public/assets/css/product-detail.css'>
@@ -33,6 +35,9 @@
         <?php if (in_array('form-carousel', $options)) { ?>
             <script defer src="public/assets/js/form-carousel.js"></script>
         <?php } ?>
+        <?php if (in_array('profile', $options)) { ?>
+            <link rel='stylesheet' href='public/assets/css/profile.css'>
+        <?php } ?>
         <?php if (in_array('checkout-form', $options)) { ?>
             <link rel='stylesheet' href='public/assets/css/checkout-form.css'>
         <?php } ?>
@@ -45,7 +50,10 @@
         <?php if (in_array('floating-button', $options)) { ?>
             <link rel="stylesheet" href="public/assets/css/floating-button.css">
         <?php } ?>
+        <?php if (in_array('dashboard', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/dashboard.css">
         <?php } ?>
+    <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>
 
@@ -65,7 +73,10 @@
                         <a href="index.php?url=auth/logout">Logout</a>
                     </li>
                 <?php } else { ?>
-                    <li><a href="index.php?url=cart">Cart</a></li>
+                    <li><a href="index.php?url=cart">
+                        Cart
+                            <!-- <i class="fas fa-shopping-cart"></i> -->
+                        </a></li>
                     <?php if (isset($_SESSION['user'])) { ?>
                         <li>
                             <a href="index.php?url=auth/profile" class="user" aria-label="User Login">Profile</a>
@@ -78,18 +89,18 @@
                             <a href="index.php?url=auth/login" class="user" aria-label="User Login">Login</a>
                         </li>
                     <?php } ?>
+                    
                 <?php } ?>
-
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
                         <input type="hidden" name="url" value="products/all">
-                        <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search">
+                        <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search"
+                            value="<?php echo filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS); ?>">
                         <button type="submit" aria-label="Submit Search">
-                            🔍
+                            <!-- <i class="search-icon fas fa-search"></i> -->🔍
                         </button>
                     </form>
                 </li>
-
 
             </ul>
         </nav>

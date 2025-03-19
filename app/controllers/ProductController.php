@@ -20,16 +20,17 @@ class ProductController extends Controller
         exit;
     }
 
-    public function product()
+    public function product($query=null)
     {
         $productModel = new Product();
-        if (isset($_GET['query']) && !empty($_GET['query'])) {
-            $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!($query === null)) {
             $products = $productModel->searchProductByQuery($query);
             if ($products) {
                 $this->view(ProductController::$path . '/products', ['products' => $products]);
                 exit;
             }
+            $this->view(ProductController::$path . '/products', ['products' => []]);
+            exit;
         } 
         $products = $productModel->getAllProducts();
         $this->view(ProductController::$path . '/products', ['products' => $products, 'options' => ['floating-button']]);

@@ -22,6 +22,7 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         ),
         'P' => 
         array (
+            'Picqer\\Barcode\\' => 15,
             'PhpOption\\' => 10,
         ),
         'G' => 
@@ -50,6 +51,10 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Picqer\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/picqer/php-barcode-generator/src',
         ),
         'PhpOption\\' => 
         array (

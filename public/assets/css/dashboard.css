@@ -1,0 +1,107 @@
+.dashboard-container {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    color: var(--color-dark);
+
+}
+
+.dashboard-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-light);
+
+}
+
+/* Metrics Summary */
+.metrics-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background-color: var(--color-light);
+    border: 1px solid var(--color-lighter);
+    border-radius: 8px;
+    flex: 1 1 calc(25% - 1rem);
+    min-width: 200px;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.2rem;
+
+}
+
+.metric-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Charts Section */
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Each Chart Card */
+.chart-card {
+    background-color: var(--color-light);
+    border: 1px solid var(--color-lighter);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /* Adjust as needed */
+}
+
+.chart-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 0.2rem;
+}
+
+/* Let the line graphs span 2 columns on larger screens */
+.line-graph-wide {
+    grid-column: span 2;
+}
+
+/* The canvas fills remaining space after the heading */
+.chart-card canvas {
+    flex: 1;
+}
+
+section.graph {
+    height: 100%;
+}
+
+/* Responsive: On smaller screens, let the wide charts revert to 1 column */
+@media screen and (max-width: 991px) {
+    .line-graph-wide {
+        grid-column: span 1;
+    }
+}
+
+/* On very small screens, everything stacks */
+@media screen and (max-width: 767px) {
+    .metric-card p {
+        font-size: 1.3rem;
+    }
+    .chart-card h3 {
+        margin-top: 0.1rem;
+    }
+}

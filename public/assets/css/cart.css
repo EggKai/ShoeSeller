@@ -9,7 +9,9 @@
     /* Adjust as needed */
     margin: 2rem auto;
     /* Centers the container on the page */
-    padding: 1rem;
+
+    padding: var(--section-padding) var(--container-padding);
+    min-height: 97svh;
 }
 
 /* Left section that holds the list of cart items */
@@ -88,8 +90,8 @@
 
 .quantity-controls input[type='number']::-webkit-inner-spin-button,
 .quantity-controls input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Price styling */
@@ -117,6 +119,13 @@
     margin-bottom: 1rem;
     color: var(--color-dark);
     font-family: PP Neue Corp Wide, sans-serif;
+}
+
+@media screen and (max-width: 767px) { 
+    /* when summary drops down */
+    .cart-summary {
+        min-width: 92vw;
+    }
 }
 
 /* Subtotal, delivery, total, etc. */

@@ -140,6 +140,9 @@ class UserController extends Controller {
             $alert("Registration failed. Please try again.");
         }
     }
+    public function profile() {
+        $this->view(UserController::$path . '/profile', ['user' => $_SESSION['user'], 'options' => ['profile'], 'csrf_token' => Csrf::generateToken()]);
+    }
     public function forgotPassword() {
         $this->view(UserController::$path . '/forgotPassword', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
     }
