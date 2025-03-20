@@ -24,7 +24,7 @@ $reviewsPerDayData = [10, 15, 7, 12, 20, 5, 8];
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="dashboard-container">
-    <h1>Dashboard</h1>
+    <!-- <h1>Dashboard</h1> -->
 
     <!-- Metrics Summary -->
     <div class="metrics-summary">

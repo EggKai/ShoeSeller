@@ -1,5 +1,6 @@
 {
     "name": "inf1005/shoeseller",
+    "version": "1.0.0",
     "description": "This Web development project was created for SIT's INF1005",
     "license": "proprietary",
     "require": {

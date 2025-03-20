@@ -68,7 +68,7 @@
                 </li>
                 <li><a href="index.php?url=products/all">Products</a></li>
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                    <li><a href="index.php?url=admin/discount">View Users</a></li>
+                    <li><a href="index.php?url=admin/dashboard">Dashboard</a></li>
                     <li>
                         <a href="index.php?url=auth/logout">Logout</a>
                     </li>
