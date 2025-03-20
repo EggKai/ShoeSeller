@@ -5,18 +5,22 @@ require_once __DIR__ . '/HomeController.php';
 require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Cart.php';
+require_once __DIR__ . '/../../core/email.php';
 
 // Make sure Stripe's autoload is included (via Composer)
 require_once __DIR__ . '/../../vendor/autoload.php';
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-class CheckoutController extends Controller{
+class CheckoutController extends Controller
+{
     private const PATH = 'checkout';
-    public function index() {
+    public function index()
+    {
         $cart = Cart::getCurrentCart();
-        $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form'], 'cart'=>Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
+        $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form'], 'cart' => Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
         exit;
     }
-    public function checkout() {
+    public function checkout()
+    {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -34,13 +38,13 @@ class CheckoutController extends Controller{
         if (empty($cart)) {
             die("Cart is empty. Please add items before checking out.");
         }
-        
+
         $itemsWithPrice = Cart::fullCartDetails($cart); // Build full cart details and calculate total price.
         if (empty($itemsWithPrice)) {
             die("No valid items in the cart.");
         }
         $totalPrice = array_sum(array_column($itemsWithPrice, 'item_total'));
-        
+
         $orderModel = new Order();
         $orderId = $orderModel->createOrder($userId, $totalPrice, $email, 'pending'); // Create a new pending order.
         if (!$orderId) {
@@ -49,10 +53,10 @@ class CheckoutController extends Controller{
         foreach ($itemsWithPrice as $item) {
             $success = $orderModel->addOrderItem(
                 $orderId,
-                $item['id'],         
-                $item['size'],       
-                $item['quantity'],   
-                $item['base_price'] 
+                $item['id'],
+                $item['size'],
+                $item['quantity'],
+                $item['base_price']
             );
             if (!$success) {
                 continue; // ignore error
@@ -64,7 +68,7 @@ class CheckoutController extends Controller{
             $unitAmount = (int) round($item['base_price'] * 100);
             $stripeLineItems[] = [
                 'price_data' => [
-                    'currency' => 'sgd', 
+                    'currency' => 'sgd',
                     'unit_amount' => $unitAmount,
                     'product_data' => [
                         'name' => $item['name'] . " (Size: " . $item['size'] . ")",
@@ -94,7 +98,8 @@ class CheckoutController extends Controller{
         exit;
     }
 
-    public function success($orderId, $sessionId){
+    public function success($orderId, $sessionId)
+    {
         try {
             // Retrieve the Checkout Session from Stripe.
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
@@ -103,7 +108,9 @@ class CheckoutController extends Controller{
         }
         Cart::deleteCart();
         if ($session->payment_status === 'paid') {
-            if ((new Order())->confirmOrderPayment($orderId, $sessionId)){
+            $orderModel = new Order();
+            if ($orderModel->confirmOrderPayment($orderId, $sessionId)) {
+                sendReceiptEmail($orderModel->getOrderById($orderId), $orderModel->getOrderItems($orderId));
                 $this->reciept($orderId);
             } else {
                 die("Invalid Session"); //session id does not match actual ID 
@@ -114,7 +121,8 @@ class CheckoutController extends Controller{
         }
     }
 
-    public function reciept($orderId = null) {        
+    public function reciept($orderId = null)
+    {
         $orderModel = new Order();
         $order = $orderModel->getOrderById($orderId);
         if (!$order) {
@@ -124,11 +132,10 @@ class CheckoutController extends Controller{
             exit;
         }
         
-        // Retrieve order items. Assume getOrderItems($orderId) returns an array of items.
-        $orderItems = $orderModel->getOrderItems($orderId);
-        
+        $orderItems = $orderModel->getOrderItems($orderId); // Retrieve order items. Assume getOrderItems($orderId) returns an array of items.
+
         // Pass the order and order items to the receipt view.
-        $this->view(CheckoutController::PATH .'/receipt', [
+        $this->view(CheckoutController::PATH . '/receipt', [
             'order' => $order,
             'orderItems' => $orderItems,
             'options' => ['cart']

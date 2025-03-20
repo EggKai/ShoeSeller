@@ -52,7 +52,7 @@ $routes = [
             (new CheckoutController())->index();
         }
     },
-    'checkout/reciept' => function () {
+    'checkout/receipt' => function () {
         if (filter_input(INPUT_GET, 'order_id', FILTER_VALIDATE_INT)) {
             (new CheckoutController())->reciept($_GET['order_id']);
         } else {

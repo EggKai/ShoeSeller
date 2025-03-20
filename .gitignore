@@ -1,3 +1,4 @@
 .env
 .vscode
 sftp.json
+log/*.log
