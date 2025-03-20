@@ -3,6 +3,7 @@ $title = 'Cart';
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="cart-container">
+  <?php  include __DIR__ . '/../partials/alert.php'; ?>
   <!-- Left side: Cart Items -->
   <div class="cart-items">
     <?php if (!empty($cart)): ?>

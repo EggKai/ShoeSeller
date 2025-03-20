@@ -13,7 +13,6 @@ if (!empty($cart)) {
 ?>
 <div class="checkout-container">
     <h1>Checkout</h1>
-    
     <!-- Cart Summary Section -->
     <div class="checkout-cart">
         <?php if (!empty($cart)): ?>

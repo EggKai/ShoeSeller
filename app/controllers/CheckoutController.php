@@ -2,10 +2,12 @@
 // app/controllers/CheckoutController.php
 
 require_once __DIR__ . '/HomeController.php';
+require_once __DIR__ . '/ProductController.php';
 require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Cart.php';
 require_once __DIR__ . '/../../core/email.php';
+require_once __DIR__ . '/../../core/log.php';
 
 // Make sure Stripe's autoload is included (via Composer)
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -16,7 +18,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $cart = Cart::getCurrentCart();
-        $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form'], 'cart' => Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
+        $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form', 'form'], 'cart' => Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
         exit;
     }
     public function checkout()
@@ -44,7 +46,14 @@ class CheckoutController extends Controller
             die("No valid items in the cart.");
         }
         $totalPrice = array_sum(array_column($itemsWithPrice, 'item_total'));
+        $productModel = new Product();
 
+        foreach ($itemsWithPrice as $item) {
+            $availableStock = $productModel->getStockForItem($item['id'], $item['size']);
+            if ($item['quantity'] > $availableStock) {
+                (new ProductController)->cart($cart,["Insufficient stock for {$item['name']} (Size: {$item['size']}). Available: {$availableStock}, Requested: {$item['quantity']}",2]);
+            }
+        }
         $orderModel = new Order();
         $orderId = $orderModel->createOrder($userId, $totalPrice, $email, 'pending'); // Create a new pending order.
         if (!$orderId) {
@@ -100,25 +109,38 @@ class CheckoutController extends Controller
 
     public function success($orderId, $sessionId)
     {
-        try {
-            // Retrieve the Checkout Session from Stripe.
-            $session = \Stripe\Checkout\Session::retrieve($sessionId);
-        } catch (Exception $e) {
-            die("Error retrieving Checkout Session: " . $e->getMessage());
+        $orderModel = new Order();
+        $order = $orderModel->getOrderById($orderId);
+        if (!$order) {
+            die("Order not found.");
         }
-        Cart::deleteCart();
-        if ($session->payment_status === 'paid') {
-            $orderModel = new Order();
-            if ($orderModel->confirmOrderPayment($orderId, $sessionId)) {
-                sendReceiptEmail($orderModel->getOrderById($orderId), $orderModel->getOrderItems($orderId));
-                $this->reciept($orderId);
-            } else {
-                die("Invalid Session"); //session id does not match actual ID 
+        if ($order['status'] === 'pending') {
+            try {
+                // Retrieve the Checkout Session from Stripe.
+                $session = \Stripe\Checkout\Session::retrieve($sessionId);
+            } catch (Exception $e) {
+                die("Error retrieving Checkout Session: " . $e->getMessage());
             }
-            exit;
-        } else {
-            die("No."); //why would user end up here if order wasnt successful? webhook wouldve sent them elsewhere
+            Cart::deleteCart();
+            if (!($session->payment_status === 'paid')) {
+                die("No."); //why would user end up here if order wasnt successful? webhook wouldve sent them elsewhere
+            }
+            if (!$orderModel->confirmOrderPayment($orderId, $sessionId)) {
+                die("Invalid Session"); //session id does not match actual ID 
+            } 
+            $orderItems = $orderModel->getOrderItems($orderId);
+            $productModel = new Product();
+            foreach ($orderItems as $item) { // Reduce stock for each purchased item.
+                if (!$productModel->reduceStock($item['product_id'], $item['size'], $item['quantity'])) {
+                    logError("Failed to update stock for product {$item['product_id']} size {$item['size']}.");
+                }
+            }
+            sendReceiptEmail($orderModel->getOrderById($orderId), $orderModel->getOrderItems($orderId));
         }
+    
+        
+        $this->reciept($orderId);
+        exit;
     }
 
     public function reciept($orderId = null)

@@ -6,6 +6,7 @@
 .Failure {
     background-color: #f44336; 
     padding: 20px;
+    margin-bottom: auto;
 }
 
 .closebtn {
