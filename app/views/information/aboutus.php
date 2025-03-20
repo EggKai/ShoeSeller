@@ -3,8 +3,6 @@
 $title = 'About Us';
 include __DIR__ . '/../inc/header.php';
 ?>
-<link rel="stylesheet"  href="public\assets\css\aboutus.css">
-</head>
 <section class="about-container">
 <h1>ABOUT US</h1>
     <div class = 'top-section'>    

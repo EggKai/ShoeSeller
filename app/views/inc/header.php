@@ -53,6 +53,9 @@
         <?php if (in_array('dashboard', $options)) { ?>
             <link rel="stylesheet" href="public/assets/css/dashboard.css">
         <?php } ?>
+        <?php if (in_array('aboutus', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\aboutus.css">
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>

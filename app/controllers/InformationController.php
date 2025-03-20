@@ -6,7 +6,7 @@ class InformationController extends Controller
     private const PATH = 'information';
     public function aboutus()
     {
-        $this->view(InformationController::PATH . '/aboutus');
+        $this->view(InformationController::PATH . '/aboutus', ['options'=>['aboutus']]);
     }
     public function locations()
     {
