@@ -43,9 +43,6 @@ class ProductController extends Controller
             (new HomeController())->index();
             exit;
         }
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
             $this->cart();
@@ -60,9 +57,6 @@ class ProductController extends Controller
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {// Ensure the request is POST
             (new HomeController())->index();
             exit;
-        }
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
         }
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
