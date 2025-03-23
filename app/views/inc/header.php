@@ -35,6 +35,9 @@
         <?php if (in_array('form-carousel', $options)) { ?>
             <script defer src="public/assets/js/form-carousel.js"></script>
         <?php } ?>
+        <?php if (in_array('form-carousel-forked', $options)) { ?>
+            <script defer src="public/assets/js/form-carousel-forked.min.js"></script>
+        <?php } ?>
         <?php if (in_array('profile', $options)) { ?>
             <link rel='stylesheet' href='public/assets/css/profile.css'>
         <?php } ?>

@@ -43,12 +43,11 @@ class AdminController extends Controller
         $categories = $productModel->getAllCategories();
 
         $this->view(self::PATH . '/updateProduct', [
-            'data' => null,
             'product' => $product,
             'sizes' => $sizes,
             'categories' => $categories,
             'csrf_token' => Csrf::generateToken(),
-            'options' => ['form', 'sizes-list', 'floating-button', 'form-carousel']
+            'options' => ['form', 'sizes-list', 'floating-button', 'form-carousel-forked']
         ]);
         exit;
     }
@@ -163,20 +162,19 @@ class AdminController extends Controller
 
     public function doUpdateProduct()
     {
-        $alert = function ($message) {
+        $alert = function ($message, $status=2) {
             $productModel = new Product();
             $product = $productModel->getProductById(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
             $sizes = $productModel->getSizesByShoeId($product['id'] ?? 0);
             $categories = $productModel->getAllCategories();
 
             $this->view(self::PATH . '/updateProduct', [
-                'data' => $_POST,
-                'alert' => [$message, 2],
+                'alert' => [$message, $status],
                 'product' => $product,
                 'sizes' => $sizes,
                 'categories' => $categories,
                 'csrf_token' => Csrf::generateToken(),
-                'options' => ['form', 'sizes-list', 'floating-button']
+                'options' => ['form', 'sizes-list', 'floating-button', 'form-carousel-forked']
             ]);
             exit;
         };
@@ -267,7 +265,7 @@ class AdminController extends Controller
             $productModel->deleteProductSize($id, $size);
         }
 
-        (new ProductController)->detail($id);
+        $alert("Shoe Updated", 1);
         exit;
     }
 }

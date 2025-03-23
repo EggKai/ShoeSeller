@@ -1,5 +1,4 @@
 <?php
-// app/models/Security.php
 
 class Csrf
 {

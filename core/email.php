@@ -55,7 +55,7 @@ function sendEmail($toEmail, $toName, $subject, $htmlBody, $altBody) {
  * @param array $orderItems The items in the order.
  * @return bool             True on success, false on failure.
  */
-function sendReceipt($order, $orderItems) {
+function sendReceiptEmail($order, $orderItems) {
     $protocol = $_ENV['PROTOCOL'];
     $domain   = $_ENV['DOMAIN'];
 

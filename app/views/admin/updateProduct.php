@@ -2,8 +2,10 @@
 $title = htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
+  <?php
+    include __DIR__ . '/../partials/alert.php';
+  ?>
 <div class="product-page">
-
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
     <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
@@ -65,15 +67,14 @@ include __DIR__ . '/../inc/header.php';
           <button class="stepButton" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
         </div>
       </div>
-      <div style="text-align:center;margin-top:40px;">
+      <div style="display:none;">
         <span class="step"></span>
         <span class="step"></span>
       </div>
   </div>
+  <button class="floating-plus-button" name="submit" type="submit">🛠️</button>
   </form>
 </div>
-<button class="floating-plus-button" name="submit" type="submit">🛠️</button>
-
 </div>
 
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>
