@@ -48,7 +48,7 @@ class AdminController extends Controller
             'sizes' => $sizes,
             'categories' => $categories,
             'csrf_token' => Csrf::generateToken(),
-            'options' => ['form', 'sizes-list', 'floating-button']
+            'options' => ['form', 'sizes-list', 'floating-button', 'form-carousel']
         ]);
         exit;
     }
@@ -176,7 +176,7 @@ class AdminController extends Controller
                 'sizes' => $sizes,
                 'categories' => $categories,
                 'csrf_token' => Csrf::generateToken(),
-                'options' => ['form', 'form-carousel', 'sizes-list', 'floating-button']
+                'options' => ['form', 'sizes-list', 'floating-button']
             ]);
             exit;
         };
