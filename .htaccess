@@ -1,8 +1,10 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Set the base directory (adjust if your app is in a subfolder)
 RewriteBase /ShoeSeller/
+
+ErrorDocument 403 /ShoeSeller/public/error/403.html
+ErrorDocument 500 /ShoeSeller/public/error/500.html
 
 # Redirect base URL (e.g., /ShoeSeller/) to public/index.php
 RewriteCond %{REQUEST_URI} ^/shoeseller/?$ 
