@@ -18,12 +18,12 @@
     <div class="footer-col">
       <h4>Legal</h4>
       <ul>
-        <li><a href="index.php?url=information/">Terms & Conditions</a></li>
-        <li><a href="index.php?url=information/">Accessibility</a></li>
-        <li><a href="index.php?url=information/">Privacy Policy</a></li>
-        <li><a href="index.php?url=information/">Cookie Policy</a></li>
-        <li><a href="index.php?url=information/">Cookie Preferences</a></li>
-        <li><a href="index.php?url=information/">Regulatory Framework</a></li>
+        <li><a href="index.php?url=information/terms-and-conditions">Terms & Conditions</a></li>
+        <li><a href="index.php?url=information/accessibility">Accessibility</a></li>
+        <li><a href="index.php?url=information/privacy-policy">Privacy Policy</a></li>
+        <li><a href="index.php?url=information/cookie-policy">Cookie Policy</a></li>
+        <li><a href="index.php?url=information/cookie-preferences">Cookie Preferences</a></li>
+        <li><a href="index.php?url=information/regulatory-framework">Regulatory Framework</a></li>
         <li><a href="index.php?url=information/">Corporate Information</a></li>
       </ul>
     </div>

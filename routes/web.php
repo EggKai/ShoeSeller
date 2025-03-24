@@ -95,8 +95,27 @@ $routes = [
         (new InformationController)->aboutus();
     },
     'information/locations' => function () {
-        (new InformationController)->locations();
+        (new InformationController)->locations();  
     },
+    'information/terms-and-conditions' => function () {
+        (new InformationController)->termsAndConditions();  
+    },
+    'information/cookie-policy' => function () {
+        (new InformationController)->cookiePolicy();  
+    },
+    'information/cookie-preference' => function () {
+        (new InformationController)->cookiepreference();  
+    },
+    'information/privacy-policy' => function () {
+        (new InformationController)->privacyPolicy();  
+    },
+    'information/regulatory-framework' => function () {
+        (new InformationController)->Regulatoryframework();  
+    },
+    'information/accessibility' => function () {
+        (new InformationController)->accessibility();  
+    },
+
     'admin/addProduct' => function () {
         (new AdminController)->addProduct();
     },

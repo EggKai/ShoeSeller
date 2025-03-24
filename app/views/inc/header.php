@@ -56,6 +56,24 @@
         <?php if (in_array('aboutus', $options)) { ?>
             <link rel="stylesheet"  href="public\assets\css\aboutus.css">
         <?php } ?>
+        <?php if (in_array('terms-and-conditions', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\terms-and-conditions.css">
+        <?php } ?>
+        <?php if (in_array('accessibility', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\accessibility.css">
+        <?php } ?>
+        <?php if (in_array('cookie-policy', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\cookie-policy.css">
+        <?php } ?>
+        <?php if (in_array('regulatory-framework', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\regulatory-framework.css">
+        <?php } ?>
+        <?php if (in_array('cookie-preference', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\cookie-preference.css">
+        <?php } ?>
+        <?php if (in_array('privacy-policy', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\privacy-policy.css">
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>
