@@ -2,8 +2,10 @@
 $title = htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
+  <?php
+    include __DIR__ . '/../partials/alert.php';
+  ?>
 <div class="product-page">
-
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
     <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
@@ -13,8 +15,10 @@ include __DIR__ . '/../inc/header.php';
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
     <!-- Editable Form for Admin/Employee -->
-    <form action="index.php?url=admin/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST" class="authForm">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
+    <form action="index.php?url=admin/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
+      class="fill" id="authForm">
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
+      <div class="tab">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
 
@@ -28,12 +32,11 @@ include __DIR__ . '/../inc/header.php';
         <label for="base_price">Price:</label>
         <input type="number" step="0.01" id="base_price" name="base_price"
           value="<?php echo htmlspecialchars($product['base_price']); ?>">
-
-        <!-- Optionally include a file input for a new image -->
+      </div>
+      <div class="tab">
         <label for="thumbnail">Change Image:</label>
         <input type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg, image/avif, image/jpg">
 
-        <!-- Size Options (read-only, but you might allow editing sizes if needed) -->
         <div id="sizesContainer">
           <h3>Sizes & Stock:</h3>
           <?php if (isset($sizes) && !empty($sizes)): ?>
@@ -56,10 +59,21 @@ include __DIR__ . '/../inc/header.php';
           <?php endif; ?>
         </div>
         <button class="addButton" type="button" id="addSizeBtn">Add Size</button>
-    </div>
-    <button class="floating-plus-button" name="submit" type="submit">🛠️</button>
-    </form>
-
+      </div>
+      <div style="margin-top: 1rem;">
+        <div style="float:right;">
+          <button class="stepButton" type="button" id="prevBtn" onclick="nextPrev(-1)">
+            Previous</button>
+          <button class="stepButton" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+      </div>
+      <div style="display:none;">
+        <span class="step"></span>
+        <span class="step"></span>
+      </div>
+  </div>
+  <button class="floating-plus-button" name="submit" type="submit">🛠️</button>
+  </form>
 </div>
 </div>
 

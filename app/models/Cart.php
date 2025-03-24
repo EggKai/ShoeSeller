@@ -56,7 +56,6 @@ class Cart
                 break;
             }
         }
-        
         // If not found and we're adding a positive quantity, add a new item.
         if (!$found && $number > 0) {
             $cart[] = [$productId, $size, $number];

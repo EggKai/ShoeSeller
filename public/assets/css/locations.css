@@ -1,0 +1,242 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    padding:1%;
+}
+.locations-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    max-width: 400px;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    overflow-y: auto;
+}
+.headings {
+    position: sticky;
+    top: 0;
+    background-color: #000000;
+    z-index: 10;
+    padding-bottom: 10px;
+}
+.location-list-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 80vh; /* Adjust as needed */
+}
+.location-list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.location-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.location-item:hover {
+    background-color: #333;
+}
+.details {
+    color: gray;
+}
+
+.iframe-container {
+    flex-grow: 1;
+    padding: 20px;
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 10px;
+}
+
+.search-bar {
+    padding-bottom: 20px;
+    border-bottom: white 1px solid;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-button-container {
+    display: flex;
+    justify-content: center;
+}
+.add-button-button {
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #28a745; /* green color */
+    color: #fff;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.add-button-button:hover {
+    background-color: #218838; /* slightly darker green on hover */
+}
+
+.add-form-container {
+    display: none;
+}
+
+.new-location-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+.new-location-item input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.new-location-item .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.edit-form-container{
+    display: none;
+}
+
+.actions-container {
+    padding-top: 10px;
+}
+
+
+/* LOADER ANIMATION */
+#loader {
+    display: none;
+}
+
+.lds-default {
+    /* change color here */
+    color: #3366ff;
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    z-index: 2;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lds-default,
+  .lds-default div {
+    box-sizing: border-box;
+  }
+
+  .lds-default div {
+    position: absolute;
+    width: 6.4px;
+    height: 6.4px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: lds-default 1.2s linear infinite;
+  }
+
+  .lds-default div:nth-child(1) {
+    animation-delay: 0s;
+    top: 36.8px;
+    left: 66.24px;
+  }
+
+  .lds-default div:nth-child(2) {
+    animation-delay: -0.1s;
+    top: 22.08px;
+    left: 62.29579px;
+  }
+
+  .lds-default div:nth-child(3) {
+    animation-delay: -0.2s;
+    top: 11.30421px;
+    left: 51.52px;
+  }
+
+  .lds-default div:nth-child(4) {
+    animation-delay: -0.3s;
+    top: 7.36px;
+    left: 36.8px;
+  }
+
+  .lds-default div:nth-child(5) {
+    animation-delay: -0.4s;
+    top: 11.30421px;
+    left: 22.08px;
+  }
+
+  .lds-default div:nth-child(6) {
+    animation-delay: -0.5s;
+    top: 22.08px;
+    left: 11.30421px;
+  }
+
+  .lds-default div:nth-child(7) {
+    animation-delay: -0.6s;
+    top: 36.8px;
+    left: 7.36px;
+  }
+
+  .lds-default div:nth-child(8) {
+    animation-delay: -0.7s;
+    top: 51.52px;
+    left: 11.30421px;
+  }
+
+  .lds-default div:nth-child(9) {
+    animation-delay: -0.8s;
+    top: 62.29579px;
+    left: 22.08px;
+  }
+
+  .lds-default div:nth-child(10) {
+    animation-delay: -0.9s;
+    top: 66.24px;
+    left: 36.8px;
+  }
+
+  .lds-default div:nth-child(11) {
+    animation-delay: -1s;
+    top: 62.29579px;
+    left: 51.52px;
+  }
+
+  .lds-default div:nth-child(12) {
+    animation-delay: -1.1s;
+    top: 51.52px;
+    left: 62.29579px;
+  }
+
+  @keyframes lds-default {
+
+    0%,
+    20%,
+    80%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.5);
+    }
+  }

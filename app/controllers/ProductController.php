@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Cart.php';
+require_once __DIR__ . '/../models/Review.php';
 require_once __DIR__ . '/../../core/Controller.php';
 require_once __DIR__ . '/../../core/Security.php';
 
@@ -13,7 +14,11 @@ class ProductController extends Controller
         $product = $productModel->getProductById($id);
         if ($product){
             $sizes = $productModel->getSizesByShoeId($id);
-            $this->view(ProductController::PATH . '/detail', ['product' => $product, 'sizes' => $sizes, 'options' => ['addCart', 'floating-button', 'sizes-list'], 'csrf_token' => Csrf::generateToken()]);
+            $this->view(ProductController::PATH . '/detail', ['product' => $product,
+                                                                            'sizes' => $sizes,
+                                                                            'reviews' => (new Review())->getAllReviewsByProductId($id),
+                                                                            'options' => ['addCart', 'review'],
+                                                                            'csrf_token' => Csrf::generateToken()]);
         } else{
             $this->product();
         }
@@ -43,9 +48,6 @@ class ProductController extends Controller
             (new HomeController())->index();
             exit;
         }
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
             $this->cart();
@@ -60,9 +62,6 @@ class ProductController extends Controller
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {// Ensure the request is POST
             (new HomeController())->index();
             exit;
-        }
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
         }
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
@@ -80,6 +79,44 @@ class ProductController extends Controller
         }
         $this->view(ProductController::PATH . '/cart', ['options' => ['cart', 'form'], 'cart'=>Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken(), 'alert' => $alert]);
         exit;
+    }
+    public function createReview() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {
+            (new HomeController())->index();
+            exit;
+        }
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Check if user is logged in
+        if (!isset($_SESSION['user'])) {
+            die("Unauthorized");
+        }
+        
+        // Validate CSRF token if needed
+        $csrfToken = $_POST['csrf_token'] ?? '';
+        if (!Csrf::validateToken($csrfToken)) {
+            die("Invalid request");
+        }
+        
+        $productId = filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_NUMBER_INT);
+        $rating    = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT);
+        $title     = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $text      = filter_var($_POST['review_text'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $userId    = $_SESSION['user']['id']; // get userid from current session
+        
+        // Insert the review into the database
+        $reviewModel = new Review();
+        $success = $reviewModel->createReview($productId, $userId, $rating, $title, $text);
+        
+        if ($success) {
+            // Redirect back to product page
+            $this->detail($productId);
+            exit;
+        } else {
+            // Show error or redirect
+            die("Failed to create review");
+        }
     }
 }
 ?>

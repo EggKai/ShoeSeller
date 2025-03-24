@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <base href="/shoeseller/">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "Shoe Store"; ?></title>
@@ -34,6 +35,9 @@
         <?php } ?>
         <?php if (in_array('form-carousel', $options)) { ?>
             <script defer src="public/assets/js/form-carousel.js"></script>
+        <?php } ?>
+        <?php if (in_array('form-carousel-forked', $options)) { ?>
+            <script defer src="public/assets/js/form-carousel-forked.min.js"></script>
         <?php } ?>
         <?php if (in_array('profile', $options)) { ?>
             <link rel='stylesheet' href='public/assets/css/profile.css'>
@@ -73,6 +77,13 @@
         <?php } ?>
         <?php if (in_array('privacy-policy', $options)) { ?>
             <link rel="stylesheet"  href="public\assets\css\privacy-policy.css">
+        <?php } ?>
+        <?php if (in_array('review', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\review.css">
+        <?php } ?>
+        <?php if (in_array('locations', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\locations.css">
+            <script defer src="public/assets/js/locations.js"></script>
         <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
@@ -118,7 +129,7 @@
                         <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search"
                             value="<?php echo filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS); ?>">
                         <button type="submit" aria-label="Submit Search">
-                            <!-- <i class="search-icon fas fa-search"></i> -->🔍
+                            <i class="search-icon fas fa-search"></i>
                         </button>
                     </form>
                 </li>

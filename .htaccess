@@ -4,6 +4,10 @@ RewriteEngine On
 # Set the base directory (adjust if your app is in a subfolder)
 RewriteBase /ShoeSeller/
 
+# Redirect base URL (e.g., /ShoeSeller/) to public/index.php
+RewriteCond %{REQUEST_URI} ^/shoeseller/?$ 
+RewriteRule ^$ public/index.php [L]
+
 Options -Indexes
 # If the requested file or directory exists, do nothing
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -11,4 +15,4 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # Otherwise, rewrite the request to index.php and pass the path as 'url'
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]

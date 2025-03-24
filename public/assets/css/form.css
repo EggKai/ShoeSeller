@@ -8,6 +8,9 @@
         /* background-color: rgb(49, 49, 49); */
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
+    form.fill {
+        width: 100% !important;
+    }
 
     @media only screen and (max-width: 600px) {
         #authForm {
