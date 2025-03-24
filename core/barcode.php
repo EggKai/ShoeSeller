@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 function generate_barcode($id)
 {
     // Make Barcode object of Code128 encoding.

@@ -77,8 +77,9 @@ nav ul li a img {
 }
 
 .search-form button {
-    padding: 0.6rem 1rem;
+    padding: 0.689rem 1rem;
     border: 1px solid #ccc;
+    color: var(--color-white);
     border-radius: 0 2rem 2rem 0;
     background-color: var(--color-dark);
     cursor: pointer;

@@ -2,7 +2,8 @@
 $title = htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
-<div class="product-page __content">
+<section class="__content">
+<div class="product-page">
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
     <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
@@ -43,5 +44,7 @@ include __DIR__ . '/../inc/header.php';
     </div>
 </div>
 </div>
+</section>
+<?php include __DIR__ . "/../partials/reviews.php"; ?>
 
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <base href="/shoeseller/">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "Shoe Store"; ?></title>
@@ -59,6 +60,9 @@
         <?php if (in_array('aboutus', $options)) { ?>
             <link rel="stylesheet"  href="public\assets\css\aboutus.css">
         <?php } ?>
+        <?php if (in_array('review', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\review.css">
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>
@@ -103,7 +107,7 @@
                         <input type="text" name="query" placeholder="Search for shoes..." aria-label="Search"
                             value="<?php echo filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS); ?>">
                         <button type="submit" aria-label="Submit Search">
-                            <!-- <i class="search-icon fas fa-search"></i> -->🔍
+                            <i class="search-icon fas fa-search"></i>
                         </button>
                     </form>
                 </li>

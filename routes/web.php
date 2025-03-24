@@ -9,6 +9,7 @@ require_once __DIR__ . '/../app/controllers/UserController.php';
 require_once __DIR__ . '/../app/controllers/CheckoutController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
 require_once __DIR__ . '/../app/controllers/InformationController.php';
+require_once __DIR__ . '/../app/controllers/ReviewController.php';
 
 // Define routes and their actions
 $routes = [
@@ -30,6 +31,15 @@ $routes = [
         } else {
             $productController->product();
         }
+    },
+    'products/createReview' => function() {
+        $productController = new ProductController();
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if ($id) {
+            $productController->createReview();
+            exit;
+        }
+        $productController->product();
     },
     'cart' => function () {
         (new ProductController())->cart();
