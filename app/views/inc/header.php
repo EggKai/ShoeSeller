@@ -63,6 +63,10 @@
         <?php if (in_array('review', $options)) { ?>
             <link rel="stylesheet"  href="public\assets\css\review.css">
         <?php } ?>
+        <?php if (in_array('locations', $options)) { ?>
+            <link rel="stylesheet"  href="public\assets\css\locations.css">
+            <script defer src="public/assets/js/locations.js"></script>
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public\assets\css\footer.css">
 </head>

@@ -107,6 +107,15 @@ $routes = [
     'information/locations' => function () {
         (new InformationController)->locations();
     },
+    'information/doAddLocation' => function () {
+        (new InformationController)->doAddLocation();
+    },
+    'information/doUpdateLocation' => function () {
+        (new InformationController)->doUpdateLocation();
+    },
+    'information/doRemoveLocation' => function () {
+        (new InformationController)->doRemoveLocation();
+    },
     'admin/addProduct' => function () {
         (new AdminController)->addProduct();
     },
