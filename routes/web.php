@@ -104,6 +104,9 @@ $routes = [
     'information/aboutus' => function () {
         (new InformationController)->aboutus();
     },
+    'information/contactus' => function () {
+        (new InformationController)->contactus();
+    },
     'information/locations' => function () {
         (new InformationController)->locations();  
     },
@@ -112,9 +115,6 @@ $routes = [
     },
     'information/cookie-policy' => function () {
         (new InformationController)->cookiePolicy();  
-    },
-    'information/cookie-preference' => function () {
-        (new InformationController)->cookiepreference();  
     },
     'information/privacy-policy' => function () {
         (new InformationController)->privacyPolicy();  

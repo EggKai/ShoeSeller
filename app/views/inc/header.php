@@ -60,6 +60,9 @@
         <?php if (in_array('aboutus', $options)) { ?>
             <link rel="stylesheet"  href="public/assets/css/aboutus.css">
         <?php } ?>
+        <?php if (in_array('contactus', $options)) { ?>
+            <link rel="stylesheet"  href="public/assets/css/information.css">
+        <?php } ?>
         <?php if (in_array('terms-and-conditions', $options)) { ?>
             <link rel="stylesheet"  href="public/assets/css/terms-and-conditions.css">
             <script defer src="public/assets/js/information.js"></script>

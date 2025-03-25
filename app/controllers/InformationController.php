@@ -25,6 +25,11 @@ class InformationController extends Controller
         $this->view(self::PATH . '/aboutus', ['options' => ['aboutus']]);
     }
 
+    public function contactus()
+    {
+        $this->view(self::PATH . '/contactus', ['options' => ['contactus']]);
+    }
+
     public function locations()
     {
         $locationModel = new Location();
@@ -200,14 +205,14 @@ class InformationController extends Controller
         $this->view(InformationController::PATH . '/accessibility',['options'=>['information']]);
 
     }
-    public function cookiepreference()
+    public function regulatoryFramework()
     {
-        $this->view(InformationController::PATH . '/cookie-preferences',['options'=>['information']]);
+        $this->view(self::PATH . '/regulatory-framework',['options'=>['regulatory-framework']]);
 
     }
-    public function Regulatoryframework()
+    public function contactus()
     {
-        $this->view(InformationController::PATH . '/regulatory-framework',['options'=>['information']]);
+        $this->view(self::PATH . '/contactus',['options'=>['contactus']]);
 
     }
 }
