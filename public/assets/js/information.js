@@ -12,30 +12,33 @@ function toggleDropdown(id, element) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
     registerEventListeners();
 });
 
-function registerEventListeners(){
-    var title = document.getElementsByClassName("toggle_dropdown");
+function registerEventListeners() {
+    var dropdown_Titles = document.querySelectorAll(".dropdown_title");
 
-    if (title != null){
-        for (var i = 0; i < title.length; i++) {
-            var title = title[i];
-            title.addEventListener("click", showContent(title));
-        }
-    }
-
+    dropdown_Titles.forEach(function (title) {
+        title.addEventListener("click", function () {
+            toggleContent(title);
+        });
+    });
 }
 
-function showContent(title){
-    var titlecontent = title.children[1];
-    if (titlecontent.style.visiblility == "hidden"){
-        titlecontent.style.visiblility == "visible";
+function toggleContent(titles){
+    var dropdown = titles.parentElement;
+    var content = dropdown.querySelector(".toggle_content");
+    var icon = titles.querySelector(".dropdown");
+    
+    if(content){
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block";
+            icon.innerHTML = "-"; 
+        } else {
+            content.style.display = "none";
+            icon.innerHTML = "+";
+        }
     }
-    else if (titlecontent.style.visiblility == "visible"){
-        titlecontent.style.visiblility == "hidden";
-    }
-
 }
