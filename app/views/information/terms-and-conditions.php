@@ -50,23 +50,6 @@ include __DIR__ . '/../inc/header.php';
     <h2> 16. MISCELLANEOUS PROVISIONS</h2>
     <h2> 17. APPLICABLE LAW AND JUSTIFICATION</h2>
 
-    <script>
-        function toggleDropdown(id, element) {
-            var content = document.getElementById(id);
-            var symbol = element.querySelector("span");
-
-            // Check if the content is currently visible
-            if (content.style.display === "block") {
-                content.style.display = "none";
-                symbol.textContent = "+";  // Change symbol to "+"
-            } else {
-                content.style.display = "block";
-                symbol.textContent = "-";  // Change symbol to "-"
-            }
-        }
-    </script>
-
-
 <?php
 include __DIR__ . '/../inc/footer.php';
 ?>
