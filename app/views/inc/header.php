@@ -64,6 +64,10 @@
             <link rel="stylesheet"  href="public/assets/css/terms-and-conditions.css">
             <script defer src="public/assets/js/information.js"></script>
         <?php } ?>
+        <?php if (in_array('regulatory-framework', $options)) { ?>
+            <link rel="stylesheet"  href="public/assets/css/information.css">
+            <script defer src="public/assets/js/information.js"></script>
+        <?php } ?>
         <?php if (in_array('privacy-policy', $options)) { ?>
             <link rel="stylesheet"  href="public/assets/css/information.css">
             <script defer src="public/assets/js/information.js"></script>

@@ -207,7 +207,7 @@ class InformationController extends Controller
     }
     public function Regulatoryframework()
     {
-        $this->view(InformationController::PATH . '/Regulatoryframework',['options'=>['information']]);
+        $this->view(InformationController::PATH . '/regulatory-framework',['options'=>['information']]);
 
     }
 }
