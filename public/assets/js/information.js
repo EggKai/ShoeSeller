@@ -11,3 +11,31 @@ function toggleDropdown(id, element) {
         symbol.textContent = "-";  // Change symbol to "-"
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    registerEventListeners();
+});
+
+function registerEventListeners(){
+    var title = document.getElementsByClassName("toggle_dropdown");
+
+    if (title != null){
+        for (var i = 0; i < title.length; i++) {
+            var title = title[i];
+            title.addEventListener("click", showContent(title));
+        }
+    }
+
+}
+
+function showContent(title){
+    var titlecontent = title.children[1];
+    if (titlecontent.style.visiblility == "hidden"){
+        titlecontent.style.visiblility == "visible";
+    }
+    else if (titlecontent.style.visiblility == "visible"){
+        titlecontent.style.visiblility == "hidden";
+    }
+
+}

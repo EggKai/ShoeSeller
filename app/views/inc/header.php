@@ -58,20 +58,21 @@
             <link rel="stylesheet" href="public/assets/css/dashboard.css">
         <?php } ?>
         <?php if (in_array('aboutus', $options)) { ?>
-            <link rel="stylesheet"  href="public\assets\css\aboutus.css">
+            <link rel="stylesheet"  href="public/assets/css/aboutus.css">
         <?php } ?>
         <?php if (in_array('terms-and-conditions', $options)) { ?>
-            <link rel="stylesheet"  href="public\assets\css\terms-and-conditions.css">
+            <link rel="stylesheet"  href="public/assets/css/terms-and-conditions.css">
+            <script defer src="public/assets/js/information.js"></script>
         <?php } ?>
-        <?php if (in_array('information', $options)) { ?>
-            <link rel="stylesheet"  href="public\assets\css\information.css">
+        <?php if (in_array('privacy-policy', $options)) { ?>
+            <link rel="stylesheet"  href="public/assets/css/information.css">
             <script defer src="public/assets/js/information.js"></script>
         <?php } ?>
         <?php if (in_array('review', $options)) { ?>
-            <link rel="stylesheet"  href="public\assets\css\review.css">
+            <link rel="stylesheet"  href="public/assets/css/review.css">
         <?php } ?>
         <?php if (in_array('locations', $options)) { ?>
-            <link rel="stylesheet"  href="public\assets\css\locations.css">
+            <link rel="stylesheet"  href="public/assets/css/locations.css">
             <script defer src="public/assets/js/locations.js"></script>
         <?php } ?>
     <?php } ?>
