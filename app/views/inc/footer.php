@@ -23,7 +23,7 @@
         <li><a href="index.php?url=information/privacy-policy">Privacy Policy</a></li>
         <li><a href="index.php?url=information/cookie-policy">Cookie Policy</a></li>
         <li><a href="index.php?url=information/regulatory-framework">Regulatory Framework</a></li>
-        <li><a href="index.php?url=information/">Corporate Information</a></li>
+        <li><a href="index.php?url=information/corporate-information">Corporate Information</a></li>
       </ul>
     </div>
     

@@ -220,4 +220,8 @@ class InformationController extends Controller
         $this->view(self::PATH . '/rs-policy',['options'=>['rs-policy']]);
 
     }
+    public function corporateInformation()
+    {
+        $this->view(self::PATH . '/corporate-information',['options'=>['corporate-information']]);
+    }
 }

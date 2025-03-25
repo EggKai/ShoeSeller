@@ -110,6 +110,9 @@ $routes = [
     'information/rs-policy' => function () {
         (new InformationController)->rsPolicy();
     },
+    'information/corporate-information' => function () {
+        (new InformationController)->corporateInformation();
+    },
     'information/locations' => function () {
         (new InformationController)->locations();  
     },
