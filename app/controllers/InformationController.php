@@ -215,4 +215,9 @@ class InformationController extends Controller
         $this->view(self::PATH . '/contactus',['options'=>['contactus']]);
 
     }
+    public function rsPolicy()
+    {
+        $this->view(self::PATH . '/rs-policy',['options'=>['rs-policy']]);
+
+    }
 }

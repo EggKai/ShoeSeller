@@ -9,7 +9,7 @@
         <li><a href="index.php?url=information/aboutus">Who are we?</a></li>
         <li><a href="index.php?url=information/contactus">Contact Us</a></li>
         <li><a href="index.php?url=information/FAQ">FAQs</a></li>
-        <li><a href="index.php?url=information/S&Ppolicy">Shipping & Returns</a></li>
+        <li><a href="index.php?url=information/rs-policy">Shipping & Returns</a></li>
         <li><a href="index.php?url=information/paymentmethods">Payment Methods</a></li>
       </ul>
     </div>

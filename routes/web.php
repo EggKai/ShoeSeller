@@ -107,6 +107,9 @@ $routes = [
     'information/contactus' => function () {
         (new InformationController)->contactus();
     },
+    'information/rs-policy' => function () {
+        (new InformationController)->rsPolicy();
+    },
     'information/locations' => function () {
         (new InformationController)->locations();  
     },
