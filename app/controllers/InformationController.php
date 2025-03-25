@@ -188,26 +188,26 @@ class InformationController extends Controller
 
     public function termsAndConditions()
     {
-        $this->view(self::PATH . '/terms-and-conditions',['options'=>['terms-and-conditions']]);
+        $this->view(self::PATH . '/terms-and-conditions',['options'=>['information']]);
     }
     public function cookiePolicy()
     {
-        $this->view(InformationController::PATH . '/cookie-policy',['options'=>['cookie-policy']]);
+        $this->view(InformationController::PATH . '/cookie-policy',['options'=>['information']]);
 
     }
     public function accessibility()
     {
-        $this->view(InformationController::PATH . '/accessibility',['options'=>['accessibility']]);
+        $this->view(InformationController::PATH . '/accessibility',['options'=>['information']]);
 
     }
     public function cookiepreference()
     {
-        $this->view(InformationController::PATH . '/cookie-preferences',['options'=>['cookie-preferences']]);
+        $this->view(InformationController::PATH . '/cookie-preferences',['options'=>['information']]);
 
     }
     public function Regulatoryframework()
     {
-        $this->view(InformationController::PATH . '/Regulatoryframework',['options'=>['regulatory-framework']]);
+        $this->view(InformationController::PATH . '/Regulatoryframework',['options'=>['information']]);
 
     }
 }
