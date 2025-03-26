@@ -13,7 +13,7 @@ include __DIR__ . '/../inc/header.php';
             alt="<?php echo htmlspecialchars($product['name']); ?>" />
           <!-- Product Name -->
           <h3 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h3>
-          <h6 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?></h6>
+          <h6 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?> <?php echo $product['unlisted']?'<span class="red">Unlisted</span>':'' ?></h6>
           <!-- Product Price -->
           <p class="product-price">$<?php echo number_format($product['base_price'], 2); ?></p>
 

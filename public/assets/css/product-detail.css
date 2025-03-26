@@ -41,6 +41,7 @@
   .product-category {
     color: #939393;
     margin: 0px;
+    font-size: 1rem;
   }
   .product-brand {
     color: #6e6e6e;
@@ -50,7 +51,7 @@
   
   /* Subtitle / Description */
   .product-subtitle {
-    color: #6e6e6e;
+    color: #acacac;
     font-size: 1rem;
     margin: 0 0 1rem;
   }

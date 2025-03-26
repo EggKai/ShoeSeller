@@ -20,7 +20,7 @@
       <ul>
         <li><a href="index.php?url=information/terms-and-conditions">Terms & Conditions</a></li>
         <li><a href="index.php?url=information/accessibility">Accessibility</a></li>
-        <li><a href="index.php?url=information/privacy-policy">Privacy Policy</a></li>
+        <!-- <li><a href="index.php?url=information/privacy-policy">Privacy Policy</a></li> -->
         <li><a href="index.php?url=information/cookie-policy">Cookie Policy</a></li>
         <li><a href="index.php?url=information/regulatory-framework">Regulatory Framework</a></li>
         <li><a href="index.php?url=information/corporate-information">Corporate Information</a></li>
@@ -38,7 +38,7 @@
   
   <!-- Copyright -->
   <div class="footer-bottom">
-    <p>&copy; <?php echo date('Y'); ?> ShoeSeller. All rights reserved. <a href="#">Privacy Policy</a>.</p>
+    <p>&copy; <?php echo date('Y'); ?> ShoeSeller. All rights reserved. <a href="information/privacy-policy">Privacy Policy</a>.</p>
   </div>
 </footer>
 </body>

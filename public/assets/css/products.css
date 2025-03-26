@@ -37,6 +37,11 @@
     color: var(--color-light);
 }
 
+.product-item h6 span.red { /* product brand */
+    margin: 0;
+    color: var(--color-primary);
+}
+
 .product-item p { /* product price */
     margin: 0;
 }

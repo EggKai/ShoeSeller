@@ -165,6 +165,9 @@ $routes = [
     'admin/createUser' => function () {
         (new AdminController())->createUser();
     },
+    'admin/doCreateUser' => function () {
+        (new AdminController())->doCreateUser();
+    },
 ];
 
 // Retrieve the URL parameter (or default to home)
