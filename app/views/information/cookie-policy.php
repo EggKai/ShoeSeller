@@ -2,8 +2,9 @@
 $title = 'T&C';
 include __DIR__ . '/../inc/header.php';
 ?>
-
-# Accessibility Statement
+<section class="__content">
+    # Accessibility Statement
+</section>
 
 
 <?php

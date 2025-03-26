@@ -187,7 +187,7 @@ class InformationController extends Controller
 
     public function privacyPolicy()
     {
-        $this->view(self::PATH . '/privacy-policy',['options'=>['privacy-policy']]);
+        $this->view(self::PATH . '/privacy-policy',['options'=>['information']]);
 
     }
 
@@ -207,21 +207,16 @@ class InformationController extends Controller
     }
     public function regulatoryFramework()
     {
-        $this->view(self::PATH . '/regulatory-framework',['options'=>['regulatory-framework']]);
-
-    }
-    public function contactus()
-    {
-        $this->view(self::PATH . '/contactus',['options'=>['contactus']]);
+        $this->view(self::PATH . '/regulatory-framework',['options'=>['information']]);
 
     }
     public function rsPolicy()
     {
-        $this->view(self::PATH . '/rs-policy',['options'=>['rs-policy']]);
+        $this->view(self::PATH . '/rs-policy',['options'=>['information']]);
 
     }
     public function corporateInformation()
     {
-        $this->view(self::PATH . '/corporate-information',['options'=>['corporate-information']]);
+        $this->view(self::PATH . '/corporate-information',['options'=>['information']]);
     }
 }

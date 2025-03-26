@@ -1,9 +1,60 @@
+
 .title{
-    padding-left: 1%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.title p{
+    font-size: 0.9rem;
+}
+
+.toggle_content { /* display none by default; allow the js to display block */
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    font-size: 0.9rem;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* allow for transition btwn open and close */ 
+}
+
+
+.toggle_dropdown{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .dropdown_title {
+    transition: font-size 0.5s ease; /* allow for smooth transition between subj     */
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+}
+
+.dropdown_title h5{
+    margin: 0px;
+}
+
+.dropdown {
+    /* border-bottom: 1px solid white; */
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown hr {
+    margin: 0px;
+}
+
+.content {
+    display: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* Style the active dropdown title */
+.dropdown_title.active {
+    font-size: 1.2em;  /* Increase text size (adjust as needed) */
+    font-weight: bold; /* Bold the text */
 }

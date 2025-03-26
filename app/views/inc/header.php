@@ -63,21 +63,7 @@
         <?php if (in_array('contactus', $options)) { ?>
             <link rel="stylesheet"  href="public/assets/css/information.css">
         <?php } ?>
-        <?php if (in_array('rs-policy', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/information.css">
-        <?php } ?>
-        <?php if (in_array('corporate-information', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/information.css">
-        <?php } ?>
-        <?php if (in_array('terms-and-conditions', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/terms-and-conditions.css">
-            <script defer src="public/assets/js/information.js"></script>
-        <?php } ?>
-        <?php if (in_array('regulatory-framework', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/information.css">
-            <script defer src="public/assets/js/information.js"></script>
-        <?php } ?>
-        <?php if (in_array('privacy-policy', $options)) { ?>
+        <?php if (in_array('information', $options)) { ?>
             <link rel="stylesheet"  href="public/assets/css/information.css">
             <script defer src="public/assets/js/information.js"></script>
         <?php } ?>
