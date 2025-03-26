@@ -16,6 +16,32 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-li {
+
+ol {
     list-style-type: none;
+    counter-reset: section;
+}
+
+ol li {
+    list-style-type: none;
+    counter-increment: section;
+    margin-bottom: 10px;
+}
+
+ol li::before {
+    content: counter(section) ". ";
+    font-weight: bold;
+}
+
+ol ol {
+    counter-reset: subsection;
+}
+
+ol ol li {
+    counter-increment: subsection;
+}
+
+ol ol li::before {
+    content: counter(section) "." counter(subsection) " ";
+    font-weight: normal;
 }
