@@ -34,19 +34,23 @@
   
   /* Product name */
   .product-name {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 0;
   }
   
+  .product-category {
+    color: #939393;
+    margin: 0px;
+  }
   .product-brand {
-    color: #555;
+    color: #6e6e6e;
     font-size: 1rem;
     margin: 0;
   }
   
   /* Subtitle / Description */
   .product-subtitle {
-    color: #555;
+    color: #6e6e6e;
     font-size: 1rem;
     margin: 0 0 1rem;
   }

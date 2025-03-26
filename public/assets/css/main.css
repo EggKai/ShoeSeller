@@ -76,7 +76,7 @@ nav ul li a img {
     background-color: var(--color-dark);
 }
 
-.search-form button {
+.search-form button[type='submit'] {
     padding: 0.689rem 1rem;
     border: 1px solid #ccc;
     color: var(--color-white);
@@ -85,7 +85,15 @@ nav ul li a img {
     cursor: pointer;
 }
 
-.search-form button:hover {
+.search-form button[type='button'] {
+    margin: 0 0.9rem;
+    border: 0px solid #ccc;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    cursor: pointer;
+}
+
+.search-form button[type='submit']:hover {
     background-color: var(--color-grey);
 }
 

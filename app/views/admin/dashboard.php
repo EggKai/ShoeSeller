@@ -1,31 +1,9 @@
 <?php
-// app/views/dashboard/index.php
-
 $title = "Dashboard";
-
-// Example data for testing UI (in production, fetch these from your controller/database)
-$totalRevenue = 12500.50;
-$totalShoesSold = 350;
-$totalSales = 80;
-$totalUsers = 120;
-
-$revenuePerDayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-$revenuePerDayData = [1500, 2000, 1800, 2200, 2100, 1900, 1900];
-
-$shoesByCategoryLabels = ['Sneakers', 'Running', 'Formal'];
-$shoesByCategoryData = [40, 35, 25];
-
-$shoesSoldByCategoryLabels = ['Sneakers', 'Running', 'Formal'];
-$shoesSoldByCategoryData = [150, 120, 80];
-
-$reviewsPerDayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-$reviewsPerDayData = [10, 15, 7, 12, 20, 5, 8];
-
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="dashboard-container">
-    <!-- <h1>Dashboard</h1> -->
-
+    <h1>Dashboard</h1>
     <!-- Metrics Summary -->
     <div class="metrics-summary">
         <div class="metric-card">
@@ -45,7 +23,8 @@ include __DIR__ . '/../inc/header.php';
             <p><?php echo $totalUsers; ?></p>
         </div>
     </div>
-
+    
+    <!-- Charts Section -->
     <div class="charts-section">
         <!-- revenue line chart: spans 2 columns on large screens -->
         <div class="chart-card line-graph-wide">
@@ -78,7 +57,7 @@ include __DIR__ . '/../inc/header.php';
     </div>
 </div>
 
-<!-- Include Chart.js from CDN -->
+<!-- Include Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Revenue Per Day (Line Chart)
@@ -93,7 +72,7 @@ include __DIR__ . '/../inc/header.php';
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 2,
-                fill: false, // Removed fill
+                fill: false,
                 tension: 0.4
             }]
         },
@@ -168,7 +147,7 @@ include __DIR__ . '/../inc/header.php';
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
                 borderColor: 'rgba(153, 102, 255, 1)',
                 borderWidth: 2,
-                fill: false, // Removed fill
+                fill: false,
                 tension: 0.4
             }]
         },

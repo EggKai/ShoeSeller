@@ -1,0 +1,147 @@
+.view-users-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Lucida Sans', sans-serif;
+}
+
+.view-users-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Responsive wrapper to enable horizontal scrolling */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* for smoother scrolling on iOS */
+  margin-bottom: 1rem;
+}
+
+/* Users Table styling */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background-color: #f5f5f52f;
+}
+
+.users-table th,
+.users-table td {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 0.95rem;
+  white-space: nowrap; /* prevent wrapping inside cells */
+}
+
+.users-table th {
+  font-weight: bold;
+}
+
+.users-table tbody tr:hover {
+  background-color: #fafafa33;
+}
+
+/* Delete Button in Users Table */
+.users-table td:has(> .delete-user-btn) {
+  padding: 0;
+}
+
+.users-table td .delete-user-btn {
+  background-color: var(--color-error); /* Uses your error color variable */
+  color: var(--color-light);            /* Uses your light text color */
+  cursor: pointer;
+  width: 100%;
+  padding: 0.75rem;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Hover effect for the delete button */
+.users-table td .delete-user-btn:hover {
+  background-color: #c0392b;  /* A slightly darker red */
+}
+/* On small screens, force a minimum table width to trigger horizontal scroll */
+@media screen and (max-width: 600px) {
+  .users-table {
+    min-width: 600px;
+  }
+  .users-table th,
+  .users-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}
+
+
+/* Modal Container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Modal Content Box */
+.modal-content {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #000000dc;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Close Button */
+.modal-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+  color: #000;
+}
+
+/* Password Input */
+#admin-password {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Confirm Button */
+#confirm-delete-btn,
+#close-modal-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: var(--color-error);
+  color: var(--color-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#confirm-delete-btn:hover,
+#close-modal-btn:hover {
+  background-color: #c0392b;
+}

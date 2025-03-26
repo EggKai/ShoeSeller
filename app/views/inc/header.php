@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <!--<base href="/shoeseller/">-->
+    <?php
+    if (str_contains($_ENV['DOMAIN'], 'localhost')) {
+        echo '<base href="/shoeseller/">';
+    }
+    ?>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : "Shoe Store"; ?></title>
@@ -57,21 +61,26 @@
         <?php if (in_array('dashboard', $options)) { ?>
             <link rel="stylesheet" href="public/assets/css/dashboard.css">
         <?php } ?>
+        <?php if (in_array('view-users', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/view-users.css">
+            <script defer src="public/assets/js/deleteUsers.js"></script>
+
+        <?php } ?>
         <?php if (in_array('aboutus', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/aboutus.css">
+            <link rel="stylesheet" href="public/assets/css/aboutus.css">
         <?php } ?>
         <?php if (in_array('contactus', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/information.css">
+            <link rel="stylesheet" href="public/assets/css/information.css">
         <?php } ?>
         <?php if (in_array('information', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/information.css">
+            <link rel="stylesheet" href="public/assets/css/information.css">
             <script defer src="public/assets/js/information.js"></script>
         <?php } ?>
         <?php if (in_array('review', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/review.css">
+            <link rel="stylesheet" href="public/assets/css/review.css">
         <?php } ?>
         <?php if (in_array('locations', $options)) { ?>
-            <link rel="stylesheet"  href="public/assets/css/locations.css">
+            <link rel="stylesheet" href="public/assets/css/locations.css">
             <script defer src="public/assets/js/locations.js"></script>
         <?php } ?>
     <?php } ?>
@@ -94,23 +103,12 @@
                         <a href="index.php?url=auth/logout">Logout</a>
                     </li>
                 <?php } else { ?>
-                    <li><a href="index.php?url=cart">
-                        Cart
-                            <!-- <i class="fas fa-shopping-cart"></i> -->
-                        </a></li>
                     <?php if (isset($_SESSION['user'])) { ?>
-                        <li>
-                            <a href="index.php?url=auth/profile" class="user" aria-label="User Login">Profile</a>
-                        </li>
                         <li>
                             <a href="index.php?url=auth/logout">Logout</a>
                         </li>
-                    <?php } else { ?>
-                        <li>
-                            <a href="index.php?url=auth/login" class="user" aria-label="User Login">Login</a>
-                        </li>
                     <?php } ?>
-                    
+
                 <?php } ?>
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
@@ -119,6 +117,27 @@
                             value="<?php echo filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS); ?>">
                         <button type="submit" aria-label="Submit Search">
                             <i class="search-icon fas fa-search"></i>
+                        </button>
+                        <button type="button">
+                            <a href="cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </button>
+                        <button type="button">
+                            <a href=<?php
+                            switch ($_SESSION['user']['user_type'] ?? null) {
+                                case 'admin':
+                                    echo "admin/users";
+                                    break;
+                                case 'employee':
+                                case 'user':
+                                    echo "auth/profile";
+                                    break;
+                                default:
+                                    echo "auth/login";
+                            } ?>>
+                                <i class="fa-solid fa-user"></i>
+                            </a>
                         </button>
                     </form>
                 </li>

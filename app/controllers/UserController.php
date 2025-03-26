@@ -9,7 +9,12 @@ class UserController extends Controller {
     private static $path = 'auth';
 
     public function login() {
-        $this->view(UserController::$path . '/login', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+        if (!isset($_SESSION['user'])) {
+            $this->view(UserController::$path . '/login', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+            exit;
+        }
+        (new HomeController)->index();
+        exit;
     }
 
     public function logout() {

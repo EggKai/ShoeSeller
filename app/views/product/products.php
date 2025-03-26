@@ -26,7 +26,7 @@ include __DIR__ . '/../inc/header.php';
     </h1>
   <?php } ?>
 </div>
-<?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-  <a href="index.php?url=admin/addProduct"><button class="floating-plus-button">+</button></a>
+<?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee']) ) { ?>
+  <a href="index.php?url=employee/addProduct"><button class="floating-plus-button">+</button></a>
 <?php } ?>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

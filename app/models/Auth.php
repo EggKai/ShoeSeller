@@ -115,6 +115,15 @@ class Auth extends Model
      */
     public function getUserById($id)
     {
-        return $this->findById('user', $id);
+        return $this->findById('users', $id);
+    }
+
+    public function getAllUsers() {
+        $stmt = $this->pdo->query("SELECT * FROM users ORDER BY created_at DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function deleteUser($userId) {
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
+        return $stmt->execute(['id' => $userId]);
     }
 }

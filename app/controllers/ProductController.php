@@ -12,20 +12,24 @@ class ProductController extends Controller
     {
         $productModel = new Product();
         $product = $productModel->getProductById($id);
-        if ($product){
+        if ($product) {
             $sizes = $productModel->getSizesByShoeId($id);
-            $this->view(ProductController::PATH . '/detail', ['product' => $product,
-                                                                            'sizes' => $sizes,
-                                                                            'reviews' => (new Review())->getAllReviewsByProductId($id),
-                                                                            'options' => ['addCart', 'review'],
-                                                                            'csrf_token' => Csrf::generateToken()]);
-        } else{
+            $category = $productModel->findById('categories', $product['category_id']);
+            $this->view(ProductController::PATH . '/detail', [
+                'product' => $product,
+                'sizes' => $sizes,
+                'category' => $category,
+                'reviews' => (new Review())->getAllReviewsByProductId($id),
+                'options' => ['addCart', 'review'],
+                'csrf_token' => Csrf::generateToken()
+            ]);
+        } else {
             $this->product();
         }
         exit;
     }
 
-    public function product($query=null)
+    public function product($query = null)
     {
         $productModel = new Product();
         if (!($query === null)) {
@@ -36,14 +40,19 @@ class ProductController extends Controller
             }
             $this->view(ProductController::PATH . '/products', ['products' => []]);
             exit;
-        } 
-        $products = $productModel->getAllProducts();
+        }
+        if (!(isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee']))) {
+            $products = $productModel->getAllListedProducts();
+        } else {
+            $products = $productModel->getAllProducts();
+        }
         $this->view(ProductController::PATH . '/products', ['products' => $products, 'options' => ['floating-button']]);
         exit;
     }
 
 
-    function plusCartItem() {
+    function plusCartItem()
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {// Ensure the request is POST
             (new HomeController())->index();
             exit;
@@ -54,11 +63,12 @@ class ProductController extends Controller
         }
         $productId = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
         $size = filter_var($_POST['size'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $this->cart(Cart::updateCartitemQuantity($productId, $size,1));
+        $this->cart(Cart::updateCartitemQuantity($productId, $size, 1));
         exit;
     }
 
-    function minusCartItem() {
+    function minusCartItem()
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {// Ensure the request is POST
             (new HomeController())->index();
             exit;
@@ -69,18 +79,20 @@ class ProductController extends Controller
         }
         $productId = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
         $size = filter_var($_POST['size'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $this->cart(Cart::updateCartitemQuantity($productId, $size,-1));
+        $this->cart(Cart::updateCartitemQuantity($productId, $size, -1));
         exit;
     }
 
-    public function cart($cart=null, $alert=null){
+    public function cart($cart = null, $alert = null)
+    {
         if ($cart === null) { // cant pass parameters in runtime like py
             $cart = Cart::getCurrentCart();
         }
-        $this->view(ProductController::PATH . '/cart', ['options' => ['cart', 'form'], 'cart'=>Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken(), 'alert' => $alert]);
+        $this->view(ProductController::PATH . '/cart', ['options' => ['cart', 'form'], 'cart' => Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken(), 'alert' => $alert]);
         exit;
     }
-    public function createReview() {
+    public function createReview($productId)
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' && (filter_has_var(INPUT_POST, 'submit'))) {
             (new HomeController())->index();
             exit;
@@ -92,23 +104,22 @@ class ProductController extends Controller
         if (!isset($_SESSION['user'])) {
             die("Unauthorized");
         }
-        
+
         // Validate CSRF token if needed
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) {
             die("Invalid request");
         }
-        
-        $productId = filter_input(INPUT_GET, 'product_id', FILTER_SANITIZE_NUMBER_INT);
-        $rating    = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT);
-        $title     = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $text      = filter_var($_POST['review_text'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $userId    = $_SESSION['user']['id']; // get userid from current session
-        
+
+        $rating = filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT);
+        $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $text = filter_var($_POST['review_text'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $userId = $_SESSION['user']['id']; // get userid from current session
+
         // Insert the review into the database
         $reviewModel = new Review();
         $success = $reviewModel->createReview($productId, $userId, $rating, $title, $text);
-        
+
         if ($success) {
             // Redirect back to product page
             $this->detail($productId);

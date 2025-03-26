@@ -7,6 +7,11 @@ class Product extends Model
     {
         return $this->findAll('products');
     }
+    public function getAllListedProducts()
+    {
+        $stmt = $this->pdo->query("SELECT * FROM products WHERE unlisted = 0");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getProductById($id)
     {
@@ -179,6 +184,18 @@ class Product extends Model
         if ($thumbnail !== null) {
             $params['thumbnail'] = $thumbnail;
         }
+
+        return $stmt->execute($params);
+    }
+
+    public function handleListing($id)
+    {
+        $sql = "UPDATE products SET unlisted = NOT unlisted WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $params = [
+            'id' => $id
+        ];
 
         return $stmt->execute($params);
     }

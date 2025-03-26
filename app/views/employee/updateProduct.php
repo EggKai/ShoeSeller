@@ -2,10 +2,11 @@
 $title = htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
-  <?php
-    include __DIR__ . '/../partials/alert.php';
-  ?>
-<div class="product-page">
+<div class="__content">
+<?php
+include __DIR__ . '/../partials/alert.php';
+?>
+<div class="product-page ">
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
     <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
@@ -15,7 +16,7 @@ include __DIR__ . '/../inc/header.php';
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
     <!-- Editable Form for Admin/Employee -->
-    <form action="index.php?url=admin/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
+    <form action="index.php?url=employee/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
       class="fill" id="authForm">
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
       <div class="tab">
@@ -27,7 +28,7 @@ include __DIR__ . '/../inc/header.php';
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" cols="30"
-          rows="5"><?php echo htmlspecialchars($product['description']); ?></textarea>
+          rows="14"><?php echo htmlspecialchars($product['description']); ?></textarea>
 
         <label for="base_price">Price:</label>
         <input type="number" step="0.01" id="base_price" name="base_price"
@@ -72,9 +73,14 @@ include __DIR__ . '/../inc/header.php';
         <span class="step"></span>
       </div>
   </div>
+  <button class="floating-plus-button red" name="unlist" type="button">
+    <a href="employee/handleListing&id=<?php echo htmlspecialchars($_GET['id']); ?>">
+      <?php echo ($product['unlisted'])?'🔓':'🔒';?>
+    </a>
+  </button>
   <button class="floating-plus-button" name="submit" type="submit">🛠️</button>
   </form>
 </div>
+  
 </div>
-
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

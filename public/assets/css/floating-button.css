@@ -1,6 +1,6 @@
 .floating-plus-button {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     /* distance from the bottom */
     right: 20px;
     /* distance from the right */
@@ -20,7 +20,21 @@
     z-index: 1000;
 }
 
+.floating-plus-button.red {
+    text-decoration: none;
+    right: 90px;
+    background-color: red;
+}
+.floating-plus-button a{
+    text-decoration: inherit;
+}
+
 .floating-plus-button:hover {
     background-color: #218838;
     /* slightly darker green on hover */
+}
+
+.floating-plus-button.red {
+    background-color: rgb(212, 0, 0);
+    /* slightly darker red on hover */
 }

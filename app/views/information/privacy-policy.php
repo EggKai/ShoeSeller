@@ -134,7 +134,6 @@ include __DIR__ . '/../inc/header.php';
             <p>The rights listed above may be exercised by contacting the Data Controller, writing to privacy@shoeseller.com. </p>
             <p>Finally, please note that it is always possible to lodge a complaint with the competent Supervisory Authority (Data Protection Authority).</p>
         </div>
-        <hr>
     </div>
 </section>
 

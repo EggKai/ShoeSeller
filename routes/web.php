@@ -7,6 +7,7 @@ require_once __DIR__ . '/../app/controllers/HomeController.php';
 require_once __DIR__ . '/../app/controllers/ProductController.php';
 require_once __DIR__ . '/../app/controllers/UserController.php';
 require_once __DIR__ . '/../app/controllers/CheckoutController.php';
+require_once __DIR__ . '/../app/controllers/EmployeeController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
 require_once __DIR__ . '/../app/controllers/InformationController.php';
 require_once __DIR__ . '/../app/controllers/ReviewController.php';
@@ -24,7 +25,7 @@ $routes = [
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if ($id) {
             if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) {
-                (new AdminController)->updateProduct();
+                (new EmployeeController())->updateProduct();
             } else {
                 $productController->detail($id);
             }
@@ -36,7 +37,7 @@ $routes = [
         $productController = new ProductController();
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if ($id) {
-            $productController->createReview();
+            $productController->createReview($id);
             exit;
         }
         $productController->product();
@@ -89,7 +90,6 @@ $routes = [
     },
     'auth/profile' => function () {
         if (!isset($_SESSION['user'])) {
-            // if ($_SESSION['user']['user_type'] !== 'user')
             (new UserController())->login();
             exit;
         }
@@ -141,17 +141,29 @@ $routes = [
     'information/doRemoveLocation' => function () {
         (new InformationController)->doRemoveLocation();
     },
-    'admin/addProduct' => function () {
-        (new AdminController)->addProduct();
+    'employee/addProduct' => function () {
+        (new EmployeeController())->addProduct();
+    },
+    'employee/doAddProduct' => function () {
+        (new EmployeeController())->doAddProduct();
+    },
+    'employee/updateProduct' => function () {
+        (new EmployeeController())->doUpdateProduct();
+    },
+    'employee/handleListing' => function () {
+        (new EmployeeController())->handleListing();
     },
     'admin/dashboard' => function () {
-        (new AdminController)->dashboard();
+        (new AdminController())->dashboard();
     },
-    'admin/doAddProduct' => function () {
-        (new AdminController)->doAddProduct();
+    'admin/users' => function () {
+        (new AdminController())->viewUsers();
     },
-    'admin/updateProduct' => function () {
-        (new AdminController)->doUpdateProduct();
+    'admin/deleteUser' => function () {
+        (new AdminController())->deleteUser();
+    },
+    'admin/createUser' => function () {
+        (new AdminController())->createUser();
     },
 ];
 

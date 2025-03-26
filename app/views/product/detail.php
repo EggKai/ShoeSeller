@@ -14,7 +14,9 @@ include __DIR__ . '/../inc/header.php';
   <div class="product-info">
     <!-- Regular Display for Customers -->
     <h1 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h1>
+    <h3 class="product-category"><?php echo htmlspecialchars($category['name']); ?></h3>
     <h3 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?></h3>
+
     <p class="product-subtitle"><?php echo htmlspecialchars($product['description']); ?></p>
     <p class="product-price">S$<?php echo number_format($product['base_price'], 2); ?></p>
 
