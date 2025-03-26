@@ -9,7 +9,7 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div id="section1" class="content">
     <ol>
-        <p>Please find below information on cookies installed on the website “www.off---white.com” (hereinafter the “Website”).</p>
+        <p>Please find below information on cookies installed on the website “www.ShoeSeller.com” (hereinafter the “Website”).</p>
     </ol>
     </div>
 
@@ -122,7 +122,7 @@ For further information on cookies and to manage your preferences in relation to
     <div id="section7" class="content">
     <ol>
         <p>
-        The controller of the data collected through the cookies on the Website is Off-White Operating  S.r.l, with registered office at Via Filippo Turati 12, 20121 - Milano (MI) (hereinafter the “Data Controller”).
+        The controller of the data collected through the cookies on the Website is ShoeSeller Operating  S.r.l, with registered office at Via Filippo Turati 12, 20121 - Milano (MI) (hereinafter the “Data Controller”).
         To request and obtain an updated list of the data processors, please contact the Data Controller at the email address privacy@newguardsgroup.com.
         </p>
     </ol>
