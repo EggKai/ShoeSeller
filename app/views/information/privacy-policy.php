@@ -4,13 +4,12 @@ include __DIR__ . '/../inc/header.php';
 ?>
 <section class="__content">
 
-<!-- TODO Privacy Policy PHP HERE -->
-<div class="title">
-    <h2>Privacy Policy</h2>
-    <p>Welcome to the website of shoeseller www.shoeseller.site (hereinafter, for brevity, the “Site”).</p>
-    <p>We therefore kindly ask you to carefully read this privacy policy (hereinafter referred to as the “Privacy Policy”), which applies to each access to the Site, even independently of the purchase of products marketed therein.</p>
-    <p>We would like to remind you that this Privacy Policy is governed by the European Regulation No. 2016/679 (hereinafter, for brevity, the “Regulation”). The Regulation ensures that the processing of personal data is carried out in accordance with the fundamental rights and freedoms and the dignity of data subjects, with particular reference to confidentiality and personal identity.</p>
-</div>
+    <div class="title">
+        <h2>Privacy Policy</h2>
+        <p>Welcome to the website of shoeseller www.shoeseller.site (hereinafter, for brevity, the “Site”).</p>
+        <p>We therefore kindly ask you to carefully read this privacy policy (hereinafter referred to as the “Privacy Policy”), which applies to each access to the Site, even independently of the purchase of products marketed therein.</p>
+        <p>We would like to remind you that this Privacy Policy is governed by the European Regulation No. 2016/679 (hereinafter, for brevity, the “Regulation”). The Regulation ensures that the processing of personal data is carried out in accordance with the fundamental rights and freedoms and the dignity of data subjects, with particular reference to confidentiality and personal identity.</p>
+    </div>
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
