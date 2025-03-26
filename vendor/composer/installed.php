@@ -47,9 +47,9 @@
             'dev_requirement' => false,
         ),
         'picqer/php-barcode-generator' => array(
-            'pretty_version' => 'v3.2.0',
-            'version' => '3.2.0.0',
-            'reference' => '3ef0b26ebd3996e8bb9e90fa2059a67d2e482b3e',
+            'pretty_version' => 'v2.4.2',
+            'version' => '2.4.2.0',
+            'reference' => 'e9d39681f617705492b609fc3fc58465ef88e8fd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../picqer/php-barcode-generator',
             'aliases' => array(),
