@@ -43,7 +43,7 @@ body {
   min-height: 97svh;
 }
 
-.__content h2 {
+.__content h2 .header {
   font-family: PP Neue Corp Wide, sans-serif; 
 }
 

@@ -1,5 +1,6 @@
 <?php
 $title = htmlspecialchars($product['name']);
+$description = 'Details for product:'.htmlspecialchars($product['name']).', Brand:'. htmlspecialchars($product['brand']).' ,with a price of $'.number_format($product['base_price'], 2);
 include __DIR__ . '/../inc/header.php';
 ?>
 <section class="__content">
@@ -14,7 +15,7 @@ include __DIR__ . '/../inc/header.php';
   <div class="product-info">
     <!-- Regular Display for Customers -->
     <h1 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h1>
-    <h3 class="product-category"><?php echo htmlspecialchars($category['name']); ?></h3>
+    <h2 class="product-category"><?php echo htmlspecialchars($category['name']); ?></h2>
     <h3 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?></h3>
 
     <p class="product-subtitle"><?php echo htmlspecialchars($product['description']); ?></p>

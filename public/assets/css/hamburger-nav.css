@@ -1,0 +1,91 @@
+/* Hide mobile nav container by default on larger screens */
+.mobile-nav {
+  display: none;
+}
+
+/* Mobile Navigation Styles */
+@media screen and (max-width: 768px) {
+  /* Hide desktop nav */
+  .desktop-nav {
+    display: none;
+  }
+  /* Show mobile nav container */
+  .mobile-nav {
+    display: block;
+    /* background-color: var(--color-dark); */
+    padding: 0.5rem 1rem;
+    position: relative;
+  }
+  /* Hamburger button */
+  .mobile-menu-toggle {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  /* Mobile menu items: Now in normal flow, not absolute */
+  .mobile-menu-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+  .mobile-menu-items.open {
+    max-height: 500px; /* Set to a value that accommodates your menu items */
+    opacity: 1;
+  }
+  /* Each menu item is block-level so they stack vertically */
+  .mobile-menu-items li {
+    display: block;
+    border-top: 1px solid #444;
+  }
+  .mobile-menu-items li a {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: var(--color-white);
+    text-decoration: none;
+  }
+  .mobile-menu-items li a:hover {
+    background-color: #444;
+  }
+  /* Mobile search form styled side-by-side */
+  .mobile-search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    border-top: 1px solid #444;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+  }
+  .mobile-search-form input[type="text"] {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    background-color: #333;
+    color: var(--color-white);
+    box-sizing: border-box;
+    margin-right: 0.5rem;
+  }
+  .mobile-search-form button {
+    border: none;
+    background-color: #444;
+    color: var(--color-white);
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .mobile-search-form button:hover {
+    background-color: #555;
+  }
+}

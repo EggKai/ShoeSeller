@@ -35,10 +35,10 @@ class ProductController extends Controller
         if (!($query === null)) {
             $products = $productModel->searchProductByQuery($query);
             if ($products) {
-                $this->view(ProductController::PATH . '/products', ['products' => $products]);
+                $this->view(ProductController::PATH . '/products', ['products' => $products, 'options' => ['floating-button']]);
                 exit;
             }
-            $this->view(ProductController::PATH . '/products', ['products' => []]);
+            $this->view(ProductController::PATH . '/products', ['products' => [], 'options' => ['floating-button']]);
             exit;
         }
         if (!(isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee']))) {
