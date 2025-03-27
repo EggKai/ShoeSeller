@@ -4,6 +4,7 @@ require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../models/Dashboard.php';
 require_once __DIR__ . '/../../core/Controller.php';
 require_once __DIR__ . '/../../core/Security.php';
+require_once __DIR__ . '/../../core/log.php';
 require_once __DIR__ . '/HomeController.php';
 
 class AdminController extends Controller
@@ -16,9 +17,18 @@ class AdminController extends Controller
             session_start();
         }
         if (!isset($_SESSION['user']) || $_SESSION['user']['user_type'] !== 'admin') { // Check if the user is an admin; if not, redirect.
+            if (isset($_SESSION['user'])) {
+                logAction("ALERT ".ucfirst($_SESSION['user']['user_type']).' "'.$_SESSION['user']['name'].'" id:'.$_SESSION['user']['id'].' tried to access admin route; IP Address['.getIP().']');
+            } else {
+                logAction("ALERT guest tried to access admin route; IP Address[".getIP().']');
+            }
             (new HomeController())->index();
             exit;
         }
+    }
+
+    protected static function trackAction($action) {
+        return logAction('ACTION Admin '.($_SESSION['user']['name'] ?? 'unknown'). '(id:'. ($_SESSION['user']['id'] ?? 'unknown') .') '. $action);
     }
 
     public function viewUsers()
@@ -36,7 +46,6 @@ class AdminController extends Controller
 
     public function createUser()
     {
-
         $this->view(self::PATH . '/createUser', [
             'options' => ['form'],
             'csrf_token' => Csrf::generateToken()
@@ -136,6 +145,7 @@ class AdminController extends Controller
         }
 
         if ($userModel->deleteUser($userId)) {
+            self::trackAction("Deleted user with id:".$userId);
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to delete user.']);
@@ -184,6 +194,7 @@ class AdminController extends Controller
             ]);
             exit;
         }
+        
 
         $userModel = new Auth();
         $admin = $userModel->getUserById($_SESSION['user']['id']);
@@ -196,10 +207,22 @@ class AdminController extends Controller
             ]);
             exit;
         }
+
+        // Check if the email is already in use.
+        if ($userModel->emailExists($email)) {
+            $alert = ["The email address is already registered.", 2];
+            $this->view(self::PATH . '/createUser', [
+                'csrf_token' => Csrf::generateToken(),
+                'data'       => $_POST,
+                'alert'      => $alert
+            ]);
+            exit;
+        }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Create the user (assuming your User model has a createUser method)
         if ($userModel->register($name, $email, $hashedPassword, null, null, $userType)) {
+            self::trackAction("Created " .$userType." ".$name.'('.$email.')');
             $alert = ["User created successfully.", 1];
         } else {
             $alert = ["Failed to create user.", 2];
@@ -212,4 +235,40 @@ class AdminController extends Controller
         ]);
         exit;
     }
+
+    public function viewLogs()
+{
+    $allFiles = scandir(LOG_DIR); // Scan the directory for log files
+    $logFiles = array_filter($allFiles, function($file) { // Filter out '.' and '..' plus any non-log files
+        return !in_array($file, ['.', '..']) && str_ends_with($file, '.log');
+    });
+
+    // Prepare variables to pass to the view.
+    $selectedFile = null;
+    $fileContents = null;
+
+    // Check if a specific file is requested via GET param 'file'.
+    if (isset($_GET['file'])) {
+        $requestedFile = basename($_GET['file']); // sanitize the file name
+        if (in_array($requestedFile, $logFiles)) {
+            // Safely read the file
+            $selectedFile = $requestedFile;
+            $fullPath = LOG_DIR . '/' . $requestedFile;
+            $fileContents = @file_get_contents($fullPath);
+            // Alternatively, handle errors if file_get_contents fails.
+        } else {
+            // If file is not in the log directory list, handle error or ignore.
+            $fileContents = "Invalid file selection.";
+        }
+    }
+
+    // Render the view, passing the list of files and (optionally) contents.
+    $this->view( self::PATH.'/viewLogs', [
+        'logFiles' => $logFiles,
+        'selectedFile' => $selectedFile,
+        'fileContents' => $fileContents,
+        'options' => ['view-logs'] // for dynamic CSS/JS if needed
+    ]);
+    exit;
+}
 }

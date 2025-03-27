@@ -83,6 +83,10 @@
             <link rel="stylesheet" href="public/assets/css/locations.css">
             <script defer src="public/assets/js/locations.js"></script>
         <?php } ?>
+        <?php if (in_array('view-logs', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/logs.css">
+            <script defer src="public/assets/js/logs.js"></script>
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public/assets/css/footer.css">
 </head>

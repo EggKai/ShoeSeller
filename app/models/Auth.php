@@ -50,6 +50,14 @@ class Auth extends Model
         return false;
     }
 
+
+    public function emailExists($email) {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS count FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    }
+
     /**
      * Filter incoming data using defined filters.
      *
@@ -83,7 +91,7 @@ class Auth extends Model
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return false;
         }
-
+        
         // Hash the password for secure storage.
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -125,5 +133,9 @@ class Auth extends Model
     public function deleteUser($userId) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
         return $stmt->execute(['id' => $userId]);
+    }
+    
+    public function resetPassword($userId){
+        
     }
 }

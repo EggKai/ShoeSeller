@@ -78,6 +78,22 @@ class Product extends Model
     {
         return $this->findAll('categories');
     }
+    
+    /**
+     * Check if a product name already exists.
+     *
+     * @param string $name The product name to check.
+     * @return bool        True if the name exists, false otherwise.
+     */
+    public function productNameExists($name)
+    {
+        // Optionally, use a case-insensitive check by converting to lowercase:
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS count FROM products WHERE LOWER(name) = LOWER(:name)");
+        $stmt->execute(['name' => $name]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    }
+
     /**
      * Insert a new product into the products table.
      *

@@ -161,14 +161,28 @@ body {
   object-fit: cover;
   width: 100%;
   max-width: none;
-  height: 117.5%;
+  height: 117%;
   position: absolute;
-  top: -17.5%;
+  top: -17%;
   left: 0;
 }
 
 .parallax__layer-img.is-third {
   top: -20%;
+}
+
+@media screen and (max-width: 600px) {
+  .parallax__layer-img.fg {
+    top: -6%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .parallax__layer-img.fg {
+    top: -2%;
+    height: 90%;
+  }
 }
 
 @font-face {

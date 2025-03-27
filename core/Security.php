@@ -1,5 +1,13 @@
 <?php
-
+require_once __DIR__ . '/log.php';
+function getIP()
+{ //get IP addr w elvis operators
+    return isset($_SERVER['HTTP_CLIENT_IP'])
+        ? $_SERVER['HTTP_CLIENT_IP']
+        : (isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+            ? $_SERVER['HTTP_X_FORWARDED_FOR']
+            : $_SERVER['REMOTE_ADDR']);
+}
 class Csrf
 {
     /**
@@ -29,7 +37,11 @@ class Csrf
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-        return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+        if (isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token)) {
+            return true;
+        } 
+        logAction('ALERT '.getIP().'('.(isset($_SESSION['user'])?'"'.$_SESSION['user']['name'].'" id:'.$_SESSION['user']['id']:'guest').') has failed CSRF check');
+        return false;
     }
 }
 

@@ -103,6 +103,7 @@ class CheckoutController extends Controller
             die("Stripe error: " . $e->getMessage());
         }
         $orderModel->update_sessionId($orderId, $session->id);
+        logAction("INFO Order #$orderId pending payment");
         header("Location: " . $session->url, true, 303); // Redirect to Stripe Checkout.
         exit;
     }
@@ -135,10 +136,9 @@ class CheckoutController extends Controller
                     logError("Failed to update stock for product {$item['product_id']} size {$item['size']}.");
                 }
             }
+            logAction("INFO Order #$orderId confirmed Payment");
             sendReceiptEmail($orderModel->getOrderById($orderId), $orderModel->getOrderItems($orderId));
         }
-    
-        
         $this->reciept($orderId);
         exit;
     }
