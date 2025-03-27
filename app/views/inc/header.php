@@ -198,14 +198,13 @@
                         </form>
                     </li>
                     <?php if (isset($_SESSION['user'])) { ?>
-                            <li><a href="index.php?url=auth/logout">Logout</a></li>
-                        <?php } else { ?>
-                            <li><a href="index.php?url=auth/login">Login</a></li>
-                        <?php } ?>
+                        <li><a href="index.php?url=auth/logout">Logout</a></li>
+                    <?php } else { ?>
+                        <li><a href="index.php?url=auth/login">Login</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>
         </nav>
     </header>
-
     <main id="main-content">

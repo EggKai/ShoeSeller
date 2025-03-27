@@ -11,6 +11,7 @@
         <li><a href="index.php?url=information/FAQ">FAQs</a></li>
         <li><a href="index.php?url=information/rs-policy">Shipping & Returns</a></li>
         <li><a href="index.php?url=information/paymentmethods">Payment Methods</a></li>
+        <li><a href="index.php?url=auth/forgotPassword">Forgot Password</a></li>
       </ul>
     </div>
     
@@ -20,7 +21,6 @@
       <ul>
         <li><a href="index.php?url=information/terms-and-conditions">Terms & Conditions</a></li>
         <li><a href="index.php?url=information/accessibility">Accessibility</a></li>
-        <!-- <li><a href="index.php?url=information/privacy-policy">Privacy Policy</a></li> -->
         <li><a href="index.php?url=information/cookie-policy">Cookie Policy</a></li>
         <li><a href="index.php?url=information/regulatory-framework">Regulatory Framework</a></li>
         <li><a href="index.php?url=information/corporate-information">Corporate Information</a></li>

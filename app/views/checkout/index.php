@@ -1,5 +1,6 @@
 <?php
 $title = "Checkout";
+$description = 'Check out cart items';
 include __DIR__ . '/../inc/header.php';
 
 // Calculate subtotal based on cart items.
