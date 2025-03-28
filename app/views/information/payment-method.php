@@ -25,6 +25,15 @@ include __DIR__ . '/../inc/header.php';
         </div>
         <hr>
     </div>
+    <div class="toggle_dropdown">
+        <div class="dropdown_title">
+            <h5>PRICES AND CURRENCIES</h5>
+            <h5 align='right' class="dropdown">+</h5>
+        </div>
+        <div id="Currency" class="toggle_content">
+            <p>The Product price shall correspond to the list price appearing on the Site. Prices include VAT but exclude shipping. Shipping costs (at the stated price) will be added automatically to the total amount due once your items appear in the cart and you have selected your desired shipping method. Delivery prices and costs are subject to change at any time; however, such changes shall not affect the orders for which we have already sent a Shipping Confirmation. Payments as well as refunds for shipments are all invoiced in Singapore Dollar (SGD).</p>
+        </div>
+    </div>
 </section>
 
     <?php
