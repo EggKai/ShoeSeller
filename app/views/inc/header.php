@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <?php if (str_contains($_ENV['DOMAIN'], 'localhost')) {
+    <?php if (str_contains($_ENV['DOMAIN'], 'localhost/shoeseller')) {
         echo '<base href="/shoeseller/">';
     } ?>
     <!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -118,11 +118,11 @@
                                 <a href="index.php?url=admin/viewLogs" aria-label="View Logs"><i class="fa-solid fa-file-excel"></i></a>
                             <?php } ?>
                             <a href="employee/tickets" class="icon-link" aria-label="View User Tickets">
-                                <i class="fa-solid fa-ticket"></i>
+                                <i class="fa-solid fa-ticket fa-lg"></i>
                             </a>
                         <?php } else { ?>
                             <a href="cart" class="icon-link" aria-label="View Cart">
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping fa-lg"></i>
                             </a>
                         <?php } ?>
                         <a href="<?php
@@ -137,7 +137,7 @@
                             default:
                                 echo "auth/login";
                         } ?>" class="icon-link" aria-label="User Account">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user fa-lg"></i>
                         </a>
                     </form>
                 </li>
