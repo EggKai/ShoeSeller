@@ -101,13 +101,8 @@
                     </a>
                 </li>
                 <li><a href="index.php?url=products/all">Products</a></li>
-                <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                    <li><a href="index.php?url=admin/dashboard">Dashboard</a></li>
+                <?php if (isset($_SESSION['user'])) { ?>
                     <li><a href="index.php?url=auth/logout">Logout</a></li>
-                <?php } else { ?>
-                    <?php if (isset($_SESSION['user'])) { ?>
-                        <li><a href="index.php?url=auth/logout">Logout</a></li>
-                    <?php } ?>
                 <?php } ?>
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
@@ -118,6 +113,10 @@
                             <i class="search-icon fas fa-search"></i>
                         </button>
                         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
+                            <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
+                                <a href="index.php?url=admin/dashboard" aria-label="Dashboard"><i class="fa-solid fa-chart-line"></i></a>
+                                <a href="index.php?url=admin/viewLogs" aria-label="View Logs"><i class="fa-solid fa-file-excel"></i></a>
+                            <?php } ?>
                             <a href="employee/tickets" class="icon-link" aria-label="View User Tickets">
                                 <i class="fa-solid fa-ticket fa-lg"></i>
                             </a>
@@ -157,7 +156,8 @@
                     </li>
                     <li><a href="index.php?url=products/all">Products</a></li>
                     <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                        <li><a href="index.php?url=admin/dashboard">Dashboard</a></li>
+                        <li><a href="index.php?url=admin/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                        <li><a href="index.php?url=admin/viewLogs"><i class="fa-solid fa-file-excel"></i> View Logs</a></li>
                     <?php } ?>
                     <li>
                         <a href="<?php

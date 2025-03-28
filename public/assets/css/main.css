@@ -67,7 +67,8 @@ nav ul li a img {
 }
 
 .search-form input[type="text"] {
-  padding: 0.6rem 0.6rem;
+  padding-inline: 0.6rem;
+  height: 2.5rem;
   border: 1px solid #ccc;
   font-size: 0.96rem;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -79,7 +80,7 @@ nav ul li a img {
 
 .search-form button[type="submit"] {
   padding-inline: 1rem;
-  padding: calc(0.96rem + 0.6rem);
+  height: 2.5rem;
   border: 1px solid #ccc;
   color: var(--color-white);
   border-radius: 0 2rem 2rem 0;
