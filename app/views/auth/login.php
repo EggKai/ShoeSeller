@@ -17,11 +17,10 @@ include_once __DIR__ . '/../inc/header.php';
         <input type="password" name="password" placeholder="Password" required /><br>
     </p>
     <input type="submit" name="submit" value="Login">
-
-    <a href="index.php?url=auth/register">Don't Have an account? Register Now!</a><br>
-    <a class="align-right" href="index.php?url=auth/forgotPassword">Forgot Password?</a><br>
     Remember me:<input type="checkbox" name="remember">
     <!-- <a style="float: right;" href="reactivateAccount.php">Reactivate Account?</a> -->
+    <br>
+    <a href="index.php?url=auth/register">Don't Have an account? Register Now!</a><br>
 </form>
 </div>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

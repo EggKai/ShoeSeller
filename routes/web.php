@@ -168,6 +168,9 @@ $routes = [
     'admin/doCreateUser' => function () {
         (new AdminController())->doCreateUser();
     },
+    'admin/viewLogs' => function () {
+        (new AdminController())->viewLogs();
+    },
 ];
 
 // Retrieve the URL parameter (or default to home)

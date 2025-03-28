@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <?php if (str_contains($_ENV['DOMAIN'], 'localhost')) {
+    <?php if (str_contains($_ENV['DOMAIN'], 'localhost/shoeseller')) {
         echo '<base href="/shoeseller/">';
     } ?>
     <!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -83,6 +83,10 @@
             <link rel="stylesheet" href="public/assets/css/locations.css">
             <script defer src="public/assets/js/locations.js"></script>
         <?php } ?>
+        <?php if (in_array('view-logs', $options)) { ?>
+            <link rel="stylesheet" href="public/assets/css/logs.css">
+            <script defer src="public/assets/js/logs.js"></script>
+        <?php } ?>
     <?php } ?>
     <link rel="stylesheet" href="public/assets/css/footer.css">
 </head>
@@ -115,11 +119,11 @@
                         </button>
                         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
                             <a href="employee/tickets" class="icon-link" aria-label="View User Tickets">
-                                <i class="fa-solid fa-ticket"></i>
+                                <i class="fa-solid fa-ticket fa-lg"></i>
                             </a>
                         <?php } else { ?>
                             <a href="cart" class="icon-link" aria-label="View Cart">
-                                <i class="fa-solid fa-cart-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping fa-lg"></i>
                             </a>
                         <?php } ?>
                         <a href="<?php
@@ -134,7 +138,7 @@
                             default:
                                 echo "auth/login";
                         } ?>" class="icon-link" aria-label="User Account">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user fa-lg"></i>
                         </a>
                     </form>
                 </li>
@@ -194,14 +198,13 @@
                         </form>
                     </li>
                     <?php if (isset($_SESSION['user'])) { ?>
-                            <li><a href="index.php?url=auth/logout">Logout</a></li>
-                        <?php } else { ?>
-                            <li><a href="index.php?url=auth/login">Login</a></li>
-                        <?php } ?>
+                        <li><a href="index.php?url=auth/logout">Logout</a></li>
+                    <?php } else { ?>
+                        <li><a href="index.php?url=auth/login">Login</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>
         </nav>
     </header>
-
     <main id="main-content">

@@ -1,0 +1,86 @@
+.view-logs-container {
+  max-width: 1530px;
+  margin: 2rem auto;
+  padding: 1rem;
+  color: var(--color-dark);
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.view-logs-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-light);
+}
+
+.log-files-list ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.log-files-list li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.log-files-list li a:hover {
+  text-decoration: underline;
+}
+
+.log-file-contents {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.log-file-contents pre {
+  max-height: 500px;
+  overflow: auto;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .log-file-contents pre {
+    font-size: 0.85em;
+  }
+}
+
+/* Small screens (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  .log-file-contents pre {
+    font-size: 0.7em;
+  }
+}
+
+/* COLOR CODING */
+.log-time {
+  color: green;
+  font-weight: bold;
+}
+
+.log-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.log-info {
+  color: blue;
+  font-weight: bold;
+}
+
+.log-alert {
+  color: red;
+  font-weight: bold;
+}
+
+.log-action {
+  color: purple;
+  font-weight: bold;
+}
+
+.log-id {
+  color: darkblue;
+  font-weight: bold;
+}

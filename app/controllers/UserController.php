@@ -1,16 +1,17 @@
 <?php
+require_once __DIR__ . '/../models/Auth.php';
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../../core/Controller.php';
 require_once __DIR__ . '/../../core/Security.php';
-require_once __DIR__ . '/../models/Auth.php';
+require_once __DIR__ . '/../../core/log.php';
 require_once __DIR__ . '/HomeController.php';
 
 class UserController extends Controller {
-    private static $path = 'auth';
+    private const PATH = 'auth';
 
     public function login() {
         if (!isset($_SESSION['user'])) {
-            $this->view(UserController::$path . '/login', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+            $this->view(UserController::PATH . '/login', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
             exit;
         }
         (new HomeController)->index();
@@ -44,7 +45,7 @@ class UserController extends Controller {
     
     public function doLogin() {
         $alert = function($message) { //lambda
-            $this->view(self::$path . '/login', [
+            $this->view(self::PATH . '/login', [
                 'data'       => $_POST,
                 'alert'      => [$message, 2],
                 'options'    => ['form'],
@@ -75,6 +76,7 @@ class UserController extends Controller {
             // Regenerate session ID to prevent session fixation
             session_regenerate_id(true);
             $_SESSION['user'] = $user;
+            logAction("INFO $email logged in");
             (new HomeController())->index();
             exit;
         } else {
@@ -82,13 +84,13 @@ class UserController extends Controller {
         }
     }
     public function register() {
-        $this->view(UserController::$path . '/register', ['data' => null, 'options' => ['form', 'form-carousel'], 'csrf_token' => Csrf::generateToken()]);
+        $this->view(UserController::PATH . '/register', ['data' => null, 'options' => ['form', 'form-carousel'], 'csrf_token' => Csrf::generateToken()]);
     }
 
     public function doRegister() {
         // Local lambda for rendering error messages.
         $alert = function($message) {
-            $this->view(self::$path . '/register', [
+            $this->view(self::PATH . '/register', [
                 'data'       => $_POST,
                 'alert'      => [$message, 2],
                 'options'    => ['form', 'form-carousel'],
@@ -132,9 +134,13 @@ class UserController extends Controller {
             $alert("Password does do not match");
         }
         $auth = new Auth(); // Create an instance of the Auth model and attempt to register the user.
+        if ($auth->emailExists($email)) {
+            $alert("Email already exists");
+        }
         $userId = $auth->register($name, $email, $password, $address, null, 'user');
         if ($userId) { // successfully created user
-            $this->view(self::$path . '/login', [
+            logAction("INFO User $email($name) registered");
+            $this->view(self::PATH . '/login', [
                 'data'       => $_POST,
                 'alert'      => ["You have made an account<3 Login now!", 1],
                 'options'    => ['form'],
@@ -146,10 +152,31 @@ class UserController extends Controller {
         }
     }
     public function profile() {
-        $this->view(UserController::$path . '/profile', ['user' => $_SESSION['user'], 'options' => ['profile'], 'csrf_token' => Csrf::generateToken()]);
+        $this->view(UserController::PATH . '/profile', ['user' => $_SESSION['user'], 'options' => ['profile'], 'csrf_token' => Csrf::generateToken()]);
     }
     public function forgotPassword() {
-        $this->view(UserController::$path . '/forgotPassword', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+        $this->view(UserController::PATH . '/forgotPassword', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+    }
+
+    public function resetPassword() {
+        $alert = function($message, $status=2) {
+            $this->view(self::PATH . '/forgotPassword', [
+                'data'       => $_POST,
+                'alert'      => [$message, $status],
+                'options'    => ['form'],
+                'csrf_token' => Csrf::generateToken()
+            ]);
+            exit;
+        };
+        $csrfToken = $_POST['csrf_token'] ?? '';
+        if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
+            $alert("Invalid request. Please try again.");
+        }
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $userModel = new Auth();
+        if ($userModel->emailExists($email)) {
+            $alert('You do not have an account with us! <a href="auth/register">Register Now</a>');
+        }
     }
 }
 ?>

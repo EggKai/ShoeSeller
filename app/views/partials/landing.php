@@ -8,7 +8,7 @@
         <div data-parallax-layer="3" class="parallax__layer-title">
           <h2 class="parallax__title">Shoe Seller</h2>
         </div>
-        <img src="public/assets/images/landing-fg.png" loading="eager" width="800" data-parallax-layer="4" alt="" class="parallax__layer-img">
+        <img src="public/assets/images/landing-fg.png" loading="eager" width="800" data-parallax-layer="4" alt="" class="parallax__layer-img fg">
       </div>
       <div class="parallax__fade"></div>
     </div>

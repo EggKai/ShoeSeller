@@ -12,7 +12,6 @@ include __DIR__ . '/../inc/header.php';
         <img class="profile-pic" src="public/assets/images/default-profile.jpg" alt="Default Profile Picture">
       <?php endif; ?>
     </div>
-    
     <div class="profile-info">
       <h1 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h1>
       <p class="profile-email"><?php echo htmlspecialchars($user['email']); ?></p>

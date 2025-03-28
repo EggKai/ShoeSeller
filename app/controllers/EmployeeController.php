@@ -3,6 +3,7 @@ require_once __DIR__ . '/../models/Auth.php';
 require_once __DIR__ . '/../models/Product.php';
 require_once __DIR__ . '/../../core/Controller.php';
 require_once __DIR__ . '/../../core/Security.php';
+require_once __DIR__ . '/../../core/log.php';
 require_once __DIR__ . '/HomeController.php';
 require_once __DIR__ . '/ProductController.php';
 
@@ -19,6 +20,11 @@ class EmployeeController extends Controller
             exit;
         }
     }
+    
+    protected static function trackAction($action) {
+        return logAction('ACTION Employee "'.($_SESSION['user']['name'] ?? 'unknown ').'" (id:'. ($_SESSION['user']['id'] ?? 'unknown') .') '. $action);
+    }
+
     public function addProduct()
     {
         $categories = (new Product())->getAllCategories();
@@ -110,7 +116,9 @@ class EmployeeController extends Controller
         move_uploaded_file($_FILES['thumbnail']['tmp_name'], self::$productImages . $fileName . '.' . $fileExtension);
 
         $productModel = new Product();
-
+        if ($productModel->productNameExists($name)){
+            $alert("Another Shoe Exists with the same name");
+        }
         // Insert product record. Assumes createProduct returns the new product's ID or false on failure.
         $productId = $productModel->createProduct(
             $name,
@@ -134,6 +142,7 @@ class EmployeeController extends Controller
         }
 
         $categories = (new Product())->getAllCategories();
+        self::trackAction('added product:'.$name.'brand:'.$brand.'price:$'.$price.' with asset '.$fileName . '.' . $fileExtension);
         $this->view(self::PATH . '/addProduct', [
             'data' => null,
             'alert' => ["Add another product?", 1],
@@ -162,7 +171,6 @@ class EmployeeController extends Controller
             ]);
             exit;
         };
-
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !filter_has_var(INPUT_POST, 'submit')) {
             (new HomeController())->index();
             exit;
@@ -208,6 +216,7 @@ class EmployeeController extends Controller
         if (!$updated) {
             $alert("Error updating product in the database.");
         }
+        self::trackAction('Updated details of product id:'.$id.'('.$name.')'.';');
 
         $sizesInput = $_POST['sizes'] ?? [];
         $stocksInput = $_POST['stock'] ?? [];
@@ -235,15 +244,18 @@ class EmployeeController extends Controller
             if (array_key_exists($size, $current)) {
                 if ($current[$size] != $stock) {
                     $productModel->updateProductSize($id, $size, $stock);
+                    self::trackAction('Updated product id:'.$id.'('.$name.')'.'; Updated size:'.$size.', Stock:'.$stock);
                 }
                 unset($current[$size]);
             } else {
                 $productModel->addProductSize($id, $size, $stock);
+                self::trackAction('Updated product id:'.$id.'('.$name.')'.'; Added new size:'.$size.', Stock:'.$stock);
             }
         }
 
         foreach ($current as $size => $stock) { //delete sizes that werent given
             $productModel->deleteProductSize($id, $size);
+            self::trackAction('Updated product id:'.$id.'('.$name.')'.'; Added new size:'.$size.', Stock:'.$stock);
         }
 
         $alert("Shoe Updated", 1);
@@ -278,6 +290,8 @@ class EmployeeController extends Controller
         if (!$updated) {
             $alert("Error updating listing in the database.");
         }
+        self::trackAction('updated listing status for product id:'.$id);
+
         $alert("Updated Listing", 1);
         exit;
     }
