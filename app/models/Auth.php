@@ -114,7 +114,33 @@ class Auth extends Model
         }
         return false;
     }
-
+    public function updateUser($id, $name, $email, $address, $profilePic = null) {
+        if ($profilePic === null) { // Update without modifying the profile_pic field.
+            $sql = "UPDATE users 
+                    SET name = :name, email = :email, address = :address 
+                    WHERE id = :id";
+            $params = [
+                'name'    => $name,
+                'email'   => $email,
+                'address' => $address,
+                'id'      => $id,
+            ];
+        } else { // Update including the profile_pic field.
+            $sql = "UPDATE users 
+                    SET name = :name, email = :email, address = :address, profile_pic = :profile_pic 
+                    WHERE id = :id";
+            $params = [
+                'name'        => $name,
+                'email'       => $email,
+                'address'     => $address,
+                'profile_pic' => $profilePic,
+                'id'          => $id,
+            ];
+        }
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
+    }
+    
     /**
      * Get user details by user ID.
      *
@@ -134,8 +160,69 @@ class Auth extends Model
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
         return $stmt->execute(['id' => $userId]);
     }
-    
-    public function resetPassword($userId){
-        
+    public function getUserByEmail($email) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    /**
+     * Create a new reset token record.
+     *
+     * @param int    $userId
+     * @param string $token
+     * @param string $expiresAt
+     * @return bool
+     */
+    public function createResetToken($userId, $token, $expiresAt) {
+        $stmt = $this->pdo->prepare("
+            INSERT INTO reset_password (user_id, token, created_at, expires_at, used)
+            VALUES (:user_id, :token, NOW(), :expires_at, 0)
+        ");
+        return $stmt->execute([
+            'user_id'    => $userId,
+            'token'      => $token,
+            'expires_at' => $expiresAt
+        ]);
+    }
+
+    /**
+     * Get reset token record by token.
+     *
+     * @param string $token
+     * @return array|false
+     */
+    public function getResetToken($token) {
+        $stmt = $this->pdo->prepare("
+            SELECT * FROM reset_password
+            WHERE token = :token
+        ");
+        $stmt->execute(['token' => $token]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Mark token as used.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function markTokenUsed($id) {
+        $stmt = $this->pdo->prepare("
+            UPDATE reset_password
+            SET used = 1
+            WHERE id = :id
+        ");
+        return $stmt->execute(['id' => $id]);
+    }
+    public function updatePassword($userId, $hashedPassword) {
+        $stmt = $this->pdo->prepare("
+            UPDATE users
+            SET password = :password
+            WHERE id = :id
+        ");
+        return $stmt->execute([
+            'password' => $hashedPassword,
+            'id'       => $userId
+        ]);
     }
 }

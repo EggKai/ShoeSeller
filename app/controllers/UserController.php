@@ -157,6 +157,60 @@ class UserController extends Controller {
     public function forgotPassword() {
         $this->view(UserController::PATH . '/forgotPassword', ['data' => null, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
     }
+    public function editProfile() {
+        $this->view(UserController::PATH . '/editProfile', ['user' => $_SESSION['user'], 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+    }
+    public function doEditProfile() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            (new HomeController)->index();
+            exit;
+        }
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Validate CSRF token.
+        $csrfToken = $_POST['csrf_token'] ?? '';
+        if (!Csrf::validateToken($csrfToken)) {
+            die("Invalid request.");
+        }
+        
+        // Sanitize inputs.
+        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        // Process profile picture upload if provided.
+        $profilePic = $user['profile_pic'] ?? null; // keep current picture by default
+        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === 0) {
+            // Validate image type as needed...
+            $fileExtension = strtolower(pathinfo($_FILES['profile_pic']['name'], PATHINFO_EXTENSION));
+            // Check allowed file types, e.g., with a constant array.
+            if (!in_array($fileExtension, ['jpg', 'jpeg', 'png', 'avif'])) {
+                $alert = ["Invalid image type.", 2];
+                $this->view('auth/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert]);
+                exit;
+            }
+            // Optionally rename and move the file.
+            $newFileName = str_replace(" ", "_", $name) . '.' . $fileExtension;
+            move_uploaded_file($_FILES['profile_pic']['tmp_name'], __DIR__ . '/../../public/uploads/' . $newFileName);
+            $profilePic = $newFileName;
+        }
+        $userModel = new Auth();
+        $updated = $userModel->updateUser($_SESSION['user']['id'], $name, $email, $address, $profilePic);
+        if ($updated) {
+            $_SESSION['user'] = $userModel->getUserById($_SESSION['user']['id']);
+            $alert = ["Profile updated successfully.", 1];
+        } else {
+            $alert = ["Failed to update profile.", 2];
+        }
+        $this->view('auth/editProfile', [
+            'user' => $_SESSION['user'],
+            'csrf_token' => Csrf::generateToken(),
+            'alert' => $alert
+        ]);
+        exit;
+    }
+    
 
     public function resetPassword() {
         $alert = function($message, $status=2) {
@@ -178,5 +232,66 @@ class UserController extends Controller {
             $alert('You do not have an account with us! <a href="auth/register">Register Now</a>');
         }
     }
+    public function reset() {
+        $token = $_GET['token'] ?? '';
+        $token = filter_var($token, FILTER_SANITIZE_STRING);
+    
+        $userModel = new Auth();
+        $record = $userModel->getResetToken($token);
+    
+        if (!$record || $record['used'] == 1 || strtotime($record['expires_at']) < time()) {
+            // Invalid or expired token
+            $alert = ["Invalid or expired token.", 2];
+            $this->view('auth/resetForm', [
+                'alert' => $alert
+            ]);
+            exit;
+        }
+        $this->view('auth/resetForm', [ // Render the reset password form
+            'token' => $token,
+            'csrf_token' => Csrf::generateToken()
+        ]);
+        exit;
+    }
+    public function doReset() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            (new HomeController)->index();
+            exit;
+        }
+        $csrfToken = $_POST['csrf_token'] ?? ''; // Validate CSRF token
+        if (!Csrf::validateToken($csrfToken)) {
+            die("Invalid request.");
+        }
+        $token = filter_var($_POST['token'], FILTER_SANITIZE_STRING);
+        $password = $_POST['password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+        if ($password !== $confirmPassword) {
+            $alert = ["Passwords do not match.", 2];
+            $this->view('auth/resetForm', [
+                'token' => $token,
+                'alert' => $alert,
+                'csrf_token' => Csrf::generateToken()
+            ]);
+            exit;
+        }
+        $userModel = new Auth();
+        $record = $userModel->getResetToken($token); // Check token
+        if (!$record || $record['used'] == 1 || strtotime($record['expires_at']) < time()) {
+            $alert = ["Invalid or expired token.", 2];
+            $this->view('auth/resetForm', [
+                'alert' => $alert
+            ]);
+            exit;
+        }
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $userModel->updatePassword($record['user_id'], $hashedPassword);
+        $userModel->markTokenUsed($record['id']); // Mark token as used
+        $alert = ["Password reset successfully.", 1];
+        $this->view('auth/login', [
+            'alert' => $alert
+        ]);
+        exit;
+    }
+    
 }
 ?>

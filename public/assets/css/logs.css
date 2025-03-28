@@ -20,6 +20,7 @@
 
 .log-files-list li a {
   text-decoration: none;
+  font-size: larger;
   color: #007bff;
 }
 
@@ -71,7 +72,7 @@
 }
 
 .log-alert {
-  color: red;
+  color: darkred;
   font-weight: bold;
 }
 

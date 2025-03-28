@@ -4,9 +4,9 @@ include __DIR__ . '/../inc/header.php';
 ?>
 <div id="authForm">
     <h1>Create New User</h1>
-    <?php if (isset($alert)): ?>
-        <div class="alert"><?php echo htmlspecialchars($alert[0]); ?></div>
-    <?php endif; ?>
+    <?php
+    include __DIR__ . '/../partials/alert.php';
+    ?>
     <form action="index.php?url=admin/doCreateUser" method="POST">
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
         

@@ -54,10 +54,6 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
         $dashboardModel = new Dashboard();
         $data = $dashboardModel->getDashboardData();
 

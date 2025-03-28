@@ -96,10 +96,25 @@ $routes = [
         (new UserController())->profile();
     },
     'auth/logout' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->login();
+            exit;
+        }
         (new UserController())->logout();
     },
     'auth/forgotPassword' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->profile();
+            exit;
+        }
         (new UserController())->forgotPassword();
+    },
+    'auth/editProfile' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->login();
+            exit;
+        }
+        (new UserController())->editProfile();
     },
     'information/aboutus' => function () {
         (new InformationController)->aboutus();

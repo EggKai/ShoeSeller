@@ -4,7 +4,7 @@
   <div class="footer-columns">
     <!-- Help Column -->
     <div class="footer-col">
-      <h4>Help</h4>
+      <h2>Help</h2>
       <ul>
         <li><a href="index.php?url=information/aboutus">Who are we?</a></li>
         <li><a href="index.php?url=information/contactus">Contact Us</a></li>
@@ -17,7 +17,7 @@
     
     <!-- Legal Column -->
     <div class="footer-col">
-      <h4>Legal</h4>
+      <h2>Legal</h2>
       <ul>
         <li><a href="index.php?url=information/terms-and-conditions">Terms & Conditions</a></li>
         <li><a href="index.php?url=information/accessibility">Accessibility</a></li>
@@ -29,7 +29,7 @@
     
     <!-- Find Us Column -->
     <div class="footer-col">
-      <h4>Find Us</h4>
+      <h2>Find Us</h2>
       <ul>
         <li><a href="index.php?url=information/locations">Store Locator</a></li>
       </ul>

@@ -142,7 +142,7 @@ class EmployeeController extends Controller
         }
 
         $categories = (new Product())->getAllCategories();
-        self::trackAction('added product:'.$name.'brand:'.$brand.'price:$'.$price.' with asset '.$fileName . '.' . $fileExtension);
+        self::trackAction('added product:'.$name.' Brand:'.$brand.' Price:$'.$price.' with asset '.$fileName . '.' . $fileExtension);
         $this->view(self::PATH . '/addProduct', [
             'data' => null,
             'alert' => ["Add another product?", 1],

@@ -39,7 +39,7 @@
     transition: max-height 0.4s ease, opacity 0.4s ease;
   }
   .mobile-menu-items.open {
-    max-height: 500px; /* Set to a value that accommodates your menu items */
+    max-height: 600px; /* accommodates menu items */
     opacity: 1;
   }
   /* Each menu item is block-level so they stack vertically */
