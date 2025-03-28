@@ -131,7 +131,12 @@ $routes = [
     'information/accessibility' => function () {
         (new InformationController)->accessibility();  
     },
-
+    'information/paymentmethods' => function () {
+        (new InformationController)->paymentmethods();  
+    },
+    'information/FAQ' => function () {
+        (new InformationController)->faq();
+    },
     'information/doAddLocation' => function () {
         (new InformationController)->doAddLocation();
     },

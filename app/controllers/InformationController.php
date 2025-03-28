@@ -219,4 +219,12 @@ class InformationController extends Controller
     {
         $this->view(self::PATH . '/corporate-information',['options'=>['information']]);
     }
+    public function paymentmethods()
+    {
+        $this->view(self::PATH . '/payment-method',['options'=>['information']]);
+    }
+    public function faq()
+    {
+        $this->view(self::PATH . '/faq',['options'=>['information']]);
+    }
 }
