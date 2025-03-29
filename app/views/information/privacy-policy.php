@@ -29,18 +29,18 @@ include __DIR__ . '/../inc/header.php';
         <div id="privacy2" class="toggle_content">
             <p>Through the Site, different types of personal data are processed and collected for different purposes and in different ways. Specifically:</p>
             <ol>
-                <li>personal data relating to browsing, processed both to enable the proper functioning of the Site and for marketing purposes. More detailed information is available in the cookie policy on the Site;</li>
-                <li>personal data provided voluntarily by the user (such as, for example, personal details, e-mail address, telephone number, password provided by filling in the registration form), or otherwise lawfully acquired during interaction on the Site with the user or through interaction with customer care in order to respond to user requests and offer the services, assistance and information requested regarding shoeseller products;</li>
-                <li>personal data provided as part of the process of purchasing products on the Site for the conclusion of transactions and for activities functional and instrumental to the sale, as well as for any necessary pre- and post-sales assistance;</li>
-                <li>personal and contact data, processed by Shoeseller with your express consent - for marketing purposes, i.e. to send you (through traditional and telematic means such as newsletters, e-mails, sms, mms and smart messages) communications and updates on products, sales, promotional campaigns, events and other initiatives promoted by shoeseller;</li>
-                <li>personal data relating to purchases and any preferences expressed by the user, processed by Shoeseller  - subject to express consent - for the purpose of studying consumption habits and choices, in order to make products, initiatives and commercial proposals more responsive to the tastes and needs of its customers;</li>
-                <li>personal and contact data communicated by Shoeseller - against express consent - to the companies directly and/or indirectly controlled by SIT., so that they, acting as autonomous data controllers, can directly propose and present to the user the products and services they offer.</li>
+                <li>1. Personal data relating to browsing, processed both to enable the proper functioning of the Site and for marketing purposes. More detailed information is available in the cookie policy on the Site;</li>
+                <li>2. Personal data provided voluntarily by the user (such as, for example, personal details, e-mail address, telephone number, password provided by filling in the registration form), or otherwise lawfully acquired during interaction on the Site with the user or through interaction with customer care in order to respond to user requests and offer the services, assistance and information requested regarding shoeseller products;</li>
+                <li>3. Personal data provided as part of the process of purchasing products on the Site for the conclusion of transactions and for activities functional and instrumental to the sale, as well as for any necessary pre- and post-sales assistance;</li>
+                <li>4. Personal and contact data, processed by Shoeseller with your express consent - for marketing purposes, i.e. to send you (through traditional and telematic means such as newsletters, e-mails, sms, mms and smart messages) communications and updates on products, sales, promotional campaigns, events and other initiatives promoted by shoeseller;</li>
+                <li>5. Personal data relating to purchases and any preferences expressed by the user, processed by Shoeseller  - subject to express consent - for the purpose of studying consumption habits and choices, in order to make products, initiatives and commercial proposals more responsive to the tastes and needs of its customers;</li>
+                <li>6. Personal and contact data communicated by Shoeseller - against express consent - to the companies directly and/or indirectly controlled by SIT., so that they, acting as autonomous data controllers, can directly propose and present to the user the products and services they offer.</li>
             </ol>
             <p>With the exception of browsing data, which are governed by the cookie policy, data processing is based on:</p>
             <ul>
-                <li>the legitimate interest of Shoeseller  in providing the services of the Site, of the user itself to properly browse the Site and/or the legitimate interest of Shoeseller in responding to any requests from users; </li>
-                <li>the fulfilment of the contract and the obligation to fulfil pre- and post-sale obligations as well as the fulfilment of specific legal obligations arising from the contract;</li>
-                <li>any consent provided by the user for the purposes set out in points 4, 5 and 6, (marketing, profiling and sending data to third parties for their own purposes).</li>
+                <li>- The legitimate interest of Shoeseller  in providing the services of the Site, of the user itself to properly browse the Site and/or the legitimate interest of Shoeseller in responding to any requests from users; </li>
+                <li>- The fulfilment of the contract and the obligation to fulfil pre- and post-sale obligations as well as the fulfilment of specific legal obligations arising from the contract;</li>
+                <li>- Any consent provided by the user for the purposes set out in points 4, 5 and 6, (marketing, profiling and sending data to third parties for their own purposes).</li>
             </ul>
         </div>
         <hr>
@@ -100,11 +100,11 @@ include __DIR__ . '/../inc/header.php';
         <div id="privacy7" class="toggle_content">
             <p>Personal data may be known and processed by:</p>
             <ul>
-                <li>providers of technical, technological, mailing, logistics and transport services and providers of services instrumental to sales;</li>
-                <li>the parent company SIT Singapore;</li>
-                <li>providers of services related to marketing and analysis activities (list management and optimisation services, management, support and hosting services, analysis and communication delivery services),</li>
-                <li>employees and consultants, who shall act as data processors appointed by Shoeseller or as persons authorised to process data by the Data Controller and instructed accordingly;</li>
-                <li>third parties such as banks, public authorities, payment service management companies, which will operate as autonomous data controllers.</li>
+                <li>- Providers of technical, technological, mailing, logistics and transport services and providers of services instrumental to sales;</li>
+                <li>- The parent company SIT Singapore;</li>
+                <li>- Providers of services related to marketing and analysis activities (list management and optimisation services, management, support and hosting services, analysis and communication delivery services),</li>
+                <li>- Employees and consultants, who shall act as data processors appointed by Shoeseller or as persons authorised to process data by the Data Controller and instructed accordingly;</li>
+                <li>- Third parties such as banks, public authorities, payment service management companies, which will operate as autonomous data controllers.</li>
             </ul>
             <p>The data will not be disclosed in any way and may be transferred abroad, including to non-European countries, in view of the transnational nature of the Group to which Shoeseller belongs.  In any case, any data transfer shall always take place with adequate protection and safeguards for the protection of such data, through the use of technically secure tools and channels and through the execution of Standard Contractual Clauses, in accordance with applicable legislation.</p>
             <p>Please note that you can always contact Shoeseller, as data controller, to find out the exact location of your data and to request a copy.</p>
