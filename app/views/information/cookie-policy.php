@@ -14,10 +14,7 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section1" class="toggle_content">
-            <ol>
-                <p>Please find below information on cookies installed on the website “www.ShoeSeller.com” (hereinafter the
-                    “Website”).</p>
-            </ol>
+            <p>Please find below information on cookies installed on the website “www.ShoeSeller.com” (hereinafter the “Website”).</p>
         </div>
         <hr>
     </div>
@@ -29,19 +26,17 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section2" class="toggle_content">
-            <ol>
-                <p>A cookie is a small data file which, in the form of a unique anonymous code, is sent to your browser from a
-                    web server and then stored on the hard disk of your device (computer, smartphone, tablet).
-                    Cookies may allow the correct use of an internet site (hereinafter “Technical Cookies”), or they may create
-                    statistical analyses on the manner you navigate the Website (hereinafter “Analytical Cookies”), or they may
-                    check your preferences in the context of your online navigation in order to propose advertising messages
-                    (hereinafter “Profiling Cookies”).
-                    Cookies may be stored on your device for a period of time of variable duration (hereinafter “Permanent
+            <p>A cookie is a small data file which, in the form of a unique anonymous code, is sent to your browser from a
+               web server and then stored on the hard disk of your device (computer, smartphone, tablet).
+               Cookies may allow the correct use of an internet site (hereinafter “Technical Cookies”), or they may create
+               statistical analyses on the manner you navigate the Website (hereinafter “Analytical Cookies”), or they may
+               check your preferences in the context of your online navigation in order to propose advertising messages
+               (hereinafter “Profiling Cookies”).
+               Cookies may be stored on your device for a period of time of variable duration (hereinafter “Permanent
                     Cookies”), or they may be deleted on the closure of the browser or be of limited duration (“Session
                     Cookies”).
                     Cookies may be installed by the website you are visiting (hereinafter “First Party Cookies”) or they may be
                     installed by other websites (hereinafter “Third-Party Cookies”).</p>
-            </ol>
         </div>
         <hr>
     </div>
@@ -52,13 +47,12 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section3" class="toggle_content">
-            <ol>
-                <p>
-                    This Website uses the following cookies:
-                    a) Technical Cookies
-                    The Technical Cookies allow the Website to function correctly, making possible for you to view its content
-                    in the related language and market as from your first visit. They are able to recognize the country you are
-                    connecting from and to ensure that, on each visit, you are automatically re-directed to the version of the
+            <p>
+                This Website uses the following cookies:
+                a) Technical Cookies
+                The Technical Cookies allow the Website to function correctly, making possible for you to view its content
+                in the related language and market as from your first visit. They are able to recognize the country you are
+                connecting from and to ensure that, on each visit, you are automatically re-directed to the version of the
                     Website applicable for your country.
                     They also make possible for you to create an account, to log in and to manage orders.
                     If you are a registered user, thanks to the Technical Cookies the Website will be able to recognise you when
@@ -84,8 +78,7 @@ include __DIR__ . '/../inc/header.php';
                     other affiliate sites (so called “retargeting”), showing the products that you have recently viewed. While
                     you browse the Website, Profiling Cookies are also used to display other products that may be of your
                     interest, or products similar to the ones that you have just watched based on your browsing schedule.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -95,9 +88,8 @@ include __DIR__ . '/../inc/header.php';
             <h5>LEGAL BASIS FOR THE USE OF COOKES</h5>
             <h5 align='right' class="dropdown">+</h5>
         </div>
-        <div id="section4" class="toggle_content">
-            <ol>
-                <p>
+        <div id="section4" class="toggle_content"> 
+            <p>
                     When you access any page on the Website, you will see a banner displaying brief information about cookies.
                     Through the banner, you are free to provide your personal data for the purposes of analysis for marketing.
                     The legal basis for this processing lies in the consent given as indicated on the related Website banner.
@@ -105,8 +97,7 @@ include __DIR__ . '/../inc/header.php';
                     receive any more suggestions for purchasing).
                     Consent is not required for the use of Technical Cookies; thus, they are processed based on the owner’s
                     legitimate interest to provide improved navigation and use of the Website.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -117,13 +108,11 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section5" class="toggle_content">
-            <ol>
-                <p>
+            <p>
                     Your personal data will be processed by automated tools for the time strictly necessary to achieve the
                     purposes for which such data were collected. Specific security, technical and organizational measures have
                     been adopted to prevent the loss of data, illicit or incorrect use and unauthorized access.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -134,8 +123,7 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section6" class="toggle_content">
-            <ol>
-                <p>
+            <p>
                     Banner
                     You can accept only Technical Cookies, accept all cookies or manage your preferences through the banner
                     containing the brief information relating to the cookies on the Website. Your choices regarding cookies will
@@ -183,8 +171,7 @@ include __DIR__ . '/../inc/header.php';
                     and manage your consent on a selective basis (On/Off). If you expand the “Info” heading for each company,
                     this will take you to more information on the company concerned and provide a link to the information issued
                     by that company on privacy and cookies.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -195,14 +182,12 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section7" class="toggle_content">
-            <ol>
-                <p>
+            <p>
                     The controller of the data collected through the cookies on the Website is ShoeSeller Operating S.r.l, with
                     registered office at Via Filippo Turati 12, 20121 - Milano (MI) (hereinafter the “Data Controller”).
                     To request and obtain an updated list of the data processors, please contact the Data Controller at the
                     email address privacy@newguardsgroup.com.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -213,8 +198,7 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section8" class="toggle_content">
-            <ol>
-                <p>
+            <p>
                     The data acquired by cookies will or may come to the knowledge of the following:
                     employees and collaborators of the Data Controller, acting in the capacity of people authorized to carry out
                     the processing; and,
@@ -224,8 +208,7 @@ include __DIR__ . '/../inc/header.php';
                     location of the data, you are invited to write to the Data Controller at the e-mail address
                     privacy@newguardsgroup.com.
                     Generally, the data will not be disclosed in any way.
-                </p>
-            </ol>
+            </p>
         </div>
         <hr>
     </div>
@@ -236,8 +219,7 @@ include __DIR__ . '/../inc/header.php';
             <h5 align='right' class="dropdown">+</h5>
         </div>
         <div id="section9" class="toggle_content">
-            <ol>
-                <p>
+            <p>
                     You may ask and obtain, at any time, the erasure, anonymization, copy, update, rectification, integration of
                     your data. You may also oppose, at any time, to the processing of your personal data for commercial and
                     marketing purposes, as well as to oppose, based on legitimate grounds, to their processing for other
@@ -248,10 +230,8 @@ include __DIR__ . '/../inc/header.php';
                     privacy@newguardsgroup.com.
                     We also remind you that you can always file a claim to the Regulatory Authority (the Italian Data Protection
                     Authority).
-                </p>
-            </ol>
+            </p>
         </div>
-        <hr>
     </div>
 </section>
 
