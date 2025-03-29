@@ -197,7 +197,7 @@ class InformationController extends Controller
     }
     public function cookiePolicy()
     {
-        $this->view(InformationController::PATH . '/cookie-policy',['options'=>['information']]);
+        $this->view(self::PATH . '/cookie-policy',['options'=>['information']]);
 
     }
     public function accessibility()
