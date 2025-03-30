@@ -99,8 +99,8 @@ class UserController extends Controller
             // Regenerate session ID to prevent session fixation
             session_regenerate_id(true);
             $_SESSION['user'] = $user;
-                $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-    $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+            $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
             logAction("INFO $email logged in");
             if (isset($_POST['remember'])) {
                 $rememberModel = new RememberToken();
