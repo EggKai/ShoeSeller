@@ -45,7 +45,6 @@ class UserController extends Controller
 
         $_SESSION = array(); //set the session array to blank
 
-
         // If it's desired to kill the session, also delete the session cookie.
         // Note: This will destroy the session, and not just the session data!
         if (ini_get("session.use_cookies")) {
@@ -204,7 +203,8 @@ class UserController extends Controller
         }
     }
     public function profile()
-    {
+    {   
+        (new Auth)->refreshUser();
         $this->view(UserController::PATH . '/profile', ['user' => $_SESSION['user'], 'options' => ['profile'], 'csrf_token' => Csrf::generateToken()]);
     }
     public function forgotPassword()

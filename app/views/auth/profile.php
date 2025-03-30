@@ -15,6 +15,7 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="profile-info">
       <h1 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h1>
+      <h2 class="profile-points"><?php echo htmlspecialchars($user['points']); ?> points</h2>
       <p class="profile-email"><?php echo htmlspecialchars($user['email']); ?></p>
     </div>
     <div class="barcode-container">
