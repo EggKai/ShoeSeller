@@ -99,6 +99,8 @@ class UserController extends Controller
             // Regenerate session ID to prevent session fixation
             session_regenerate_id(true);
             $_SESSION['user'] = $user;
+                $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+    $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
             logAction("INFO $email logged in");
             if (isset($_POST['remember'])) {
                 $rememberModel = new RememberToken();
@@ -299,7 +301,7 @@ class UserController extends Controller
             $alert('Unable to send email, Please try again later');
         }
         $userModel->createResetToken($userId, $token, date('Y-m-d H:i:s', strtotime('+1 hour')));
-        logAction('INFO ' . $user['user_type'] . ' ' . $user['name'] . "(id:$userId) has requested to change his passwordx`");
+        logAction('INFO ' . $user['user_type'] . ' ' . $user['name'] . "(id:$userId) has requested to change their password");
         $alert('Email Sent, expires in one hour!', 1);
 
     }
@@ -363,7 +365,7 @@ class UserController extends Controller
         $userModel->updatePassword($record['user_id'], $hashedPassword);
         $userModel->markTokenUsed($record['id']); // Mark token as used
         $alert = ["Password reset successfully.", 1];
-        logAction('INFO user id:' . $record['user_id'] . ' changed their password');
+        logAction('INFO user id:' . $record['user_id'] . ' successfully changed their password');
         $this->login($alert);
         exit;
     }

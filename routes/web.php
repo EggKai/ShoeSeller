@@ -46,8 +46,8 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['remember_me'])) {
         }
     }
 }
-// Define routes and their actions
-$routes = [
+
+$routes = [ // Define routes and their actions
     'products/all' => function () {
         if (isset($_GET['query']) && !empty(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS))) {
             (new ProductController())->product(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS));

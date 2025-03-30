@@ -119,9 +119,6 @@
                                 <a href="index.php?url=admin/viewLogs" aria-label="View Logs"><i
                                         class="fa-solid fa-file-excel"></i></a>
                             <?php } ?>
-                            <a href="employee/tickets" class="icon-link" aria-label="View User Tickets">
-                                <i class="fa-solid fa-ticket fa-lg"></i>
-                            </a>
                         <?php } else { ?>
                             <a href="cart" class="icon-link" aria-label="View Cart">
                                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
@@ -163,11 +160,6 @@
                         <li><a href="index.php?url=admin/viewLogs"><i class="fa-solid fa-file-excel"></i> View Logs</a></li>
                     <?php } ?>
                     <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
-                        <li> <!-- Include Tickets/Cart in Mobile Menu -->
-                            <a href="employee/tickets" aria-label="View User Tickets">
-                                <i class="fa-solid fa-ticket"></i> Tickets
-                            </a>
-                        </li>
                     <?php } else { ?>
                         <li>
                             <a href="index.php?url=cart" aria-label="View Cart">
