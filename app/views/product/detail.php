@@ -41,9 +41,9 @@ include __DIR__ . '/../inc/header.php';
     <div class="action-buttons">
       <input type="hidden" id="product-id" name="product-id" value="<?php echo htmlspecialchars($_GET['id']); ?>">
       <button class="add-to-bag">Add to Bag</button>
-      <button class="favourite">
+      <!-- <button class="favourite">
         Favourite <span class="heart">&#9825;</span>
-      </button>
+      </button> -->
     </div>
 </div>
 </div>

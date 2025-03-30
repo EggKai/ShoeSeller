@@ -25,6 +25,28 @@ class Auth extends Model
         'avif' => 'image/avif'
     ];
     /**
+     * Get user details by user ID.
+     *
+     * @param int $id
+     * @return array|false Returns user data as an associative array, or false if user not found.
+     */
+    public function getUserById($id)
+    {
+        return $this->findById('users', $id);
+    }
+    public function refreshUser() {
+        $_SESSION['user'] = $this->getUserById($_SESSION['user']['id']);
+    }
+    public function getUserByEmail($email) {
+        // Sanitize and validate email.
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    /**
      * Authenticate a user by email and password.
      *
      * @param string $email    User's email address.
@@ -33,17 +55,8 @@ class Auth extends Model
      */
     public function authenticate($email, $password)
     {
-        // Sanitize and validate email.
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return false;
-        }
-
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Verify the password using password_verify.
+        $user = $this->getUserByEmail($email);
         if ($user && password_verify($password, $user['password'])) {
             return $user;
         }
@@ -114,8 +127,9 @@ class Auth extends Model
         }
         return false;
     }
-    public function updateUser($id, $name, $email, $address, $profilePic = null) {
-        if ($profilePic === null) { // Update without modifying the profile_pic field.
+    public function updateUser($id, $name, $email, $address, $profilePicData = null) {
+        if ($profilePicData === null) {
+            // Update only textual fields.
             $sql = "UPDATE users 
                     SET name = :name, email = :email, address = :address 
                     WHERE id = :id";
@@ -125,31 +139,22 @@ class Auth extends Model
                 'address' => $address,
                 'id'      => $id,
             ];
-        } else { // Update including the profile_pic field.
+        } else {
+            // Update including the profile picture (as JPEG binary data).
             $sql = "UPDATE users 
                     SET name = :name, email = :email, address = :address, profile_pic = :profile_pic 
                     WHERE id = :id";
             $params = [
-                'name'        => $name,
-                'email'       => $email,
-                'address'     => $address,
-                'profile_pic' => $profilePic,
-                'id'          => $id,
+                'name'       => $name,
+                'email'      => $email,
+                'address'    => $address,
+                'profile_pic'=> $profilePicData,
+                'id'         => $id,
             ];
         }
+        
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute($params);
-    }
-    
-    /**
-     * Get user details by user ID.
-     *
-     * @param int $id
-     * @return array|false Returns user data as an associative array, or false if user not found.
-     */
-    public function getUserById($id)
-    {
-        return $this->findById('users', $id);
     }
 
     public function getAllUsers() {
@@ -159,11 +164,6 @@ class Auth extends Model
     public function deleteUser($userId) {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
         return $stmt->execute(['id' => $userId]);
-    }
-    public function getUserByEmail($email) {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     /**
      * Create a new reset token record.
@@ -224,5 +224,20 @@ class Auth extends Model
             'password' => $hashedPassword,
             'id'       => $userId
         ]);
+    }
+    public function clearPoints($userId) {
+        $stmt = $this->pdo->prepare("UPDATE users SET points = 0 WHERE id = :id");
+        return $stmt->execute(['id' => $userId]);
+    }
+
+    public function addPoints($userId, $pointsToAdd)
+    {
+        if ($userId !== null) {
+            $stmt = $this->pdo->prepare("UPDATE users SET points = points + :points WHERE id = :id");
+            return $stmt->execute([
+                'points' => $pointsToAdd,
+                'id' => $userId
+            ]);
+        }
     }
 }

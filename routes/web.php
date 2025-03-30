@@ -3,6 +3,7 @@ date_default_timezone_set('Asia/Singapore');
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+require_once __DIR__ . '/../core/CORs.php';
 require_once __DIR__ . '/../app/controllers/HomeController.php';
 require_once __DIR__ . '/../app/controllers/ProductController.php';
 require_once __DIR__ . '/../app/controllers/UserController.php';
@@ -11,7 +12,40 @@ require_once __DIR__ . '/../app/controllers/EmployeeController.php';
 require_once __DIR__ . '/../app/controllers/AdminController.php';
 require_once __DIR__ . '/../app/controllers/InformationController.php';
 require_once __DIR__ . '/../app/controllers/ReviewController.php';
-
+require_once __DIR__ . '/../app/controllers/ReviewController.php';
+require_once __DIR__ . '/../app/models/Auth.php';
+require_once __DIR__ . '/../app/models/RememberToken.php';
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT'] ||
+        $_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR']) {
+        // Potential hijacking detected, regenerate the session.
+        session_regenerate_id(true);
+    }
+    if (isset($_SESSION['last_regenerated'])) {
+        // Regenerate session ID every 30 minutes.
+        if (time() - $_SESSION['last_regenerated'] > 1800) {
+            session_regenerate_id(true);
+            $_SESSION['last_regenerated'] = time();
+        }
+    } else {
+        $_SESSION['last_regenerated'] = time();
+    }
+}
+if (!isset($_SESSION['user']) && isset($_COOKIE['remember_me'])) {
+    $cookieData = json_decode($_COOKIE['remember_me'], true);
+    if ($cookieData && isset($cookieData['user_id'], $cookieData['token'])) {
+        $userId = $cookieData['user_id'];
+        $token  = $cookieData['token'];
+        $rememberModel = new RememberToken();
+        $record = $rememberModel->getTokenRecord($userId, $token);
+        if ($record) {
+            $userModel = new Auth();
+            $_SESSION['user'] = $userModel->getUserById($userId);
+        } else {
+            setcookie('remember_me', '', time() - 3600, '/', '', true, true); // Invalid token - clear the cookie.
+        }
+    }
+}
 // Define routes and their actions
 $routes = [
     'products/all' => function () {
@@ -103,11 +137,32 @@ $routes = [
         (new UserController())->logout();
     },
     'auth/forgotPassword' => function () {
-        if (!isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             (new UserController())->profile();
             exit;
         }
         (new UserController())->forgotPassword();
+    },
+    'auth/resetPassword' => function () {
+        if (isset($_SESSION['user'])) {
+            (new UserController())->profile();
+            exit;
+        }
+        (new UserController())->resetPassword();
+    },
+    'auth/reset_password' => function () {
+        if (isset($_SESSION['user'])) {
+            (new UserController())->profile();
+            exit;
+        }
+        (new UserController())->reset();
+    },
+    'auth/doReset' => function () {
+        if (isset($_SESSION['user'])) {
+            (new UserController())->profile();
+            exit;
+        }
+        (new UserController())->doReset();
     },
     'auth/editProfile' => function () {
         if (!isset($_SESSION['user'])) {
@@ -115,6 +170,13 @@ $routes = [
             exit;
         }
         (new UserController())->editProfile();
+    },
+    'auth/doEditProfile' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->login();
+            exit;
+        }
+        (new UserController())->doEditProfile();
     },
     'information/aboutus' => function () {
         (new InformationController)->aboutus();

@@ -1,15 +1,16 @@
 <?php
 require_once __DIR__ . "/../../../core/barcode.php";
 $title = "My Profile";
+$description = "User's Profile details";
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="profile-page">
   <div class="profile-card">
     <div class="profile-pic-container">
       <?php if (!empty($user['profile_pic'])): ?>
-        <img class="profile-pic" src="public/uploads/<?php echo htmlspecialchars($user['profile_pic']); ?>" alt="Profile Picture">
+        <img class="profile-pic" src="data:image/jpeg;base64,<?php echo base64_encode($user['profile_pic']); ?>" alt="Profile Picture">
       <?php else: ?>
-        <img class="profile-pic" src="public/assets/images/default-profile.jpg" alt="Default Profile Picture">
+        <img class="profile-pic" src="/public/assets/images/default-profile.jpg" alt="Default Profile Picture">
       <?php endif; ?>
     </div>
     <div class="profile-info">

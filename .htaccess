@@ -1,20 +1,25 @@
-# Enable URL rewriting
 RewriteEngine On
 
+#if subdirectory, else comment these out
 RewriteBase /ShoeSeller/
-
 ErrorDocument 403 /ShoeSeller/public/error/403.html
 ErrorDocument 500 /ShoeSeller/public/error/500.html
+RewriteCond %{REQUEST_URI} ^/ShoeSeller/?$ [NC]
+RewriteRule ^$ ShoeSeller/public/index.php [L]
 
-# Redirect base URL (e.g., /ShoeSeller/) to public/index.php
-RewriteCond %{REQUEST_URI} ^/shoeseller/?$ 
-RewriteRule ^$ public/index.php [L]
+#else uncomment this
+# ErrorDocument 403 /public/error/403.html
+# ErrorDocument 500 /public/error/500.html
+# RewriteCond %{REQUEST_URI} ^/?$ 
+# RewriteRule ^$ public/index.php [L]
+
 
 Options -Indexes
+
 # If the requested file or directory exists, do nothing
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Otherwise, rewrite the request to index.php and pass the path as 'url'
+# Rewrite all other requests to index.php
 RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]

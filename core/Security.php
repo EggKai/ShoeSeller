@@ -59,6 +59,28 @@ class Csrf
 //     return isUserType('user');
 // }
 
+function convertImageToJpeg($sourcePath, $quality = 60) {
+    $imageType = exif_imagetype($sourcePath);
+
+    switch ($imageType) {
+        case IMAGETYPE_JPEG:
+            $image = imagecreatefromjpeg($sourcePath);
+            break;
+        case IMAGETYPE_PNG:
+            $image = imagecreatefrompng($sourcePath);
+            break;
+        default:
+            throw new Exception("Unsupported image type.");
+    }
+
+    ob_start();
+    imagejpeg($image, null, $quality);
+    $jpegData = ob_get_clean();
+    imagedestroy($image);
+    return $jpegData;
+}
+
+
 /**
  * Generate a random token using CHARSET.
  *

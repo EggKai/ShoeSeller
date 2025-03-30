@@ -55,7 +55,8 @@
 }
 
 /* Submit button styling */
-.checkout-details .checkout-btn {
+.checkout-details .checkout-btn ,
+.claim-points-btn  {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background-color: #000;
@@ -68,7 +69,13 @@
     margin-top: 1rem;
 }
 
+.claim-points-btn {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
 /* Hover effect for the button */
-.checkout-details .checkout-btn:hover {
+.checkout-details:hover .checkout-btn:hover ,
+.claim-points-btn:hover {
     background-color: #333;
 }
