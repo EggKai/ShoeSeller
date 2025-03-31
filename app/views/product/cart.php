@@ -78,7 +78,9 @@ include __DIR__ . '/../inc/header.php';
         </a>
       <?php else: ?>
         <!-- If logged in, show a single checkout button -->
+        <a href="index.php?url=checkout">
         <button class="guest-checkout" id="memberCheckout">Checkout</button>
+        </a>
       <?php endif; ?>
     </div>
   </div>

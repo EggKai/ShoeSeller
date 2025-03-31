@@ -45,7 +45,8 @@
     color: var(--color-dark);
   }
   
-  .profile-email {
+  .profile-email,
+  .profile-points {
     font-size: 1.1rem;
     color: var(--color-grey);
     margin: 0.5rem 0;

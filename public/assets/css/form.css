@@ -1,131 +1,131 @@
-    #authForm {
-        background-color: var(--main-c);
-        margin: 100px auto;
-        padding: 40px;
-        width: 50%;
-        min-width: 300px;
-        max-width: 800px;
-        /* background-color: rgb(49, 49, 49); */
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-    form.fill {
-        width: 100% !important;
-    }
+#authForm {
+  background-color: var(--main-c);
+  margin: 100px auto;
+  padding: 40px;
+  width: clamp(280px, 65%, 90%);
+  min-width: 300px;
+  max-width: 800px;
+  /* background-color: rgb(49, 49, 49); */
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+form.fill {
+  width: 100% !important;
+}
 
-    @media only screen and (max-width: 600px) {
-        #authForm {
-            width: 80%;
-        }
-    }
+@media only screen and (max-width: 600px) {
+  #authForm {
+    width: 80%;
+  }
+}
 
-    #authForm form h1 {
-        text-align: center;
-    }
+#authForm form h1 {
+  text-align: center;
+}
 
-    #authForm input:not([type=checkbox], [type=submit], #query),
-    #authForm select {
-        padding: 10px;
-        width: 100%;
-        font-size: 17px;
-        border: 1px solid #aaaaaa;
-        border-radius: 2rem;
-    }
+#authForm input:not([type="checkbox"], [type="submit"], #query),
+#authForm select {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  border: 1px solid #aaaaaa;
+  border-radius: 2rem;
+}
 
-    #authForm textarea {
-        resize: none;
-        width: 98%;
-        font-size: 17px;
-        border: 1px solid #aaaaaa;
-        padding: 10px;
-    }
+#authForm textarea {
+  resize: none;
+  width: 98%;
+  font-size: 17px;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+}
 
-    /* Mark input boxes that gets an error on validation: */
-    #authForm input[type=valid] .invalid {
-        background-color: #ffdddd;
-    }
+/* Mark input boxes that gets an error on validation: */
+#authForm input[type="valid"] .invalid {
+  background-color: #ffdddd;
+}
 
-    /* Hide all steps by default: */
-    #authForm .tab {
-        display: none;
-    }
+/* Hide all steps by default: */
+#authForm .tab {
+  display: none;
+}
 
-    #authForm form button,
-    #authForm input[type=submit],
-    #authForm button.stepButton,
-    #authForm button.addButton {
-        background-color: var(--color-light);
-        border: none;
-        border-radius: 2rem;
-        padding: 10px 20px;
-        font-size: 17px;
-        cursor: pointer;
-    }
+#authForm form button,
+#authForm input[type="submit"],
+#authForm button.stepButton,
+#authForm button.addButton {
+  background-color: var(--color-light);
+  border: none;
+  border-radius: 2rem;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+}
 
-    #authForm button:hover.delete,
-    #authForm form button:hover,
-    #authForm input[type=submit]:hover {
-        opacity: 0.8;
-    }
+#authForm button:hover.delete,
+#authForm form button:hover,
+#authForm input[type="submit"]:hover {
+  opacity: 0.8;
+}
 
-    #prevBtn {
-        background-color: #4f4f4f;
-    }
+#prevBtn {
+  background-color: #4f4f4f;
+}
 
-    #authForm form a:link,
-    #authForm form a:visited {
-        color: var(--color-white);
-    }
+#authForm form a:link,
+#authForm form a:visited {
+  color: var(--color-white);
+}
 
-    #authForm button.delete,
-    #authForm button.remove-size {
-        background-color: var(--color-error);
-        color: var(--color-light);
-        border: none;
-        border-radius: 2rem;
-        padding: 10px 20px;
-        font-size: 17px;
-        cursor: pointer;
-    }
+#authForm button.delete,
+#authForm button.remove-size {
+  background-color: var(--color-error);
+  color: var(--color-light);
+  border: none;
+  border-radius: 2rem;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+}
 
-    #authForm .size-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 10px; /* Space between rows */
-        
-    }
+#authForm .size-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px; /* Space between rows */
+}
 
-    #authForm .size-row input {
-        flex: 1;
-        padding: 5px;
-    }
+#authForm .size-row input {
+  flex: 1;
+  padding: 5px;
+}
 
-    /* Make circles that indicate the steps of the form: */
-    .step {
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbbbbb;
-        border: none;
-        border-radius: 50%;
-        display: inline-block;
-        opacity: 0.5;
-    }
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
 
-    .step.active {
-        opacity: 1;
-    }
+.step.active {
+  opacity: 1;
+}
 
-    /* Mark the steps that are finished and valid: */
-    .step.finish {
-        background-color: #04AA6D;
-    }
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04aa6d;
+}
 
-    .steps{
-        text-align:center;
-        margin-top:40px;
-    }
+.steps {
+  text-align: center;
+  margin-top: 40px;
+}
 
-    .align-right{
-        float: right;
-    }
+.align-right {
+  float: right;
+}

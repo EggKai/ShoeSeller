@@ -1,4 +1,5 @@
 <?php
+    require_once 'Security.php';
     const LOG_DIR = __DIR__ . "/../log/";
     function log_item($message, $type) {
         // Get the current year-month (e.g., "2023-03")
@@ -18,6 +19,7 @@
         log_item($errorMessage, 'error');
     }
     function logAction($actionMessage) {
-        log_item($actionMessage, 'actions');
+        $ipaddr = getIP();
+        log_item("[$ipaddr] ".$actionMessage, 'actions');
     }
 ?>

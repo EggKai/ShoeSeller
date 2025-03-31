@@ -44,9 +44,19 @@ include __DIR__ . '/../inc/header.php';
       <span>Order Date</span>
       <span><?php echo htmlspecialchars($order['created_at']); ?></span>
     </div>
+    <?php
+      if ($order['discount'] > 0){
+    ?>
+    <div class="summary-row">
+      <span>Discount</span>
+      <span>$<?php echo number_format($order['discount'], 2); ?></span>
+    </div>
+    <?php
+      }
+    ?>
     <div class="summary-row summary-total">
       <span>Total</span>
-      <span>$<?php echo number_format($order['total_price'], 2); ?></span>
+      <span>$<?php echo number_format($order['total_price']-$order['discount'], 2); ?></span>
     </div>
   </div>
 </div>

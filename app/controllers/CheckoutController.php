@@ -23,8 +23,9 @@ class CheckoutController extends Controller
     }
     public function checkout()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            (new HomeController)->index();
+            exit;
         }
         if (isset($_SESSION['user'])) {
             $userId = $_SESSION['user']['id'];  // logged-in user ID
@@ -51,11 +52,11 @@ class CheckoutController extends Controller
         foreach ($itemsWithPrice as $item) {
             $availableStock = $productModel->getStockForItem($item['id'], $item['size']);
             if ($item['quantity'] > $availableStock) {
-                (new ProductController)->cart($cart,["Insufficient stock for {$item['name']} (Size: {$item['size']}). Available: {$availableStock}, Requested: {$item['quantity']}",2]);
+                (new ProductController)->cart($cart, ["Insufficient stock for {$item['name']} (Size: {$item['size']}). Available: {$availableStock}, Requested: {$item['quantity']}", 2]);
             }
         }
         $orderModel = new Order();
-        $orderId = $orderModel->createOrder($userId, $totalPrice, $email, 'pending'); // Create a new pending order.
+        $orderId = $orderModel->createOrder($userId, $totalPrice, $email, isset($_POST['usepoints'])); // Create a new pending order.
         if (!$orderId) {
             die("Error creating order.");
         }
@@ -88,6 +89,22 @@ class CheckoutController extends Controller
                 'quantity' => $item['quantity']
             ];
         }
+        $discountsArray = [];
+        if (isset($_POST['usepoints'])) {
+            if ($_SESSION['user']['points'] > 0) {
+                try {
+                    $coupon = \Stripe\Coupon::create([
+                        'amount_off' => round($_SESSION['user']['points']), // discount in cents
+                        'currency' => 'sgd',
+                        'duration' => 'once'
+                    ]);
+                    $discountsArray[] = ['coupon' => $coupon->id];
+                } catch (Exception $e) {
+                    die("Error creating discount coupon: " . $e->getMessage());
+                }
+            }
+        }
+
         try {  // Create a Stripe Checkout Session.
             $domainName = $_ENV['DOMAIN'];
             $protocol = $_ENV['PROTOCOL'];
@@ -96,11 +113,15 @@ class CheckoutController extends Controller
                 'line_items' => $stripeLineItems,
                 'mode' => 'payment',
                 'customer_email' => $email,
+                'discounts' => $discountsArray,
                 'success_url' => "{$protocol}://{$domainName}/index.php?url=checkout/success&order_id={$orderId}&session_id={CHECKOUT_SESSION_ID}",
                 'cancel_url' => "{$protocol}://{$domainName}/index.php?url=checkout/cancel&order_id={$orderId}",
             ]);
         } catch (Exception $e) {
             die("Stripe error: " . $e->getMessage());
+        }
+        if (isset($_POST['usepoints']) && $_SESSION['user']['points'] > 0) {
+            (new Auth)->clearPoints($_SESSION['user']['id']);
         }
         $orderModel->update_sessionId($orderId, $session->id);
         logAction("INFO Order #$orderId pending payment");
@@ -122,13 +143,12 @@ class CheckoutController extends Controller
             } catch (Exception $e) {
                 die("Error retrieving Checkout Session: " . $e->getMessage());
             }
-            Cart::deleteCart();
             if (!($session->payment_status === 'paid')) {
                 die("No."); //why would user end up here if order wasnt successful? webhook wouldve sent them elsewhere
             }
             if (!$orderModel->confirmOrderPayment($orderId, $sessionId)) {
                 die("Invalid Session"); //session id does not match actual ID 
-            } 
+            }
             $orderItems = $orderModel->getOrderItems($orderId);
             $productModel = new Product();
             foreach ($orderItems as $item) { // Reduce stock for each purchased item.
@@ -136,7 +156,11 @@ class CheckoutController extends Controller
                     logError("Failed to update stock for product {$item['product_id']} size {$item['size']}.");
                 }
             }
+            $userModel = new Auth;
+            $userModel->addPoints($order['user_id'], $order['total_price']);
+            $userModel->refreshUser();
             logAction("INFO Order #$orderId confirmed Payment");
+            Cart::deleteCart();
             sendReceiptEmail($orderModel->getOrderById($orderId), $orderModel->getOrderItems($orderId));
         }
         $this->reciept($orderId);
@@ -153,7 +177,7 @@ class CheckoutController extends Controller
             include __DIR__ . '/../inc/footer.php';
             exit;
         }
-        
+
         $orderItems = $orderModel->getOrderItems($orderId); // Retrieve order items. Assume getOrderItems($orderId) returns an array of items.
 
         // Pass the order and order items to the receipt view.

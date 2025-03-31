@@ -13,6 +13,8 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  color: var(--color-light);
+
 }
 
 .review-rating {
@@ -32,6 +34,7 @@
 
 .review-user {
   font-weight: bold;
+  color: var(--color-light);
 }
 
 .review-date {
@@ -40,14 +43,15 @@
 }
 
 .review-title {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin: 0.4rem 0;
+  color: var(--color-light);
 }
 
 .review-text {
   margin: 0.5rem 0;
-  color: #9d9d9d;
+  color: #b4b4b4;
 }
 
 @media screen and (max-width: 600px) {
@@ -162,18 +166,6 @@
 
 .review-user {
   font-weight: bold;
-}
-
-.review-title {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  color: var(--color-dark);
-}
-
-.review-text {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 0.5rem;
 }
 
 .rating {

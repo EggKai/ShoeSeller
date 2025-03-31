@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { regex: /\bINFO\b/g, className: 'log-info' },
         { regex: /\b(CRITICAL|ALERT)\b/g, className: 'log-alert' },
         { regex: /\bACTION\b/g, className: 'log-action' },
-        { regex: /\bid\b/gi, className: 'log-id' }
+        { regex: /\bid\b/gi, className: 'log-id' },
+        { regex: /\b(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\b/g, className: 'log-ip' }
     ];
     
     // Get the text from the pre block

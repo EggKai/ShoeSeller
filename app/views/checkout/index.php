@@ -3,6 +3,14 @@ $title = "Checkout";
 $description = 'Check out cart items';
 include __DIR__ . '/../inc/header.php';
 
+// Determine if user wants to claim points.
+$claimPoints = false;
+$discount = 0;
+if (isset($_SESSION['user']) && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['claimPoints']) && $_SESSION['user']['points'] != 0) {
+    $claimPoints = true;
+    $discount = number_format($_SESSION['user']['points']/100, 2);
+}
+
 // Calculate subtotal based on cart items.
 $subtotal = 0;
 if (!empty($cart)) {
@@ -43,11 +51,28 @@ if (!empty($cart)) {
                     <span>Estimated Delivery & Handling</span>
                     <span>Free</span>
                 </div>
+                <?php if ($claimPoints){ ?>
+                    <div class="summary-row">
+                        <span>Discount</span>
+                        <span>$<?php echo $discount; ?></span>
+                    </div>
+                <?php } ?>
                 <div class="summary-row summary-total">
                     <span>Total</span>
-                    <span>$<?php echo number_format($subtotal, 2); ?></span>
+                    <span>$<?php echo number_format($subtotal-$discount, 2); ?></span>
                 </div>
             </div>
+            <?php
+            // If user is logged in, show the "claim points" button if they haven't already claimed.
+            if (isset($_SESSION['user']) && $_SESSION['user']['points'] != 0 && !$claimPoints) { ?>
+                <form action="" method="POST" class="claim-points-form">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                    <input type="hidden" name="claimPoints" value="true">
+                    <button type="submit" class="claim-points-btn">
+                        Claim Your <?php echo $_SESSION['user']['points']; ?> Points for Discount
+                    </button>
+                </form>
+            <?php } ?>
         <?php else: ?>
             <p>Your cart is empty.</p>
         <?php endif; ?>
@@ -59,14 +84,17 @@ if (!empty($cart)) {
             <h2>Enter Your Details</h2>
             <form action="index.php?url=checkout/doCheckout" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                <?php if ($claimPoints){ ?>
+                    <input type="hidden" name="usepoints" value="true">
+                <?php } ?>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email" required 
-                           value="<?php echo htmlspecialchars($data['email'] ?? ''); ?>">
+                           value="<?php echo $_SESSION['user']['email'] ?? htmlspecialchars($data['email'] ?? ''); ?>">
                 </div>
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <textarea name="address" id="address" rows="4" required><?php echo htmlspecialchars($data['address'] ?? ''); ?></textarea>
+                    <textarea name="address" id="address" rows="4" required><?php echo $_SESSION['user']['address'] ?? htmlspecialchars($data['address'] ?? ''); ?></textarea>
                 </div>
                 <button type="submit" class="checkout-btn">Place Order</button>
             </form>
