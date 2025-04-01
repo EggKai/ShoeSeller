@@ -100,9 +100,9 @@
                         <img src="/public/assets/images/logo.png" alt="Shoe Store Logo">
                     </a>
                 </li>
-                <li><a href="index.php?url=products/all">Products</a></li>
+                <li><a href="products/all">Products</a></li>
                 <?php if (isset($_SESSION['user'])) { ?>
-                    <li><a href="index.php?url=auth/logout">Logout</a></li>
+                    <li><a href="auth/logout">Logout</a></li>
                 <?php } ?>
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
@@ -114,9 +114,9 @@
                         </button>
                         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
                             <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                                <a href="index.php?url=admin/dashboard" aria-label="Dashboard"><i
+                                <a href="admin/dashboard" aria-label="Dashboard"><i
                                         class="fa-solid fa-chart-line"></i></a>
-                                <a href="index.php?url=admin/viewLogs" aria-label="View Logs"><i
+                                <a href="admin/viewLogs" aria-label="View Logs"><i
                                         class="fa-solid fa-file-excel"></i></a>
                             <?php } ?>
                         <?php } else { ?>
@@ -153,16 +153,16 @@
                             Home
                         </a>
                     </li>
-                    <li><a href="index.php?url=products/all">Products</a></li>
+                    <li><a href="/products/all">Products</a></li>
                     <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                        <li><a href="index.php?url=admin/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                        <li><a href="/admin/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                         </li>
-                        <li><a href="index.php?url=admin/viewLogs"><i class="fa-solid fa-file-excel"></i> View Logs</a></li>
+                        <li><a href="/admin/viewLogs"><i class="fa-solid fa-file-excel"></i> View Logs</a></li>
                     <?php } ?>
                     <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
                     <?php } else { ?>
                         <li>
-                            <a href="index.php?url=cart" aria-label="View Cart">
+                            <a href="/cart" aria-label="View Cart">
                                 <i class="fa-solid fa-cart-shopping"></i> Cart
                             </a>
                         </li>
@@ -193,9 +193,9 @@
                                     echo "auth/login";
                             } ?>"><i class="fa-solid fa-user"></i> Account</a>
                         </li>
-                        <li><a href="index.php?url=auth/logout">Logout</a></li>
+                        <li><a href="auth/logout">Logout</a></li>
                     <?php } else { ?>
-                        <li><a href="index.php?url=auth/login">Login</a></li>
+                        <li><a href="auth/login">Login</a></li>
                     <?php } ?>
                 </ul>
             </div>

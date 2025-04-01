@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . './Auth.php';
 require_once __DIR__ . '/../../core/Model.php';
 
 class RememberToken extends Model {
@@ -61,4 +62,20 @@ class RememberToken extends Model {
         return $stmt->execute(['user_id' => $userId]);
     }
     
+}
+
+if (!isset($_SESSION['user']) && isset($_COOKIE['remember_me'])) {
+    $cookieData = json_decode($_COOKIE['remember_me'], true);
+    if ($cookieData && isset($cookieData['user_id'], $cookieData['token'])) {
+        $userId = $cookieData['user_id'];
+        $token  = $cookieData['token'];
+        $rememberModel = new RememberToken();
+        $record = $rememberModel->getTokenRecord($userId, $token);
+        if ($record) {
+            $userModel = new Auth();
+            $_SESSION['user'] = $userModel->getUserById($userId);
+        } else {
+            setcookie('remember_me', '', time() - 3600, '/', '', true, true); // Invalid token - clear the cookie.
+        }
+    }
 }
