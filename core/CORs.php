@@ -29,3 +29,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("HTTP/1.1 200 OK");
     exit();
 }
+
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT'] ||
+        $_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR']) {
+        // Potential hijacking detected, regenerate the session.
+        session_regenerate_id(true);
+    }
+    if (isset($_SESSION['last_regenerated'])) {
+        // Regenerate session ID every 30 minutes.
+        if (time() - $_SESSION['last_regenerated'] > 1800) {
+            session_regenerate_id(true);
+            $_SESSION['last_regenerated'] = time();
+        }
+    } else {
+        $_SESSION['last_regenerated'] = time();
+    }
+}
