@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './Auth.php';
+require_once __DIR__ . '/Auth.php';
 require_once __DIR__ . '/../../core/Model.php';
 
 class RememberToken extends Model {
