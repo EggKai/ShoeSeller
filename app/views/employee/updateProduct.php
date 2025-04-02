@@ -9,14 +9,14 @@ include __DIR__ . '/../partials/alert.php';
 <div class="product-page ">
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
-    <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
+    <img src="/public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
       alt="<?php echo htmlspecialchars($product['name']); ?>">
   </div>
 
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
     <!-- Editable Form for Admin/Employee -->
-    <form action="index.php?url=employee/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
+    <form action="/index.php?url=employee/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
       class="fill" id="authForm">
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
       <div class="tab">

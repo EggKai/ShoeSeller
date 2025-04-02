@@ -3,7 +3,7 @@ $title = "Forgot Password";
 include_once __DIR__ . '/../inc/header.php';
 ?>
 <div class="__content">
-<form id="authForm" action="auth/resetPassword" method="POST" class="authForm">
+<form id="authForm" action="/auth/resetPassword" method="POST" class="authForm">
     <?php
         include __DIR__ . '/../partials/alert.php'; 
     ?>
@@ -14,7 +14,7 @@ include_once __DIR__ . '/../inc/header.php';
     </p>
     <input type="submit" name="submit" value="Send Request">
 
-    <a class="align-right" href="index.php?url=auth/login">Remember Your Password?</a><br>
+    <a class="align-right" href="/index.php?url=auth/login">Remember Your Password?</a><br>
 </form>
 </div>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>
