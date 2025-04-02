@@ -56,7 +56,7 @@ class CheckoutController extends Controller
             }
         }
         $orderModel = new Order();
-        $orderId = $orderModel->createOrder($userId, $totalPrice, $email, isset($_POST['usepoints'])); // Create a new pending order.
+        $orderId = $orderModel->createOrder($userId, $totalPrice, $email, 'pending'); // Create a new pending order.
         if (!$orderId) {
             die("Error creating order.");
         }
