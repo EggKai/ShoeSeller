@@ -6,6 +6,7 @@ include __DIR__ . '/../inc/header.php';
 <div class="main-container">
 	<div class="locations-container">
 		<div class="headings">
+			<h1 hidden>Find a ShoeSeller Store</h1>
 			<h2>Find a ShoeSeller Store</h2>
 			<div class="search-bar">
 				<input type="text" id="searchInput" onkeyup="filterLocations()" placeholder="Search locations...">
@@ -13,7 +14,7 @@ include __DIR__ . '/../inc/header.php';
 		</div>
 
 		<!-- Location List !-->
-		<div class="location-list-container">
+		<div class="location-list-container" tabindex="0">
 		<?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
 
 			<!-- Add Button ADMIN ONLY -->
@@ -104,6 +105,7 @@ include __DIR__ . '/../inc/header.php';
 	<!-- Google Map !-->
 	<div class="iframe-container">
 		<iframe id="mapFrame"
+			title="interactive-map"
 			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7175.060941233249!2d103.90894078720245!3d1.412267617281438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1515bfb2d263%3A0xc71c56458ac08497!2sSingapore%20Institute%20of%20Technology%20(Campus%20Court)!5e0!3m2!1sen!2ssg!4v1742530812666!5m2!1sen!2ssg"
 			allowfullscreen=""
 			loading="lazy"
