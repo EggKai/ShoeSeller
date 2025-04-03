@@ -3,7 +3,7 @@ $title = 'Corporate Information';
 include __DIR__ . '/../inc/header.php';
 ?>
 <section class="__content">
-    <div class="title">
+    <div class="all_content">
         <h1>Corporate Information</h1>
         <p><a href="https://github.com/EggKai/ShoeSeller">Github Repository link</a> for this website</p>
     </div>

@@ -18,12 +18,13 @@
     flex: 0 0 calc(33.333% - 1rem);
     text-align: center;
     transition: box-shadow 0.2s ease;
-    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-item h3 { /* product title */
+    overflow: hidden;
     text-overflow: ellipsis;
     margin: 0.5rem 0; /*    Some spacing around the title */
 }

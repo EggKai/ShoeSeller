@@ -20,10 +20,15 @@
     <link rel="stylesheet" href="/public/assets/css/hamburger-nav.css">
     <script defer src="/public/assets/js/hamburger-nav.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <?php if (isset($options)) { ?> <!-- dynamic loading of assets -->
         <?php if (in_array('cart', $options)) { ?>
             <link rel="stylesheet" href="/public/assets/css/cart.css">
             <script defer src="/public/assets/js/cart.js"></script>
+        <?php } ?>
+        <?php if (in_array('detail', $options)) { ?>
+            <link rel="stylesheet" href="/public/assets/css/product-detail.css">
+            <script defer src="/public/assets/js/popup-image.js"></script>
         <?php } ?>
         <?php if (in_array('carousel', $options)) { ?>
             <link rel="stylesheet" href="/public/assets/css/carousel.css">
@@ -43,6 +48,9 @@
         <?php } ?>
         <?php if (in_array('form-carousel-forked', $options)) { ?>
             <script defer src="/public/assets/js/form-carousel-forked.min.js"></script>
+        <?php } ?>
+        <?php if (in_array('orderHistory', $options)) { ?>
+            <link rel="stylesheet" href="/public/assets/css/orderHistory.css">
         <?php } ?>
         <?php if (in_array('profile', $options)) { ?>
             <link rel="stylesheet" href="/public/assets/css/profile.css">
@@ -100,9 +108,9 @@
                         <img src="/public/assets/images/logo.png" alt="Shoe Store Logo">
                     </a>
                 </li>
-                <li><a href="products/all">Products</a></li>
+                <li><a href="/products/all">Products</a></li>
                 <?php if (isset($_SESSION['user'])) { ?>
-                    <li><a href="auth/logout">Logout</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
                 <?php } ?>
                 <li class="align-right">
                     <form action="index.php" method="get" class="search-form">
@@ -114,27 +122,27 @@
                         </button>
                         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['user_type'], ['admin', 'employee'])) { ?>
                             <?php if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] === 'admin') { ?>
-                                <a href="admin/dashboard" aria-label="Dashboard"><i
+                                <a href="/admin/dashboard" aria-label="Dashboard"><i
                                         class="fa-solid fa-chart-line"></i></a>
-                                <a href="admin/viewLogs" aria-label="View Logs"><i
+                                <a href="/admin/viewLogs" aria-label="View Logs"><i
                                         class="fa-solid fa-file-excel"></i></a>
                             <?php } ?>
                         <?php } else { ?>
-                            <a href="cart" class="icon-link" aria-label="View Cart">
+                            <a href="/cart" class="icon-link" aria-label="View Cart">
                                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
                             </a>
                         <?php } ?>
                         <a href="<?php
                         switch ($_SESSION['user']['user_type'] ?? null) {
                             case 'admin':
-                                echo "admin/users";
+                                echo "/admin/users";
                                 break;
                             case 'employee':
                             case 'user':
-                                echo "auth/profile";
+                                echo "/auth/profile";
                                 break;
                             default:
-                                echo "auth/login";
+                                echo "/auth/login";
                         } ?>" class="icon-link" aria-label="User Account">
                             <i class="fa-solid fa-user fa-lg"></i>
                         </a>
@@ -149,7 +157,7 @@
                 </button>
                 <ul class="nav-left mobile-menu-items">
                     <li>
-                        <a href="index.php">
+                        <a href="/index.php">
                             Home
                         </a>
                     </li>
@@ -168,7 +176,7 @@
                         </li>
                     <?php } ?>
                     <li> <!-- Include Search in Mobile Menu -->
-                        <form action="index.php" method="get" class="mobile-search-form">
+                        <form action="/index.php" method="get" class="mobile-search-form">
                             <input type="hidden" name="url" value="products/all">
                             <input type="text" name="query" placeholder="Search for shoes..."
                                 aria-label="Search for shoes"
@@ -183,19 +191,19 @@
                             <a href="<?php
                             switch ($_SESSION['user']['user_type'] ?? null) {
                                 case 'admin':
-                                    echo "admin/users";
+                                    echo "/admin/users";
                                     break;
                                 case 'employee':
                                 case 'user':
-                                    echo "auth/profile";
+                                    echo "/auth/profile";
                                     break;
                                 default:
-                                    echo "auth/login";
+                                    echo "/auth/login";
                             } ?>"><i class="fa-solid fa-user"></i> Account</a>
                         </li>
-                        <li><a href="auth/logout">Logout</a></li>
+                        <li><a href="/auth/logout">Logout</a></li>
                     <?php } else { ?>
-                        <li><a href="auth/login">Login</a></li>
+                        <li><a href="/auth/login">Login</a></li>
                     <?php } ?>
                 </ul>
             </div>

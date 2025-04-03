@@ -22,12 +22,12 @@ class InformationController extends Controller
 
     public function aboutus()
     {
-        $this->view(self::PATH . '/aboutus', ['options' => ['aboutus']]);
+        $this->view(self::PATH . '/aboutus', ['options' => ['landing', 'information']]);
     }
 
     public function contactus()
     {
-        $this->view(self::PATH . '/contactus', ['options' => ['contactus']]);
+        $this->view(self::PATH . '/contactus', ['options' => ['information']]);
     }
 
     public function locations()
@@ -51,11 +51,6 @@ class InformationController extends Controller
             (new HomeController())->index();
             exit;
         }
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) {
             echo json_encode(['success' => false, 'message' => 'Invalid request. Please try again.']);
@@ -97,7 +92,7 @@ class InformationController extends Controller
     }
 
     public function doUpdateLocation()
-    {
+    {   //TODO: move to admin controller
         if (!isset($_SESSION['user']) || $_SESSION['user']['user_type'] !== 'admin') {
             (new UserController())->login();
             exit;
@@ -105,10 +100,6 @@ class InformationController extends Controller
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !filter_has_var(INPUT_POST, 'submit')) {
             (new HomeController())->index();
             exit;
-        }
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
         }
 
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -164,9 +155,6 @@ class InformationController extends Controller
             exit;
         }
 
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
 
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) {

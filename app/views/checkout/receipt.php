@@ -14,10 +14,10 @@ include __DIR__ . '/../inc/header.php';
           $calculatedSubtotal += $itemTotal;
       ?>
         <div class="cart-item">
-          <img src="public/products/<?php echo htmlspecialchars($item['image_url']); ?>" 
-               alt="<?php echo htmlspecialchars($item['name']); ?>">
+          <img src="/public/products/<?php echo htmlspecialchars($item['image_url']); ?>" 
+               alt="<?php echo htmlspecialchars($item['name'], ENT_COMPAT, 'UTF-8'); ?>">
           <div class="cart-item-details">
-            <h3><?php echo htmlspecialchars($item['name']); ?></h3>
+            <h3><?php echo htmlspecialchars($item['name'], ENT_COMPAT, 'UTF-8'); ?></h3>
             <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
             <p>Quantity: <?php echo htmlspecialchars($item['quantity']); ?></p>
           </div>

@@ -23,17 +23,18 @@ class Order extends Model
      * @param string $status      Default to 'pending'.
      * @return int|false          The newly created order ID or false on failure.
      */
-    public function createOrder($userId, $totalPrice, $email, $status = 'pending')
+    public function createOrder($userId, $totalPrice, $email, $discount=0,$status = 'pending')
     {
         $stmt = $this->pdo->prepare("
-            INSERT INTO orders (user_id, total_price, status, email, created_at)
-            VALUES (:user_id, :total_price, :status, :email, NOW())
+            INSERT INTO orders (user_id, total_price, status, email, discount, created_at)
+            VALUES (:user_id, :total_price, :status, :email, :discount, NOW())
         ");
         $params = [
             'user_id' => $userId,
             'total_price' => $totalPrice,
             'status' => $status,
-            'email' => $email
+            'email' => $email,
+            'discount' => $discount
         ];
         if ($stmt->execute($params)) {
             return $this->pdo->lastInsertId();
@@ -69,7 +70,7 @@ class Order extends Model
     public function getOrderItems($orderId)
     {
         $stmt = $this->pdo->prepare("
-            SELECT oi.*, p.name, p.image_url 
+            SELECT oi.*, p.name, p.image_url , p.base_price
             FROM order_items oi
             JOIN products p ON oi.product_id = p.id
             WHERE oi.order_id = :order_id
@@ -108,5 +109,15 @@ class Order extends Model
             'session_id' => $sessionId,
             'id' => $orderId
         ]);
+    }
+
+    public function getOrdersByUserId($userId) {
+        $stmt = $this->pdo->prepare("
+            SELECT * FROM orders 
+            WHERE user_id = :user_id 
+            ORDER BY created_at DESC
+        ");
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

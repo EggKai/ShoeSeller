@@ -6,12 +6,12 @@
     <div class="footer-col">
       <h2>Help</h2>
       <ul>
-        <li><a href="/index.php?url=information/aboutus">Who are we?</a></li>
-        <li><a href="/index.php?url=information/contactus">Contact Us</a></li>
-        <li><a href="/index.php?url=information/FAQ">FAQs</a></li>
-        <li><a href="/index.php?url=information/rs-policy">Shipping & Returns</a></li>
-        <li><a href="/index.php?url=information/paymentmethods">Payment Methods</a></li>
-        <li><a href="/index.php?url=auth/forgotPassword">Forgot Password</a></li>
+        <li><a href="/information/aboutus">Who are we?</a></li>
+        <li><a href="/information/contactus">Contact Us</a></li>
+        <li><a href="/information/FAQ">FAQs</a></li>
+        <li><a href="/information/rs-policy">Shipping & Returns</a></li>
+        <li><a href="/information/paymentmethods">Payment Methods</a></li>
+        <li><a href="/auth/forgotPassword">Forgot Password</a></li>
       </ul>
     </div>
     
@@ -19,11 +19,11 @@
     <div class="footer-col">
       <h2>Legal</h2>
       <ul>
-        <li><a href="/index.php?url=information/terms-and-conditions">Terms & Conditions</a></li>
-        <li><a href="/index.php?url=information/accessibility">Accessibility</a></li>
-        <li><a href="/index.php?url=information/cookie-policy">Cookie Policy</a></li>
-        <li><a href="/index.php?url=information/regulatory-framework">Regulatory Framework</a></li>
-        <li><a href="/index.php?url=information/corporate-information">Corporate Information</a></li>
+        <li><a href="/information/terms-and-conditions">Terms & Conditions</a></li>
+        <li><a href="/information/accessibility">Accessibility</a></li>
+        <li><a href="/information/cookie-policy">Cookie Policy</a></li>
+        <li><a href="/information/regulatory-framework">Regulatory Framework</a></li>
+        <li><a href="/information/corporate-information">Corporate Information</a></li>
       </ul>
     </div>
     
@@ -31,7 +31,7 @@
     <div class="footer-col">
       <h2>Find Us</h2>
       <ul>
-        <li><a href="/index.php?url=information/locations">Store Locator</a></li>
+        <li><a href="/information/locations">Store Locator</a></li>
       </ul>
     </div>
   </div>

@@ -3,7 +3,7 @@ $title = "Register";
 include_once __DIR__ . '/../inc/header.php';
 ?>
 <div class="__content">
-<form id="authForm" action="/index.php?url=auth/doRegister" method="POST">
+<form id="authForm" action="/auth/doRegister" method="POST">
     <?php
     include __DIR__ . '/../partials/alert.php';
     ?>
@@ -30,7 +30,7 @@ include_once __DIR__ . '/../inc/header.php';
             <button class="stepButton" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
         </div>
     </div>
-    <a style="float:left;" href="/index.php?url=auth/login">Already Have an Account? Login Now!</a>
+    <a style="float:left;" href="/auth/login">Already Have an Account? Login Now!</a>
     <div class="steps">
         <span class="step"></span>
         <span class="step"></span>

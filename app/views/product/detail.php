@@ -1,29 +1,29 @@
 <?php
-$title = htmlspecialchars($product['name']);
-$description = 'Details for product:'.htmlspecialchars($product['name']).', Brand:'. htmlspecialchars($product['brand']).' ,with a price of $'.number_format($product['base_price'], 2);
+$title = htmlspecialchars($product['name'], ENT_COMPAT, 'UTF-8');
+$description = 'Details for product:'.htmlspecialchars($product['name'], ENT_COMPAT, 'UTF-8').', Brand:'. htmlspecialchars($product['brand']).' ,with a price of $'.number_format($product['base_price'], 2);
 include __DIR__ . '/../inc/header.php';
 ?>
 <section class="__content">
 <div class="product-page">
   <!-- LEFT COLUMN: Product Image -->
   <div class="product-image">
-    <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
+    <img src="/public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
       alt="<?php echo htmlspecialchars($product['name']); ?>">
   </div>
 
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
     <!-- Regular Display for Customers -->
-    <h1 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h1>
-    <h2 class="product-category"><?php echo htmlspecialchars($category['name']); ?></h2>
-    <h3 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?></h3>
+    <h1 class="product-name"><?php echo htmlspecialchars($product['name'], ENT_COMPAT, 'UTF-8'); ?></h1>
+    <h2 class="product-category"><?php echo htmlspecialchars($category['name'], ENT_COMPAT, 'UTF-8'); ?></h2>
+    <h3 class="product-brand"><?php echo htmlspecialchars($product['brand'], ENT_COMPAT, 'UTF-8'); ?></h3>
 
-    <p class="product-subtitle"><?php echo htmlspecialchars($product['description']); ?></p>
+    <p class="product-subtitle"><?php echo htmlspecialchars($product['description'], ENT_COMPAT, 'UTF-8'); ?></p>
     <p class="product-price">S$<?php echo number_format($product['base_price'], 2); ?></p>
 
     <div class="size-container">
       <h3 class="select-size">Select Size</h3>
-      <a href="#" class="size-guide-link">Size Guide</a>
+      <a class="size-guide-link">Size Guide</a>
     </div>
 
     <div class="size-grid">

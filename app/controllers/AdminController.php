@@ -161,7 +161,7 @@ class AdminController extends Controller
             die("Invalid request.");
         }
         // Retrieve and sanitize input values.
-        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $name = htmlspecialchars(strip_tags($_POST['name']), ENT_COMPAT, 'UTF-8');
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'] ?? '';
         $confirmPassword = $_POST['confirm_password'] ?? '';

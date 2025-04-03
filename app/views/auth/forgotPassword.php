@@ -14,7 +14,7 @@ include_once __DIR__ . '/../inc/header.php';
     </p>
     <input type="submit" name="submit" value="Send Request">
 
-    <a class="align-right" href="/index.php?url=auth/login">Remember Your Password?</a><br>
+    <a class="align-right" href="/auth/login">Remember Your Password?</a><br>
 </form>
 </div>
 <?php include_once __DIR__ . '/../inc/footer.php'; ?>

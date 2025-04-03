@@ -20,8 +20,8 @@ $label = isset($carouselTitle) ? $carouselTitle : 'Products';
         <?php if (count($carouselProducts) > 0): ?>
             <?php foreach ($carouselProducts as $product): ?>
                 <li class="product-item">
-                    <a href="index.php?url=products/detail&id=<?php echo $product['id']; ?>">
-                        <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>" 
+                    <a href="/products/detail&id=<?php echo $product['id']; ?>">
+                        <img src="/public/products/<?php echo htmlspecialchars($product['image_url']); ?>" 
                              alt="<?php echo htmlspecialchars($product['name']); ?>" >
                         <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                         <p><?php echo htmlspecialchars($product['brand']); ?></p>
@@ -35,5 +35,5 @@ $label = isset($carouselTitle) ? $carouselTitle : 'Products';
     </ul>
     
     <!-- Next Button -->
-    <button class="carousel-button next-button" aria-label="Next">&#10097;</button>
+    <button type="button" class="carousel-button next-button" aria-label="Next">&#10097;</button>
 </div>

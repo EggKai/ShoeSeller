@@ -30,7 +30,7 @@ if (!empty($cart)) {
                     $itemTotal = $item['base_price'] * $item['quantity'];
                 ?>
                     <div class="cart-item">
-                        <img src="public/products/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                        <img src="/public/products/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
                         <div class="cart-item-details">
                             <h3><?php echo htmlspecialchars($item['name']); ?></h3>
                             <p><?php echo htmlspecialchars($item['category']['name']); ?></p>
@@ -82,7 +82,7 @@ if (!empty($cart)) {
     <?php if (!empty($cart)): ?>
         <div class="checkout-details">
             <h2>Enter Your Details</h2>
-            <form action="index.php?url=checkout/doCheckout" method="POST">
+            <form action="/index.php?url=checkout/doCheckout" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <?php if ($claimPoints){ ?>
                     <input type="hidden" name="usepoints" value="true">

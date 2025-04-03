@@ -1,5 +1,7 @@
 <?php
 $title = htmlspecialchars($product['name']);
+$description = "Details of the product:".htmlspecialchars($product['name']);
+
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="__content">
@@ -16,7 +18,7 @@ include __DIR__ . '/../partials/alert.php';
   <!-- RIGHT COLUMN: Product Details -->
   <div class="product-info">
     <!-- Editable Form for Admin/Employee -->
-    <form action="/index.php?url=employee/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
+    <form action="/employee/updateProduct&id=<?php echo htmlspecialchars($_GET['id']); ?>" method="POST"
       class="fill" id="authForm">
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
       <div class="tab">
@@ -74,7 +76,7 @@ include __DIR__ . '/../partials/alert.php';
       </div>
   </div>
   <button class="floating-plus-button red" name="unlist" type="button">
-    <a href="employee/handleListing&id=<?php echo htmlspecialchars($_GET['id']); ?>">
+    <a href="/employee/handleListing&id=<?php echo htmlspecialchars($_GET['id']); ?>">
       <?php echo ($product['unlisted'])?'🔓':'🔒';?>
     </a>
   </button>

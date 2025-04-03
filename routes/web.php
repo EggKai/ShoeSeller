@@ -78,6 +78,13 @@ $routes = [ // Define routes and their actions
     'checkout/doCheckout' => function () {
         (new CheckoutController())->checkout();
     },
+    'checkout/reCheckout' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->login();
+            exit;
+        }
+        (new CheckoutController())->reCheckout();
+    },
     'auth/login' => function () {
         if (isset($_SESSION['user'])) {
             (new UserController())->profile();
@@ -109,6 +116,14 @@ $routes = [ // Define routes and their actions
         }
         (new UserController())->profile();
     },
+    'auth/orderHistory' => function () {
+        if (!isset($_SESSION['user'])) {
+            (new UserController())->login();
+            exit;
+        }
+        (new UserController())->orderHistory();
+    },
+    
     'auth/logout' => function () {
         if (!isset($_SESSION['user'])) {
             (new UserController())->login();

@@ -24,7 +24,8 @@ include __DIR__ . '/../inc/header.php';
         ?>
     </div>
     
-    <a href="index.php?url=auth/editProfile" class="edit-profile-btn">Edit Profile</a>
+    <a href="/auth/editProfile" class="edit-profile-btn">Edit Profile</a>
+    <a href="/auth/orderHistory" class="edit-profile-btn">Order History</a>
   </div>
 </div>
 <?php include __DIR__ . '/../inc/footer.php'; ?>

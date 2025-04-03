@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Auth.php';
 require_once __DIR__ . '/../models/Product.php';
+require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../models/RememberToken.php';
 require_once __DIR__ . '/../../core/Controller.php';
 require_once __DIR__ . '/../../core/Security.php';
@@ -164,7 +165,7 @@ class UserController extends Controller
             $alert("Invalid request. Please try again.");
         }
         // Sanitize and validate input data.
-        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+        $name = htmlspecialchars(strip_tags($_POST['name']), ENT_COMPAT, 'UTF-8');
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = trim(strip_tags($_POST['password'] ?? ''));
         $cnfmPassword = trim(strip_tags($_POST['cnfmpassword'] ?? ''));
@@ -231,7 +232,7 @@ class UserController extends Controller
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->view('auth/editProfile', ['user' => $_SESSION['user'], 'options' => ['form', 'profile'], 'csrf_token' => Csrf::generateToken(), 'alert' => ["Email not valid", 2]]);
+            $this->view(self::PATH .'/editProfile', ['user' => $_SESSION['user'], 'options' => ['form', 'profile'], 'csrf_token' => Csrf::generateToken(), 'alert' => ["Email not valid", 2]]);
             exit;
         }
         // Process profile picture upload if provided.
@@ -239,17 +240,17 @@ class UserController extends Controller
         if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === 0) {
             if (!file_exists($_FILES['profile_pic']['tmp_name']) || !is_readable($_FILES['profile_pic']['tmp_name'])) {
                 $alert = ["Uploaded file is not a valid image.", 2];
-                $this->view('auth/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile']]);
+                $this->view(self::PATH .'/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile']]);
             }
             if (exif_imagetype($_FILES['profile_pic']['tmp_name']) === false) {
                 $alert = ["Uploaded file is not a valid image.", 2];
-                $this->view('auth/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile']]);
+                $this->view(self::PATH .'/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile']]);
             }
             try {
                 $profilePic = convertImageToJpeg($_FILES['profile_pic']['tmp_name'], 90);
             } catch (Exception $e) {
                 $alert = [$e->getMessage(), 2];
-                $this->view('auth/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile',]]);
+                $this->view(self::PATH .'/editProfile', ['user' => $_SESSION['user'], 'csrf_token' => Csrf::generateToken(), 'alert' => $alert, 'options' => ['form', 'profile',]]);
             }
         } else {
             $profilePic = null;
@@ -263,7 +264,7 @@ class UserController extends Controller
             $alert = ["Failed to update profile.", 2];
         }
         $userModel->refreshUser();
-        $this->view('auth/editProfile', [
+        $this->view(self::PATH .'/editProfile', [
             'user' => $_SESSION['user'],
             'csrf_token' => Csrf::generateToken(),
             'alert' => $alert,
@@ -292,7 +293,7 @@ class UserController extends Controller
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $userModel = new Auth();
         if (!$userModel->emailExists($email)) {
-            $alert('You do not have an account with us! <a href="auth/register">Register Now</a>');
+            $alert('You do not have an account with us! <a href="/auth/register">Register Now</a>');
         }
         $user = $userModel->getUserByEmail($email);
         $userId = $user['id'];
@@ -316,13 +317,13 @@ class UserController extends Controller
         if (!$record || $record['used'] == 1 || strtotime($record['expires_at']) < time()) {
             // Invalid or expired token
             $alert = ["Invalid or expired token.", 2];
-            $this->view('auth/resetForm', [
+            $this->view(self::PATH .'/resetForm', [
                 'alert' => $alert,
                 'options' => ['form']
             ]);
             exit;
         }
-        $this->view('auth/resetForm', [ // Render the reset password form
+        $this->view(self::PATH .'/resetForm', [ // Render the reset password form
             'token' => $token,
             'csrf_token' => Csrf::generateToken(),
             'options' => ['form']
@@ -344,7 +345,7 @@ class UserController extends Controller
         $confirmPassword = $_POST['confirm_password'] ?? '';
         if ($password !== $confirmPassword) {
             $alert = ["Passwords do not match.", 2];
-            $this->view('auth/resetForm', [
+            $this->view(self::PATH .'/resetForm', [
                 'token' => $token,
                 'alert' => $alert,
                 'options' => ['form'],
@@ -356,7 +357,7 @@ class UserController extends Controller
         $record = $userModel->getResetToken($token); // Check token
         if (!$record || $record['used'] == 1 || strtotime($record['expires_at']) < time()) {
             $alert = ["Invalid or expired token.", 2];
-            $this->view('auth/resetForm', [
+            $this->view(self::PATH .'/resetForm', [
                 'alert' => $alert
             ]);
             exit;
@@ -369,6 +370,16 @@ class UserController extends Controller
         $this->login($alert);
         exit;
     }
-
+    public function orderHistory() {
+        // Retrieve orders for the logged-in user.
+        $userId = $_SESSION['user']['id'];
+        $orderModel = new Order();
+        $orders = $orderModel->getOrdersByUserId($userId);
+        // $orders = [];
+        
+        // Pass orders to the view.
+        $this->view(self::PATH .'/orderHistory', ['orders' => $orders, 'options'=>['orderHistory']]);
+        exit;
+    }
 }
 ?>

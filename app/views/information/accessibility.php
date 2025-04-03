@@ -3,7 +3,7 @@ $title = 'Accessibility';
 include __DIR__ . '/../inc/header.php';
 ?>
 <section class="__content">
-    <div class="title">
+    <div class="all_content">
         <h1>Accessibility</h1>
         <p>ShoeSeller Operating Srl is committed to ensuring a positive browsing experience on its website for all customers,
         including customers with disabilities. ShoeSeller Operating Srl utilises a range of tools in order to monitor and

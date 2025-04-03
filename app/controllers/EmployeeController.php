@@ -79,10 +79,10 @@ class EmployeeController extends Controller
             $alert("Invalid request. Please try again.");
         }
 
-        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $name = htmlspecialchars(strip_tags($_POST['name']), ENT_COMPAT, 'UTF-8');
         $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $brand = filter_var($_POST['brand'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $description = htmlspecialchars(strip_tags($_POST['description']),  ENT_COMPAT, 'UTF-8');
         $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
 
         // Process the sizes and stock values (arrays from the form).
@@ -186,10 +186,11 @@ class EmployeeController extends Controller
             $alert("Invalid product ID.");
         }
 
-        $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $name = htmlspecialchars(strip_tags($_POST['name']),  ENT_COMPAT, 'UTF-8');
         $brand = filter_var($_POST['brand'], FILTER_SANITIZE_SPECIAL_CHARS);
         $price = filter_var($_POST['base_price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $description = htmlspecialchars(strip_tags($_POST['description']),  ENT_COMPAT, 'UTF-8');
+
 
         $thumbnail = null;
         if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === 0) {

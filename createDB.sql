@@ -160,7 +160,7 @@ CREATE TABLE `users` (
   `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `profile_pic` longblob NOT NULL,
+  `profile_pic` longblob,
   `address` text DEFAULT NULL,
   `points` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `user_type` enum('user','employee','admin') NOT NULL DEFAULT 'user',

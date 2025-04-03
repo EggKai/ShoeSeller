@@ -26,7 +26,7 @@ include __DIR__ . '/../inc/header.php';
           <div class="cart-item-actions">
             <div class="quantity-controls">
               <!-- Minus form -->
-              <form action="index.php?url=cart/minus" method="POST" style="display:inline;">
+              <form action="/index.php?url=cart/minus" method="POST" style="display:inline;">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars(string: $item['id']); ?>">
                 <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
@@ -35,7 +35,7 @@ include __DIR__ . '/../inc/header.php';
               <input type="number" class="qty-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1"
                 readonly>
               <!-- Plus form -->
-              <form action="index.php?url=cart/plus" method="POST" style="display:inline;">
+              <form action="/index.php?url=cart/plus" method="POST" style="display:inline;">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
                 <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
@@ -70,15 +70,15 @@ include __DIR__ . '/../inc/header.php';
     <div class="checkout-buttons">
       <?php if (!isset($_SESSION['user'])): ?>
         <!-- If not logged in, show both Guest and Member checkout buttons -->
-        <a href="index.php?url=checkout">
+        <a href="/index.php?url=checkout">
           <button class="guest-checkout" id="guestCheckout">Guest Checkout</button>
         </a>
-        <a href="index.php?url=auth/login">
+        <a href="/index.php?url=auth/login">
           <button type="button" class="member-checkout">Member Checkout</button>
         </a>
       <?php else: ?>
         <!-- If logged in, show a single checkout button -->
-        <a href="index.php?url=checkout">
+        <a href="/index.php?url=checkout">
         <button class="guest-checkout" id="memberCheckout">Checkout</button>
         </a>
       <?php endif; ?>

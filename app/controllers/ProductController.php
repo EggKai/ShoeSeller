@@ -20,7 +20,7 @@ class ProductController extends Controller
                 'sizes' => $sizes,
                 'category' => $category,
                 'reviews' => (new Review())->getAllReviewsByProductId($id),
-                'options' => ['addCart', 'review'],
+                'options' => ['addCart', 'review', 'detail'],
                 'csrf_token' => Csrf::generateToken()
             ]);
         } else {

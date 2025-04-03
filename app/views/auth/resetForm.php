@@ -8,7 +8,7 @@ include __DIR__ . '/../inc/header.php';
     include __DIR__ . '/../partials/alert.php';
     ?>
 
-    <form action="index.php?url=auth/doReset" method="POST" id="authForm">
+    <form action="/auth/doReset" method="POST" id="authForm">
         <?php if (isset($token)): ?>
             <h1>Reset Your Password</h1>
             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">

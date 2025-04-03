@@ -138,6 +138,8 @@
 .summary-row span {
     font-size: 1rem;
     color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .summary-total {

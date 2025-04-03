@@ -6,7 +6,7 @@ include __DIR__ . '/../inc/header.php';
     <?php
     include __DIR__ . '/../partials/alert.php';
     ?>
-    <form action="index.php?url=auth/doEditProfile" method="POST" enctype="multipart/form-data" id="authForm">
+    <form action="/auth/doEditProfile" method="POST" enctype="multipart/form-data" id="authForm">
         <h1>Edit Profile</h1>
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? ''); ?>">
 

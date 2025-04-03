@@ -1,5 +1,6 @@
 <?php
 $title = "All products";
+$description = "All products Page";
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="product-container __content">
@@ -8,12 +9,12 @@ include __DIR__ . '/../inc/header.php';
     foreach ($products as $product) { ?>
       <div class="product-item">
         <!-- Image -->
-        <a href="index.php?url=products/detail&id=<?php echo urlencode($product['id']); ?>">
-          <img src="public/products/<?php echo htmlspecialchars($product['image_url']); ?>"
+        <a href="/products/detail&id=<?php echo urlencode($product['id']); ?>">
+          <img src="/public/products/<?php echo htmlspecialchars($product['image_url'], ENT_COMPAT, 'UTF-8'); ?>"
             alt="<?php echo htmlspecialchars($product['name']); ?>" />
           <!-- Product Name -->
-          <h3 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h3>
-          <h6 class="product-brand"><?php echo htmlspecialchars($product['brand']); ?> <?php echo $product['unlisted']?'<span class="red">Unlisted</span>':'' ?></h6>
+          <h3 class="product-title"><?php echo htmlspecialchars($product['name'], ENT_COMPAT, 'UTF-8'); ?></h3>
+          <h6 class="product-brand"><?php echo htmlspecialchars($product['brand'], ENT_COMPAT, 'UTF-8'); ?> <?php echo $product['unlisted']?'<span class="red">Unlisted</span>':'' ?></h6>
           <!-- Product Price -->
           <p class="product-price">$<?php echo number_format($product['base_price'], 2); ?></p>
 

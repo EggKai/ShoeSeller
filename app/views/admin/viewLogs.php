@@ -9,7 +9,7 @@ include __DIR__ . '/../inc/header.php';
             <?php if (!empty($logFiles)): ?>
                 <?php foreach ($logFiles as $file): ?>
                     <li>
-                        <a href="index.php?url=admin/viewLogs&file=<?php echo urlencode($file); ?>">
+                        <a href="/admin/viewLogs&file=<?php echo urlencode($file); ?>">
                             <?php echo htmlspecialchars($file); ?>
                         </a>
                     </li>

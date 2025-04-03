@@ -2,7 +2,7 @@
 $title = "Add product";
 include_once __DIR__ . '/../inc/header.php';
 ?>
-<form id="authForm" action="/index.php?url=employee/doAddProduct" method="POST" enctype="multipart/form-data">
+<form id="authForm" action="/employee/doAddProduct" method="POST" enctype="multipart/form-data">
     <?php
     include __DIR__ . '/../partials/alert.php';
     ?>
