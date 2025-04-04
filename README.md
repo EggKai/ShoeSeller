@@ -93,6 +93,8 @@ Create a `.env` file in the project root with your configuration:
   STRIPE_PUBLISHABLE_KEY=pk_live_publickeystring
   EMAIL=shoesellersg@gmail.com
   EMAIL_APP_PASSWORD="secret app password"
+  GOOGLE_CAPTCHA_SECRET_KEY="google captcha secret key"
+  GOOGLE_CAPTCHA_SITE_KEY="google captcha site key"
   ```
 
 4. Install Dependencies:

@@ -83,7 +83,7 @@ class UserController extends Controller
         }
         $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
         if (empty($recaptchaResponse)) {
-            die("Captcha verification is required.");
+            $alert("Captcha Incomplete. Please Try again.");
         }
         $responseData = google_recaptcha($recaptchaResponse);
         if (!$responseData['success']) {
@@ -163,7 +163,7 @@ class UserController extends Controller
         }
         $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
         if (empty($recaptchaResponse)) {
-            die("Captcha verification is required.");
+            $alert("Captcha incomplete. Please Try again.");
         }
         $responseData = google_recaptcha($recaptchaResponse);
         if (!$responseData['success']) {
