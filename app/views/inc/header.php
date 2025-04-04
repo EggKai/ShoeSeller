@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <?php if (str_contains($_ENV['DOMAIN'], 'localhost/shoeseller')) {
@@ -42,6 +41,9 @@
         <?php if (in_array('form', $options)) { ?>
             <link rel="stylesheet" href="/public/assets/css/form.css">
             <link rel="stylesheet" href="/public/assets/css/alerts.css">
+        <?php } ?>
+        <?php if (in_array('captcha', $options)) { ?>
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <?php } ?>
         <?php if (in_array('form-carousel', $options)) { ?>
             <script defer src="/public/assets/js/form-carousel.js"></script>
@@ -104,7 +106,7 @@
         <nav class="main-nav" aria-label="Main navigation">
             <ul class="nav-left desktop-nav">
                 <li>
-                    <a href="/index.php">
+                    <a href="/">
                         <img src="/public/assets/images/logo.png" alt="Shoe Store Logo">
                     </a>
                 </li>
@@ -157,7 +159,7 @@
                 </button>
                 <ul class="nav-left mobile-menu-items">
                     <li>
-                        <a href="/index.php">
+                        <a href="/">
                             Home
                         </a>
                     </li>

@@ -5,13 +5,13 @@ include __DIR__ . '/../inc/header.php';
 <section class="__content">
 
     <div class='title'>
-        <h2>Terms and Conditions</h2>
+        <h1>Terms and Conditions</h1>
     </div>
     
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5> 1. SCOPE OF APPLICATION</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2> 1. SCOPE OF APPLICATION</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section1" class="toggle_content">
             <ol>
@@ -42,8 +42,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>2. CONCLUSION OF THE AGREEMENT</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>2. CONCLUSION OF THE AGREEMENT</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section2" class="toggle_content">
             <ol>
@@ -60,8 +60,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>3. PRODUCT AVAILABILITY</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>3. PRODUCT AVAILABILITY</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section3" class="toggle_content">
             <ol>
@@ -74,8 +74,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>4. PURCHASE PROCEDURE</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>4. PURCHASE PROCEDURE</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section4" class="toggle_content">
             <ol>
@@ -92,8 +92,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>5. PRICE AND PAYMENT METHOD</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>5. PRICE AND PAYMENT METHOD</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section5" class="toggle_content">
             <ol>
@@ -114,8 +114,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>6. SHIPPING AND DELIVERY</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>6. SHIPPING AND DELIVERY</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section6" class="toggle_content">
             <ol>
@@ -132,8 +132,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>7. RISKS AND OWNERSHIP</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>7. RISKS AND OWNERSHIP</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section7" class="toggle_content">
             <ol>
@@ -145,8 +145,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>8. CUSTOMIZATION AND PRE-ORDERS</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>8. CUSTOMIZATION AND PRE-ORDERS</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section8" class="toggle_content">
             <ol>
@@ -166,8 +166,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>9. WARRANTY</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>9. WARRANTY</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section9" class="toggle_content">
             <ol>
@@ -189,8 +189,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>10. FORCE MAJEURE</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>10. FORCE MAJEURE</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section10" class="toggle_content">
             <ol>
@@ -203,8 +203,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>11. RIGHT OF WITHDRAWAL</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>11. RIGHT OF WITHDRAWAL</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section11" class="toggle_content"> 
             <ol>
@@ -231,8 +231,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>12. INTELLECTUAL PROPERTY</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>12. INTELLECTUAL PROPERTY</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section12" class="toggle_content">
             <ol>   
@@ -246,8 +246,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>13. PERSONAL DATA COLLECTION</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>13. PERSONAL DATA COLLECTION</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section13" class="toggle_content">
             <ol>
@@ -260,8 +260,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>14. NOTICES</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>14. NOTICES</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section14" class="toggle_content">
             <ol>
@@ -274,8 +274,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>15. CHANGES AND UPDATES</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>15. CHANGES AND UPDATES</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section15" class="toggle_content">
             <ol>
@@ -288,8 +288,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>16. MISCELLANEOUS PROVISIONS</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>16. MISCELLANEOUS PROVISIONS</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section16" class="toggle_content">
             <ol>
@@ -303,8 +303,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>17. APPLICABLE LAW AND JUSTIFICATION</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>17. APPLICABLE LAW AND JUSTIFICATION</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section17" class="toggle_content">
             <ol>

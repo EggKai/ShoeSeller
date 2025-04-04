@@ -2,6 +2,8 @@
 $title = "Order Receipt";
 include __DIR__ . '/../inc/header.php';
 ?>
+<h1 class="visually-hidden">Your Reciept</h1>
+
 <div class="cart-container">
   <!-- Left side: Order Items -->
   <div class="cart-items">
@@ -49,14 +51,14 @@ include __DIR__ . '/../inc/header.php';
     ?>
     <div class="summary-row">
       <span>Discount</span>
-      <span>$<?php echo number_format($order['discount'], 2); ?></span>
+      <span>$<?php echo number_format($order['discount']/100, 2); ?></span>
     </div>
     <?php
       }
     ?>
     <div class="summary-row summary-total">
       <span>Total</span>
-      <span>$<?php echo number_format($order['total_price']-$order['discount'], 2); ?></span>
+      <span>$<?php echo number_format($order['total_price']-($order['discount']/100), 2); ?></span>
     </div>
   </div>
 </div>

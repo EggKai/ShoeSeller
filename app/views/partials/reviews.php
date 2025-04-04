@@ -23,7 +23,7 @@
       </form>
   </div>
 <?php else: ?>
-  <p>You must <a href="index.php?url=auth/login">log in</a> to write a review.</p>
+  <p>You must <a href="/auth/login">log in</a> to write a review.</p>
 <?php endif; ?>
     
 

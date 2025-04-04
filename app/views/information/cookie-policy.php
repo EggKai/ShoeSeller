@@ -2,16 +2,15 @@
 $title = 'Cookie Policy';
 include __DIR__ . '/../inc/header.php';
 ?>
-
 <section class="__content">
     <div class="title">
-        <h2>Cookie Policy</h2>
+        <h1>Cookie Policy</h1>
     </div>
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>INTRODUCTION</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>INTRODUCTION</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section1" class="toggle_content">
             <p>Please find below information on cookies installed on the website “www.ShoeSeller.com” (hereinafter the “Website”).</p>
@@ -22,8 +21,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>WHAT A COOKIE IS AND WHAT IT IS USED FOR</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>WHAT A COOKIE IS AND WHAT IT IS USED FOR</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section2" class="toggle_content">
             <p>A cookie is a small data file which, in the form of a unique anonymous code, is sent to your browser from a
@@ -43,8 +42,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>COOKIE USED ON THIS WEBSITE AND PURPOSES OF SUCH USE</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>COOKIE USED ON THIS WEBSITE AND PURPOSES OF SUCH USE</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section3" class="toggle_content">
             <p>
@@ -85,8 +84,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>LEGAL BASIS FOR THE USE OF COOKES</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>LEGAL BASIS FOR THE USE OF COOKES</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section4" class="toggle_content"> 
             <p>
@@ -104,8 +103,8 @@ include __DIR__ . '/../inc/header.php';
     
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>HOW YOUR PERSONAL DATA ARE PROCESSED</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>HOW YOUR PERSONAL DATA ARE PROCESSED</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section5" class="toggle_content">
             <p>
@@ -119,8 +118,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>USERS RIGHT TO OPPOSE OR EDIT COOKIES</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>USERS RIGHT TO OPPOSE OR EDIT COOKIES</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section6" class="toggle_content">
             <p>
@@ -178,8 +177,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>DATA CONTROLLER</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>DATA CONTROLLER</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section7" class="toggle_content">
             <p>
@@ -194,8 +193,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>WHO WILL OBTAIN KNOWLEDGE OF THE DATA, THEIR TRANSFER AND DISCLOSURE</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>WHO WILL OBTAIN KNOWLEDGE OF THE DATA, THEIR TRANSFER AND DISCLOSURE</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section8" class="toggle_content">
             <p>
@@ -215,8 +214,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>USERS RIGHTS</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>USERS RIGHTS</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="section9" class="toggle_content">
             <p>

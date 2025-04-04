@@ -3,17 +3,16 @@ $title = 'About Us';
 include __DIR__ . '/../inc/header.php';
 ?>
 <?php
-//TODO: get a better photo :(
 $parralaxLayerFG = 'group-photo.png';
 $parralaxLayerText = 'ABOUT US';
 include __DIR__ . '/../partials/landing.php'; 
 ?>
 <div class="__content all_content">
-    <header role="banner">
-        <h1>ShoeSeller Web Design</h1>
+    <header aria-label="About Us Header">
+        <h1>About ShoeSeller</h1>
     </header>
 
-    <nav role="navigation">
+    <nav role="navigation" aria-label="About Us Sections Navigation">
         <ul class="nav">
             <li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
             <li class="nav-item"><a class="nav-link" href="#system-design">System Design</a></li>
@@ -24,7 +23,7 @@ include __DIR__ . '/../partials/landing.php';
         </ul>
     </nav>
 
-    <section id="introduction">
+    <section id="introduction" tabindex="0">
         <h2>1. Introduction</h2>
         <p>
             ShoeSeller is an innovative e-commerce platform specifically tailored for footwear enthusiasts.
@@ -41,7 +40,7 @@ include __DIR__ . '/../partials/landing.php';
         </p>
     </section>
 
-    <section id="system-design">
+    <section id="system-design" tabindex="0">
         <h2>2. System Design</h2>
         <h3>2.1 Architecture</h3>
         <p>
@@ -69,7 +68,7 @@ include __DIR__ . '/../partials/landing.php';
         </ul>
     </section>
 
-    <section id="features">
+    <section id="features" tabindex="0">
         <h2>3. Features</h2>
         <p>
             ShoeSeller offers an extensive range of features designed to enhance both the shopping experience and
@@ -87,7 +86,7 @@ include __DIR__ . '/../partials/landing.php';
         </ul>
     </section>
 
-    <section id="implementation">
+    <section id="implementation" tabindex="0">
         <h2>4. Implementation</h2>
         <p>
             The implementation of ShoeSeller combines modern web technologies and development best practices:
@@ -103,7 +102,7 @@ include __DIR__ . '/../partials/landing.php';
         </ul>
     </section>
 
-    <section id="methodologies">
+    <section id="methodologies" tabindex="0">
         <h2>5. Methodologies</h2>
         <p>
             Throughout the development process, our team employed a combination of methodologies to ensure a robust and high-quality product:
@@ -117,7 +116,7 @@ include __DIR__ . '/../partials/landing.php';
         </ul>
     </section>
 
-    <section id="appendix">
+    <section id="appendix" tabindex="0">
         <h2>6. Appendix</h2>
         <p>
             For further details on our project, you can explore the following resources:

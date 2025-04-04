@@ -15,7 +15,7 @@ class UserController extends Controller
     public function login($alert = null)
     {
         if (!isset($_SESSION['user'])) {
-            $this->view(UserController::PATH . '/login', ['data' => null, 'alert' => $alert, 'options' => ['form'], 'csrf_token' => Csrf::generateToken()]);
+            $this->view(UserController::PATH . '/login', ['data' => null, 'alert' => $alert, 'options' => ['form', 'captcha'], 'csrf_token' => Csrf::generateToken()]);
             exit;
         }
         (new HomeController)->index();
@@ -66,12 +66,13 @@ class UserController extends Controller
         exit;
     }
     public function doLogin()
-    {
+    {   
+        
         $alert = function ($message) { //lambda
             $this->view(self::PATH . '/login', [
                 'data' => $_POST,
                 'alert' => [$message, 2],
-                'options' => ['form'],
+                'options' => ['form', 'captcha'],
                 'csrf_token' => Csrf::generateToken()
             ]);
             exit;
@@ -80,8 +81,13 @@ class UserController extends Controller
             (new HomeController())->index();
             exit;
         }
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
+        if (empty($recaptchaResponse)) {
+            die("Captcha verification is required.");
+        }
+        $responseData = google_recaptcha($recaptchaResponse);
+        if (!$responseData['success']) {
+            $alert("Captcha verification failed. Please try again.");
         }
         $csrfToken = $_POST['csrf_token'] ?? '';
         if (!Csrf::validateToken($csrfToken)) { // Validate CSRF token
@@ -135,7 +141,7 @@ class UserController extends Controller
     }
     public function register()
     {
-        $this->view(UserController::PATH . '/register', ['data' => null, 'options' => ['form', 'form-carousel'], 'csrf_token' => Csrf::generateToken()]);
+        $this->view(UserController::PATH . '/register', ['data' => null, 'options' => ['form', 'form-carousel', 'captcha'], 'csrf_token' => Csrf::generateToken()]);
     }
 
     public function doRegister()
@@ -145,7 +151,7 @@ class UserController extends Controller
             $this->view(self::PATH . '/register', [
                 'data' => $_POST,
                 'alert' => [$message, 2],
-                'options' => ['form', 'form-carousel'],
+                'options' => ['form', 'form-carousel','captcha'],
                 'csrf_token' => Csrf::generateToken()
             ]);
             exit;
@@ -155,9 +161,13 @@ class UserController extends Controller
             (new HomeController())->index();
             exit;
         }
-        // Start the session if it's not already started.
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
+        if (empty($recaptchaResponse)) {
+            die("Captcha verification is required.");
+        }
+        $responseData = google_recaptcha($recaptchaResponse);
+        if (!$responseData['success']) {
+            $alert("Captcha verification failed. Please try again.");
         }
         // Validate CSRF token.
         $csrfToken = $_POST['csrf_token'] ?? '';
@@ -195,7 +205,7 @@ class UserController extends Controller
             $this->view(self::PATH . '/login', [
                 'data' => $_POST,
                 'alert' => ["You have made an account<3 Login now!", 1],
-                'options' => ['form'],
+                'options' => ['form', 'captcha'],
                 'csrf_token' => Csrf::generateToken()
             ]);
             exit;
@@ -314,7 +324,7 @@ class UserController extends Controller
         $userModel = new Auth();
         $record = $userModel->getResetToken($token);
 
-        if (!$record || $record['used'] == 1 || strtotime($record['expires_at']) < time()) {
+        if (!$record || ($record['used'] == 1 || strtotime($record['expires_at']) < time())) {
             // Invalid or expired token
             $alert = ["Invalid or expired token.", 2];
             $this->view(self::PATH .'/resetForm', [

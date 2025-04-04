@@ -21,7 +21,7 @@
 .log-files-list li a {
   text-decoration: none;
   font-size: larger;
-  color: #007bff;
+  color: #68b1ff;
 }
 
 .log-files-list li a:hover {
@@ -67,7 +67,7 @@
 }
 
 .log-info {
-  color: blue;
+  color: darkblue;
   font-weight: bold;
 }
 
@@ -77,16 +77,16 @@
 }
 
 .log-action {
-  color: purple;
+  color: darkorchid;
   font-weight: bold;
 }
 
 .log-id {
-  color: darkblue;
+  color: darkviolet;
   font-weight: bold;
 }
 
 .log-ip {
-  color: darkcyan; 
+  color: rgb(0, 69, 69); 
   font-weight: bold;
 }

@@ -62,7 +62,7 @@
 
 /* Hover effect for the delete button */
 .users-table td .delete-user-btn:hover {
-  background-color: #c0392b;  /* A slightly darker red */
+  background-color: darkred;  /* A slightly darker red */
 }
 /* On small screens, force a minimum table width to trigger horizontal scroll */
 @media screen and (max-width: 600px) {

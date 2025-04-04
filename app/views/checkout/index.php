@@ -32,7 +32,7 @@ if (!empty($cart)) {
                     <div class="cart-item">
                         <img src="/public/products/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
                         <div class="cart-item-details">
-                            <h3><?php echo htmlspecialchars($item['name']); ?></h3>
+                            <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                             <p><?php echo htmlspecialchars($item['category']['name']); ?></p>
                             <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
                             <p>Quantity: <?php echo htmlspecialchars($item['quantity']); ?></p>
@@ -82,7 +82,7 @@ if (!empty($cart)) {
     <?php if (!empty($cart)): ?>
         <div class="checkout-details">
             <h2>Enter Your Details</h2>
-            <form action="/index.php?url=checkout/doCheckout" method="POST">
+            <form action="/checkout/doCheckout" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <?php if ($claimPoints){ ?>
                     <input type="hidden" name="usepoints" value="true">

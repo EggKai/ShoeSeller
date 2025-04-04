@@ -4,6 +4,9 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.title h1 {
+    font-size: xx-large;
+}
 .title p{
     font-size: 0.9rem;
 }
@@ -28,8 +31,9 @@
     cursor: pointer;
 }
 
-.dropdown_title h5{
+.dropdown_title h2{
     margin: 0px;
+    font-weight: 300;
 }
 
 .dropdown {

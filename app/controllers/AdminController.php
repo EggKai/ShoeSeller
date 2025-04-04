@@ -186,7 +186,8 @@ class AdminController extends Controller
             $this->view(self::PATH . '/createUser', [
                 'csrf_token' => Csrf::generateToken(),
                 'data' => $_POST,
-                'alert' => $alert
+                'alert' => $alert,
+                'options'=>['form']
             ]);
             exit;
         }
@@ -199,7 +200,9 @@ class AdminController extends Controller
             $this->view(self::PATH . '/createUser', [
                 'csrf_token' => Csrf::generateToken(),
                 'data' => $_POST,
-                'alert' => $alert
+                'alert' => $alert,
+                'options'=>['form']
+
             ]);
             exit;
         }
@@ -210,7 +213,9 @@ class AdminController extends Controller
             $this->view(self::PATH . '/createUser', [
                 'csrf_token' => Csrf::generateToken(),
                 'data'       => $_POST,
-                'alert'      => $alert
+                'alert'      => $alert,
+                'options'=>['form']
+
             ]);
             exit;
         }
@@ -227,6 +232,7 @@ class AdminController extends Controller
         $this->view(self::PATH . '/createUser', [
             'csrf_token' => Csrf::generateToken(),
             'alert' => $alert,
+            'data'       => $_POST,
             'options' => ['form'],
         ]);
         exit;

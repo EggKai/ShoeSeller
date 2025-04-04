@@ -5,7 +5,7 @@ include __DIR__ . '/../inc/header.php';
 <section class="__content">
 
     <div class="title">
-        <h2>Privacy Policy</h2>
+        <h1>Privacy Policy</h1>
         <p>Welcome to the website of shoeseller www.shoeseller.site (hereinafter, for brevity, the “Site”).</p>
         <p>We therefore kindly ask you to carefully read this privacy policy (hereinafter referred to as the “Privacy Policy”), which applies to each access to the Site, even independently of the purchase of products marketed therein.</p>
         <p>We would like to remind you that this Privacy Policy is governed by the European Regulation No. 2016/679 (hereinafter, for brevity, the “Regulation”). The Regulation ensures that the processing of personal data is carried out in accordance with the fundamental rights and freedoms and the dignity of data subjects, with particular reference to confidentiality and personal identity.</p>
@@ -13,8 +13,8 @@ include __DIR__ . '/../inc/header.php';
 
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>DATA CONTROLLER AND CONTACT DETAILS</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>DATA CONTROLLER AND CONTACT DETAILS</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy1" class="toggle_content">
             <p>Shoeseller Operating S.r.l., with registered office in Via SIT, Singapore (hereinafter referred to as “Shoeseller” and/or the “Data Controller” for brevity) is the autonomous data controller of the processing of personal data of users who browse the Site, including browsing data, marketing and profiling data, as well as data connected and related to sales made through the Site and to the related pre- and post-sales support activities. Shoeseller has entrusted some of the services of the Site - related, in particular, to the processing of payments, to the to customer service, hosting and delivery logistics - under management to P5-2, which has been appointed as the data processor. You may always contact the Data Controller to receive information on the processing and/or to exercise your rights, by writing to the e-mail address privacy@shoeseller.com or to the address of the head office at Via SIT, Singapore</p>
@@ -23,8 +23,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>TYPE, PURPOSE AND LEGAL BASIS OF PROCESSING</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>TYPE, PURPOSE AND LEGAL BASIS OF PROCESSING</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy2" class="toggle_content">
             <p>Through the Site, different types of personal data are processed and collected for different purposes and in different ways. Specifically:</p>
@@ -47,8 +47,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>SOURCE OF PERSONAL DATA</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>SOURCE OF PERSONAL DATA</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy3" class="toggle_content">
             <p>The personal data collected are provided directly by the user (through registration on the Site or as part of the sales process), with the exception of the browsing data referred to in point 2.1.</p>
@@ -57,8 +57,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>STUDY OF USERS' CONSUMPTION HABITS AND CHOICES</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>STUDY OF USERS' CONSUMPTION HABITS AND CHOICES</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy4" class="toggle_content">
             <p>As indicated in point 2.6 above, with your express consent, Shoeseller may process your personal data for the purpose of studying your consumption habits and choices, in order to make its products and initiatives more responsive to your tastes and needs.</p>
@@ -70,8 +70,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>HOW SHOESELLER PROCESSES PERSONAL DATA</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>HOW SHOESELLER PROCESSES PERSONAL DATA</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy5" class="toggle_content">
             <p>Personal data collected through the Site are processed using mainly computerised and telematic methods and tools, adopting the necessary security measures to minimise the risks of destruction or loss, even accidental, of the data themselves, of unauthorised access or processing that is not permitted or does not comply with the purposes of collection as indicated in this Privacy Policy</p>
@@ -81,8 +81,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>COMPULSORY OR OPTIONAL NATURE OF PROVIDING PERSONAL DATA</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>COMPULSORY OR OPTIONAL NATURE OF PROVIDING PERSONAL DATA</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy6" class="toggle_content">
             <p>With the exception of browsing data (the provision and collection of which is regulated by the cookie policy), the provision to Shoeseller of the data collected through the Site both to respond to users’ queries and requests and for marketing purposes, to study consumer habits and preferences, as well as for communication to the companies of SIT Singapore is free and optional. Failure to provide data does not restrict your use of the Site, but may make it impossible for Shoeseller to respond to your requests for information or assistance or to send you updates and communications about products, sales, promotional campaigns, events and other initiatives promoted by Shoeseller.</p>
@@ -94,8 +94,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>CATEGORIES OF PERSONAL DATA RECIPIENTS</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>CATEGORIES OF PERSONAL DATA RECIPIENTS</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy7" class="toggle_content">
             <p>Personal data may be known and processed by:</p>
@@ -113,8 +113,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>DATA STORAGE PERIOD</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>DATA STORAGE PERIOD</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy8" class="toggle_content">
             <p>Personal data collected for sales purposes are retained for a period not exceeding 10 years after purchase, in accordance with tax and civil law, unless specific legal defence needs require retention for a longer period.</p>
@@ -125,8 +125,8 @@ include __DIR__ . '/../inc/header.php';
     </div>
     <div class="toggle_dropdown">
         <div class="dropdown_title">
-            <h5>RIGHTS GRANTED TO THE USER</h5>
-            <h5 align='right' class="dropdown">+</h5>
+            <h2>RIGHTS GRANTED TO THE USER</h2>
+            <h2 align='right' class="dropdown">+</h2>
         </div>
         <div id="privacy9" class="toggle_content">
             <p>You always have the right to obtain confirmation from Shoeseller as to whether or not personal data concerning you exist, even if they have not yet been recorded, and their communication in intelligible form. You also have the right to obtain information on the source of your personal data, the purposes and methods of processing, the logic applied in the event of processing carried out with the aid of electronic tools, the identification details of the data controller and data processors, the names of the persons or categories of persons to whom personal data may be communicated or who may become aware of them in their capacity, for example, as data processors or persons authorised to process personal data. The user also has the right to request the updating, rectification or, when interested, integration of personal data, the erasure, transformation into anonymous form or blocking of personal data processed in violation of the law, including those that do not need to be retained for the purposes for which the data were collected or subsequently processed, as well as certification that the above operations have been brought to the attention of those to whom the data have been communicated, except where this proves impossible or involves a manifestly disproportionate effort compared to the right protected. The user also has the right to data portability. The user has, however, the right to object in whole or in part, on legitimate grounds, to the processing of personal data concerning him or her, even if pertinent to the purpose of collection, to the processing of personal data concerning him or her for the purpose of sending advertising or direct marketing material or for carrying out market research or commercial communication, and he or she also has the right to request the restriction of the processing of data concerning him or her. The right to object may also be exercised specifically with regard to one or more of the methods of sending marketing communications.</p>

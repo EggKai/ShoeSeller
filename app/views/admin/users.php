@@ -40,7 +40,7 @@ include __DIR__ . '/../inc/header.php';
         <p>No users found.</p>
     <?php endif; ?>
 </div>
-<a href="admin/createUser">
+<a href="/admin/createUser">
     <button class="floating-plus-button" name="add-user" type="button">
         +
     </button>

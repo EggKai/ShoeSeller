@@ -21,10 +21,11 @@ include __DIR__ . '/../inc/header.php';
     </div>
 
     <?php if (!empty($selectedFile)): ?>
-        <div class="log-file-contents">
+        <!-- Focusable and scrollable region -->
+        <div class="log-file-contents" tabindex="0" aria-label="Log file contents">
             <h2>Viewing: <?php echo htmlspecialchars($selectedFile); ?></h2>
             <?php if ($fileContents !== null): ?>
-                <pre><?php echo htmlspecialchars($fileContents); ?></pre>
+                <pre tabindex="0" accesskey="0"><?php echo htmlspecialchars($fileContents); ?></pre>
             <?php else: ?>
                 <p>Unable to read the file or file is empty.</p>
             <?php endif; ?>

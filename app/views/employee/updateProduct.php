@@ -5,6 +5,7 @@ $description = "Details of the product:".htmlspecialchars($product['name']);
 include __DIR__ . '/../inc/header.php';
 ?>
 <div class="__content">
+<h1 class="visually-hidden">Update Product</h1>
 <?php
 include __DIR__ . '/../partials/alert.php';
 ?>
@@ -75,11 +76,11 @@ include __DIR__ . '/../partials/alert.php';
         <span class="step"></span>
       </div>
   </div>
+  <a href="/employee/handleListing&id=<?php echo htmlspecialchars($_GET['id']); ?>">
   <button class="floating-plus-button red" name="unlist" type="button">
-    <a href="/employee/handleListing&id=<?php echo htmlspecialchars($_GET['id']); ?>">
       <?php echo ($product['unlisted'])?'🔓':'🔒';?>
-    </a>
-  </button>
+    </button>
+  </a>
   <button class="floating-plus-button" name="submit" type="submit">🛠️</button>
   </form>
 </div>

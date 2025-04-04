@@ -44,14 +44,14 @@
 }
 
 /* Product name/title styling */
-.cart-item-details h3 {
+.cart-item-details h2 {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
 }
 
 /* Additional product info (e.g., size, color) */
 .cart-item-details p {
-    color: #555;
+    color: #b4b4b4;
     margin-bottom: 0.5rem;
 }
 

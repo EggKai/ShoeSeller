@@ -29,7 +29,7 @@
 .review-user-date {
   text-align: right;
   font-size: 0.9rem;
-  color: #666;
+  color: #d8d8d8;
 }
 
 .review-user {
@@ -38,6 +38,7 @@
 }
 
 .review-date {
+  color: #d8d8d8;
   display: inline-block;
   margin-top: 2px;
 }

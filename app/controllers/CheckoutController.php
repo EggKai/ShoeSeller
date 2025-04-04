@@ -17,7 +17,9 @@ class CheckoutController extends Controller
     private const PATH = 'checkout';
     public function index()
     {   
-        (new Auth)->refreshUser();
+        if (isset($_SESSION['user'])){
+            (new Auth)->refreshUser();
+        }
         $cart = Cart::getCurrentCart();
         $this->view(CheckoutController::PATH . '/index', ['options' => ['cart', 'checkout-form', 'form'], 'cart' => Cart::fullCartDetails($cart), 'csrf_token' => Csrf::generateToken()]);
         exit;
@@ -30,7 +32,7 @@ class CheckoutController extends Controller
         }
         if (isset($_SESSION['user'])) {
             $userId = $_SESSION['user']['id'];  // logged-in user ID
-            $email = $_SESSION['user']['email'] ?? '';
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?? $_SESSION['user']['email'];
             
         } else {
             $userId = null; // Guest
@@ -120,7 +122,9 @@ class CheckoutController extends Controller
         if (isset($_POST['usepoints']) && isset($_SESSION['user']) && $_SESSION['user']['points'] > 0) {
             $userModel = new Auth;
             $userModel->clearPoints($_SESSION['user']['id']);
-            $userModel->refreshUser();
+            if (isset($_SESSION['user'])){
+                $userModel->refreshUser();
+            }
             Cart::deleteCart(); //since order is saved we can clear cart
         }
         $orderModel->update_sessionId($orderId, $session->id);
@@ -186,7 +190,9 @@ class CheckoutController extends Controller
             }
             $userModel = new Auth;
             $userModel->addPoints($order['user_id'], $order['total_price']);
-            $userModel->refreshUser();
+            if (isset($_SESSION['user'])){
+                $userModel->refreshUser();
+            }
             logAction("INFO Order #$orderId confirmed Payment");
             if (!isset($_GET['retainCart'])){
                 Cart::deleteCart();

@@ -2,6 +2,7 @@
 $title = 'Cart';
 include __DIR__ . '/../inc/header.php';
 ?>
+<h1 class="visually-hidden">Your Cart</h1>
 <div class="cart-container">
   <?php  include __DIR__ . '/../partials/alert.php'; ?>
   <!-- Left side: Cart Items -->
@@ -19,7 +20,7 @@ include __DIR__ . '/../inc/header.php';
           <img src="public/products/<?php echo htmlspecialchars($item['image_url']); ?>"
             alt="<?php echo htmlspecialchars($item['name']); ?>">
           <div class="cart-item-details">
-            <h3><?php echo htmlspecialchars($item['name']); ?></h3>
+            <h2><?php echo htmlspecialchars($item['name']); ?></h2>
             <p><?php echo htmlspecialchars($item['category']['name']); ?></p>
             <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
           </div>
@@ -28,18 +29,18 @@ include __DIR__ . '/../inc/header.php';
               <!-- Minus form -->
               <form action="/index.php?url=cart/minus" method="POST" style="display:inline;">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-                <input type="hidden" name="id" value="<?php echo htmlspecialchars(string: $item['id']); ?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
                 <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
-                <button class="qty-minus" type="submit">-</button>
+                <button class="qty-minus" type="submit" aria-label="Decrease quantity of <?php echo htmlspecialchars($item['name']); ?>">-</button>
               </form>
-              <input type="number" class="qty-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1"
-                readonly>
+              <input type="number" class="qty-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" readonly 
+                     aria-label="Quantity of <?php echo htmlspecialchars($item['name']); ?>">
               <!-- Plus form -->
               <form action="/index.php?url=cart/plus" method="POST" style="display:inline;">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
                 <input type="hidden" name="size" value="<?php echo htmlspecialchars($item['size']); ?>">
-                <button class="qty-plus" type="submit">+</button>
+                <button class="qty-plus" type="submit" aria-label="Increase quantity of <?php echo htmlspecialchars($item['name']); ?>">+</button>
               </form>
             </div>
             <div class="cart-item-price">$<?php echo number_format($itemTotal, 2); ?></div>
@@ -70,16 +71,16 @@ include __DIR__ . '/../inc/header.php';
     <div class="checkout-buttons">
       <?php if (!isset($_SESSION['user'])): ?>
         <!-- If not logged in, show both Guest and Member checkout buttons -->
-        <a href="/index.php?url=checkout">
+        <a href="/checkout">
           <button class="guest-checkout" id="guestCheckout">Guest Checkout</button>
         </a>
-        <a href="/index.php?url=auth/login">
+        <a href="/auth/login">
           <button type="button" class="member-checkout">Member Checkout</button>
         </a>
       <?php else: ?>
         <!-- If logged in, show a single checkout button -->
-        <a href="/index.php?url=checkout">
-        <button class="guest-checkout" id="memberCheckout">Checkout</button>
+        <a href="/checkout">
+          <button class="guest-checkout" id="memberCheckout">Checkout</button>
         </a>
       <?php endif; ?>
     </div>

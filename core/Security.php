@@ -79,7 +79,15 @@ function convertImageToJpeg($sourcePath, $quality = 60) {
     imagedestroy($image);
     return $jpegData;
 }
+function google_recaptcha($recaptcha){
+    $secretKey = $_ENV['GOOGLE_CAPTCHA_SECRET_KEY'];
+    $remoteIp = $_SERVER['REMOTE_ADDR'];
+    $verifyUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($secretKey) . "&response=" . urlencode($recaptcha) . "&remoteip=" . urlencode($remoteIp);
 
+    // Use file_get_contents to send the request.
+    $responseData = file_get_contents($verifyUrl);
+    return json_decode($responseData, true);
+}
 
 /**
  * Generate a random token using CHARSET.
