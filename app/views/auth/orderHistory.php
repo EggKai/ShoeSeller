@@ -2,7 +2,7 @@
 $title = "Order History";
 include __DIR__ . '/../inc/header.php';
 ?>
-<div class="order-history-container">
+<div class="order-history-container __content">
     <h1>Order History</h1>
     <?php if (!empty($orders)): ?>
         <table class="orders-table">

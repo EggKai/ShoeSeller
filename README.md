@@ -64,6 +64,41 @@ ShoeSeller is built using a Model-View-Controller (MVC) design pattern:
 - **Development Environment:** [Apache2](https://httpd.apache.org/)
 - **Version Control:** Git & GitHub
 
+Below is the File Structure of the project
+```
+├── app/
+│   ├── controllers/
+│   ├── models/
+│   └── views/
+├── config/
+├── core/
+├── log/
+├── public/
+│   ├── assets/
+│   ├── error/
+│   ├── products/
+│   └── index.php
+├── routes/
+├── .env
+└── .htaccess
+```
+ - `App/` contains MVC
+   - `Models/` where database connections are managed 
+   - `Views/` where the web views are located
+   - `Controllers/` where the routing and business login is contained
+ - `config/` where the base database connection is (Models inherit from this base connection)
+ - `core/` where the core of the website is held, eg: Base classes like `Model` & `Controller` as well as `CORs` policy are held
+ - `log/` contains log files 
+ - `public/` This is the entry point for the user
+   - `assets\` where the `css`, `js` and `images` that are used by the website are held
+   - `error\` where the error documents are held (`403`, `404`, `500`)
+   -  `products\` is where all products images are held
+   - `index.php` This is the entry point as well as the centralised controller for the website
+- `routes\` where the routes to the controllers are held
+- `.env` the web server's configuration; where the secret keys are held
+- `.htaccess` the apache server's ruleset for this domain, ensures all traffic goes to `public\` and defines various security related apache behaviours
+
+
 ## Installation & Setup
 
 1. **Clone the Repository:**

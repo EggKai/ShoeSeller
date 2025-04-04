@@ -8,7 +8,7 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-error: var(--color-primary);
-  --color-success: #0ba954;
+  --color-success: #017436;
   --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
   --duration-default: 0.735s;
   --animation-default: var(--duration-default) var(--cubic-default);
