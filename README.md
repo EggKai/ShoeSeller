@@ -12,7 +12,7 @@
 ███████║██║  ██║╚██████╔╝███████╗███████║███████╗███████╗███████╗███████╗██║  ██║
 ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝                                                                                                                                                                  
 ```
-[ShoeSeller](https://www.shoeseller.site) is a specialized e-commerce platform for footwear created for [Singapore Institute of Technology](https://www.singaporetech.edu.sg/)'s INF1005 Module, offering a seamless and secure online shopping experience. Designed using an MVC architecture, the website supports multiple user roles—including admin, employee, and regular user—while providing robust features like secure checkout, a rewards system, and a comprehensive order history.
+[ShoeSeller](https://www.shoeseller.site) is a specialized e-commerce platform for footwear created for [Singapore Institute of Technology](https://www.singaporetech.edu.sg/)'s INF1005 Module, offering a seamless and secure online shopping experience. Designed using an MVC architecture, the website supports multiple user roles; including admin, employee, and regular user, while providing robust features like secure checkout, a rewards system, and a comprehensive order history.
 
 ## Table of Contents
 
@@ -45,6 +45,19 @@
 - **Additional Features:**  
   - Secure password reset functionality with email notifications using PHPMailer.
   - Comprehensive logging of administrative actions.
+
+## Screenshots
+
+- Homepage preview (GIF):  
+  ![Homepage flow](public/readme_assets/homepage.gif)
+- Admin dashboard preview:  
+  ![Dashboard example](public/readme_assets/dashboard.example.png)
+- Audit trail for staff actions:  
+  ![Actions log example](public/readme_assets/actions_log.example.png)
+- Stripe payment integration:  
+  ![Stripe payment](public/readme_assets/stripe_payment.png)
+- Email receipt (SMTP):  
+  ![SMTP receipt example](public/readme_assets/SMTP_receipt.example.png)
 
 ## System Design & Architecture
 
